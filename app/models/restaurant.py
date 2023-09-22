@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 
 class Restaurant(db.Model, UserMixin):
@@ -10,15 +10,33 @@ class Restaurant(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    ownerId = db.Column(db.Integer, nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    owner_id = db.Column(db.Integer, nullable=False, unique=True)
+    address = db.Column(db.String, nullable=False)
+    city = db.Column(db.String, nullable=False)
+    state = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
+    type = db.Column(db.String, nullable=False)
+    price = db.Column(db.String, nullable=False)
+    open_hours = db.Column(db.String, nullable=False)
+    close_hours = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.Date, default=datetime)
+    updated_at = db.Column(db.Date, default=datetime)
 
-
+    #relationship
+    owner = db.relationship("User", back_populates = "restaurant")
+    menu_item = db.relationship("MenuItem", back_populates = "restaurant")
+    review = db.relationship("Review", back_populates = "restaurant")
 
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'owner_id': self.owner_id,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'name': self.name,
+            'type': self.type,
+            'price': self.price,
+            'open_hours': self.open_hours,
+            'close_hours': self.close_hours,
         }
