@@ -9,7 +9,7 @@ class Restaurant(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, nullable=False, unique=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     address = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)

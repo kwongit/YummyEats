@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
 from flask_login import UserMixin
 from datetime import datetime
 
@@ -17,13 +16,9 @@ class Review(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime)
     updated_at = db.Column(db.DateTime, default=datetime)
 
-#relationships
-
+    #relationships
     restaurant = db.relationship("Restaurant", back_populates = "review")
-
-    user = db.relationship("User", back_populates = "user_review")
-
-# convert to dictionary
+    user = db.relationship("User", back_populates = "review")
 
     def to_dict(self):
         return {
@@ -32,5 +27,4 @@ class Review(db.Model, UserMixin):
             'user_id': self.user_id,
             'review': self.review,
             'stars': self.stars
-
     }
