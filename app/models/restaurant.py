@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from flask_login import UserMixin
 from datetime import datetime
 
 
@@ -19,8 +18,8 @@ class Restaurant(db.Model, UserMixin):
     price = db.Column(db.String, nullable=False)
     open_hours = db.Column(db.String, nullable=False)
     close_hours = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.Date, default=datetime)
-    updated_at = db.Column(db.Date, default=datetime)
+    created_at = db.Column(db.DateTime, default=datetime)
+    updated_at = db.Column(db.DateTime, default=datetime)
 
     #relationship
     owner = db.relationship("User", back_populates = "restaurant")
