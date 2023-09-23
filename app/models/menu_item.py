@@ -18,6 +18,9 @@ class MenuItem(db.Model):
     created_at = db.Column(db.DateTime, default=datetime)
     updated_at = db.Column(db.DateTime, default=datetime)
 
+    #relationship
+    restaurant = db.relationship("Restaurant", back_populates = "menu_item")
+
     def to_dict(self):
         return {
             'id': self.id,
