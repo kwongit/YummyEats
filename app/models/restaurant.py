@@ -18,6 +18,7 @@ class Restaurant(db.Model):
     price = db.Column(db.String(10), nullable=False)
     open_hours = db.Column(db.String(30), nullable=False)
     close_hours = db.Column(db.String(30), nullable=False)
+    image_url = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime)
     updated_at = db.Column(db.DateTime, default=datetime)
 
@@ -38,4 +39,5 @@ class Restaurant(db.Model):
             'price': self.price,
             'open_hours': self.open_hours,
             'close_hours': self.close_hours,
+            'image_url': self.image_url,
         }
