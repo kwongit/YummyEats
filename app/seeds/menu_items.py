@@ -415,7 +415,7 @@ def seed_menu_items():
     menu_item_50 = MenuItem(
         restaurantId = 9,
         name = "Pumpkin Spice Latte",
-        name = "Grande",
+        size = "Grande",
         price = 6.45,
         calories = 210,
         description = "Our signature espresso and steamed milk with the celebrated flavor combination of pumpkin, cinnamon, nutmeg and clove. Enjoy it topped with whipped cream and real pumpkin-pie spices.",
