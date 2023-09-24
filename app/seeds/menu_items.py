@@ -3,7 +3,6 @@ from app.models.menu_item import MenuItem
 from sqlalchemy.sql import text
 
 
-# Adds a demo user, you can add other users here if you want
 def seed_menu_items():
 
     #restaurant 1 (Panda Express)
@@ -234,7 +233,7 @@ def seed_menu_items():
     menu_item_29 = MenuItem(
         restaurantId=5,
         name="Flamin' 5-Pepper Burger",
-        calories=1490
+        calories=1490,
         price=22.76,
         description="Aged white cheddar cheese, bacon, jalapenos, 5-pepper sauce, mayo, lettuce, tomato, red onions and pickles on a brioche bun.",
         imageUrl="https://orders.dennysenlinea.com/img/productos/1576/1609369602.jpeg"
@@ -774,13 +773,8 @@ def seed_menu_items():
     add_panera_items = [db.session.add(panera_item) for panera_item in panera_items]
     db.session.commit()
 
-# Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
-# have a built in function to do this. With postgres in production TRUNCATE
-# removes all the data from the table, and RESET IDENTITY resets the auto
-# incrementing primary key, CASCADE deletes any dependent entities.  With
-# sqlite3 in development you need to instead use DELETE to remove all data and
-# it will reset the primary keys for you as well.
-def undo_users():
+
+def undo_menu_items():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.menu_items RESTART IDENTITY CASCADE;")
     else:
