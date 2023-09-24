@@ -15,8 +15,8 @@ class MenuItem(db.Model):
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String)
     imageUrl = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime)
-    updated_at = db.Column(db.DateTime, default=datetime)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     #relationship
     restaurant = db.relationship("Restaurant", back_populates = "menu_item")
