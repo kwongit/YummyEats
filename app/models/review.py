@@ -13,8 +13,8 @@ class Review(db.Model, UserMixin):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable=False)
     review = db.Column(db.String(255),nullable=False)
     stars = db.Column(db.Integer)
-    created_at = db.Column(db.DateTime, default=datetime)
-    updated_at = db.Column(db.DateTime, default=datetime)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     #relationships
     restaurant = db.relationship("Restaurant", back_populates = "review")
@@ -26,5 +26,7 @@ class Review(db.Model, UserMixin):
             'restaurant_id': self.restaurant_id,
             'user_id': self.user_id,
             'review': self.review,
-            'stars': self.stars
-    }
+            'stars': self.stars,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

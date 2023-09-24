@@ -19,11 +19,11 @@ class Restaurant(db.Model):
     open_hours = db.Column(db.String(30), nullable=False)
     close_hours = db.Column(db.String(30), nullable=False)
     image_url = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime)
-    updated_at = db.Column(db.DateTime, default=datetime)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     #relationship
-    owner = db.relationship("User", back_populates = "restaurant")
+    user = db.relationship("User", back_populates = "restaurant")
     menu_item = db.relationship("MenuItem", back_populates = "restaurant")
     review = db.relationship("Review", back_populates = "restaurant")
 
@@ -40,4 +40,6 @@ class Restaurant(db.Model):
             'open_hours': self.open_hours,
             'close_hours': self.close_hours,
             'image_url': self.image_url,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }
