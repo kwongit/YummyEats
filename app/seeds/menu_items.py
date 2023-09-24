@@ -660,7 +660,7 @@ def seed_menu_items():
         imageUrl = "https://www.tacobell.com/images/22362_crunchwrap_supreme_269x269.jpg"
     )
 
-    tacobell_items = [menu_item_73, menu_item_74, menu_item_75, menu_item_76, menu_item_76, menu_item_78]
+    tacobell_items = [menu_item_73, menu_item_74, menu_item_75, menu_item_76, menu_item_77, menu_item_78]
     add_tacobell_items = [db.session.add(tacobell_item) for tacobell_item in tacobell_items]
     db.session.commit()
 
