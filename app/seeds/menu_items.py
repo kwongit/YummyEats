@@ -70,14 +70,14 @@ def seed_menu_items():
         restaurantId=2,
         name="Quarter Pound Popcorn Shrimp Combo",
         price=13.79,
-        description="Includes a choice of regular signature side, a biscuit and a drink. *Weight based on pre-cooked shrimp weight."
+        description="Includes a choice of regular signature side, a biscuit and a drink. *Weight based on pre-cooked shrimp weight.",
         imageUrl="https://cdn.sanity.io/images/czqk28jt/prod_plk_us/e3c9701e8f79342a66026736cd07481e4d16d0ee-2000x1333.png"
     )
     menu_item_10 = MenuItem(
         restaurantId=2,
         name="3pc Chicken Dinner",
         price=12.99,
-        description="Includes a choice of regular signature side and a biscuit."
+        description="Includes a choice of regular signature side and a biscuit.",
         imageUrl="https://cdn.sanity.io/images/czqk28jt/prod_plk_us/dbf3ed316da22492677b6bd2285db51b288dc466-2000x1333.png"
     )
     menu_item_11 = MenuItem(
@@ -116,21 +116,21 @@ def seed_menu_items():
         restaurantId=3,
         name="Classic Chicken Sandwich",
         price=6.99,
-        description="HAND-BREADED CHICKEN BREAST / PICKLES / MAYO / CHALLAH BUN / MAKE IT WILD™: ADD A WILD SAUCE® DRIZZLE FOR NO CHARGE"
+        description="HAND-BREADED CHICKEN BREAST / PICKLES / MAYO / CHALLAH BUN / MAKE IT WILD™: ADD A WILD SAUCE® DRIZZLE FOR NO CHARGE",
         imageUrl="https://images.ctfassets.net/l5fkpck1mwg3/3dDZkQlNl4a1eq4F354TjD/45f8cb1d66005498c9292f04e8b94b03/Classic_Chicken_Sandwich___Fries.png"
     )
     menu_item_16 = MenuItem(
         restaurantId=3,
         name="Regular Cheddar Cheese Curds",
         price=8.99,
-        description="WISCONSIN WHITE CHEDDAR CHEESE CURDS / BATTERED / SOUTHWESTERN RANCH"
+        description="WISCONSIN WHITE CHEDDAR CHEESE CURDS / BATTERED / SOUTHWESTERN RANCH",
         imageUrl="https://images.ctfassets.net/l5fkpck1mwg3/7siCPjhi1xIYot0rzf02MB/2acf31879c0574a6f4cafb3db19158fd/Appetizers_Cheddar_Cheese_Curds.png"
     )
     menu_item_17 = MenuItem(
         restaurantId=3,
         name="Regular French Fries",
         price=4.79,
-        description="NATURAL-CUT FRIES / SEA SALT / COARSE PEPPER."
+        description="NATURAL-CUT FRIES / SEA SALT / COARSE PEPPER.",
         imageUrl="https://images.ctfassets.net/l5fkpck1mwg3/5Ih3U85mGJXFzfQrfe9yP4/334041e07865621f88f687c6a5291463/Appetizers_French_Fries.png"
     )
     menu_item_18 = MenuItem(
@@ -166,7 +166,7 @@ def seed_menu_items():
         name="The Classic Combo",
         calories=2230,
         price=27.29,
-        description="All the classic apps you love – Boneless Wings, Spinach & Artichoke Dip, Chicken Quesadilla, and Mozzarella Sticks."
+        description="All the classic apps you love – Boneless Wings, Spinach & Artichoke Dip, Chicken Quesadilla, and Mozzarella Sticks.",
         imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/2018-08-16_21_23_41_Classic_appetizer_combo_%28Chips_with_spinach-artichoke_dip%2C_mozzarella_sticks%2C_honey-bbq_buffalo_wings_and_chicken_quesadilla%29_at_the_Applebee%27s_in_Fair_Lakes%2C_Fairfax_County%2C_Virginia.jpg/1200px-thumbnail.jpg"
     )
     menu_item_22 = MenuItem(
@@ -174,7 +174,7 @@ def seed_menu_items():
         name="Crispy Chicken Tender Salad",
         calories=1200,
         price=24.49,
-        description="A hearty salad with crispy chicken tenders on a bed of fresh greens topped with a blend of Cheddar cheeses and tomatoes. Served with honey Dijon mustard dressing on the side. Served with a golden brown signature breadstick brushed with buttery garlic and parsley."
+        description="A hearty salad with crispy chicken tenders on a bed of fresh greens topped with a blend of Cheddar cheeses and tomatoes. Served with honey Dijon mustard dressing on the side. Served with a golden brown signature breadstick brushed with buttery garlic and parsley.",
         imageUrl="https://easychickenrecipes.com/wp-content/uploads/2020/08/applebees-oriental-chicken-salad-copycat-1-of-7.jpg"
     )
     menu_item_23 = MenuItem(
@@ -182,7 +182,7 @@ def seed_menu_items():
         name="Kids Grilled Chicken Alfredo",
         calories=670
         price=10.69,
-        description="Oodles of noodles covered with a creamy Alfredo sauce, then tossed with diced chicken and sprinkled with shredded Parmesan cheese. Comes with a choice of side and drink."
+        description="Oodles of noodles covered with a creamy Alfredo sauce, then tossed with diced chicken and sprinkled with shredded Parmesan cheese. Comes with a choice of side and drink.",
         imageUrl="https://media.olivegarden.com/en_us/images/product/Kids-Meals-Fett-Alf-gv-590x365.jpg"
     )
     menu_item_24 = MenuItem(
@@ -190,7 +190,7 @@ def seed_menu_items():
         name="Triple Chocolate Meltdown",
         calories=850,
         price=14.99,
-        description="Warm, rich, fudge-filled chocolate cake is drizzled with hot fudge. Served with vanilla ice cream."
+        description="Warm, rich, fudge-filled chocolate cake is drizzled with hot fudge. Served with vanilla ice cream.",
         imageUrl="https://www.restaurantmagazine.com/wp-content/uploads/2019/11/FREE-Triple-Chocolate-Meltdown-Is-On-the-Menu-at-Select-Applebees-in-Texas-on-Black-Friday.jpg"
     )
 
@@ -220,7 +220,7 @@ def seed_menu_items():
         name="Jr. Cheeseburger",
         calories=870,
         price=6.74,
-        description="100 percent beef patty topped with American cheese. Pair it with any side you want—whatever, whenever."
+        description="100 percent beef patty topped with American cheese. Pair it with any side you want—whatever, whenever.",
         imageUrl="https://www.dennys.ca/wp-content/uploads/2019/10/Kids_Burger_with_Milk_.jpg"
     )
     menu_item_28 = MenuItem(
@@ -228,7 +228,7 @@ def seed_menu_items():
         name="Slice of French Toast",
         calories=320,
         price=6.33,
-        description="Sprinkled with powdered sugar."
+        description="Sprinkled with powdered sugar.",
         imageUrl="https://dennys.id/wp-content/uploads/2019/04/slams-french-toast-slam.jpg"
     )
     menu_item_29 = MenuItem(
@@ -236,7 +236,7 @@ def seed_menu_items():
         name="Flamin' 5-Pepper Burger",
         calories=1490
         price=22.76,
-        description="Aged white cheddar cheese, bacon, jalapenos, 5-pepper sauce, mayo, lettuce, tomato, red onions and pickles on a brioche bun."
+        description="Aged white cheddar cheese, bacon, jalapenos, 5-pepper sauce, mayo, lettuce, tomato, red onions and pickles on a brioche bun.",
         imageUrl="https://orders.dennysenlinea.com/img/productos/1576/1609369602.jpeg"
     )
     menu_item_30 = MenuItem(
@@ -244,12 +244,60 @@ def seed_menu_items():
         name="Lava Cookie Skillet",
         calories=820,
         price=10.80,
-        description="Warm chocolate chip cookie filled with molten chocolate and topped with premium vanilla ice cream and salted caramel."
+        description="Warm chocolate chip cookie filled with molten chocolate and topped with premium vanilla ice cream and salted caramel.",
         imageUrl="https://www.dennys.ca/wp-content/uploads/2019/10/Skookie_Skillet_Lava_Cake_Feb21Core_CC_WEB-scaled.jpg"
     )
 
     dennys_items = [menu_item_25, menu_item_26, menu_item_27, menu_item_28, menu_item_29, menu_item_30]
     add_dennys_items = [db.session.add(dennys_item) for dennys_item in dennys_items]
+    db.session.commit()
+
+    #restaurant 6 (McDonald's)
+    menu_item_31 = MenuItem(
+        restaurantId=6,
+        name="Medium French Fries",
+        calories=320,
+        price=4.99,
+        imageUrl="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTc4NTAxNTc0MzM3NjYx/mcdonalds-fries-ftr.jpg"
+    )
+    menu_item_32 = MenuItem(
+        restaurantId=6,
+        name="10 pc. Chicken McNuggets",
+        calories=410,
+        price=6.59,
+        imageUrl="https://www.calorieking.com/food-images/us/673b47e3-eb1b-48fb-b83c-1b3199a68290.jpg"
+    )
+    menu_item_33 = MenuItem(
+        restaurantId=6,
+        name="Double Cheeseburger",
+        calories=450,
+        price=4.79,
+        imageUrl="https://gray-wsaz-prod.cdn.arcpublishing.com/resizer/I08Nl9BPUMmtejh3AQe8P-Ou8gw=/1920x1080/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/KNUQX6QUOVAWRKXE6ZR4WMY2XI.jpg"
+    )
+    menu_item_34 = MenuItem(
+        restaurantId=6,
+        name="Big Mac Meal",
+        calories=1150,
+        price=13.79,
+        imageUrl="https://www.franchisechatter.com/wp-content/uploads/2015/01/McDonalds-Big-Mac-Meal.jpg"
+    )
+    menu_item_35 = MenuItem(
+        restaurantId=6,
+        name="OREO McFlurry",
+        calories=480,
+        price=5.79,
+        imageUrl="https://lifestyleofafoodie.com/wp-content/uploads/2022/07/Mcdonalds-Oreo-mc-flurry-9-of-12.jpg"
+    )
+    menu_item_36 = MenuItem(
+        restaurantId=6,
+        name="Hot Fudge Sundae",
+        calories=330,
+        price=5.19,
+        imageUrl="https://media.timeout.com/images/105701367/750/562/image.jpg"
+    )
+
+    mcdonalds_items = [menu_item_31, menu_item_32, menu_item_33, menu_item_34, menu_item_35, menu_item_36]
+    add_mcdonalds_items = [db.session.add(mcdonalds_item) for mcdonalds_item in mcdonalds_items]
     db.session.commit()
 
 
