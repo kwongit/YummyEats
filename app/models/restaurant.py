@@ -15,7 +15,7 @@ class Restaurant(db.Model):
     state = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     type = db.Column(db.String(50), nullable=False)
-    price = db.Column(db.String(10), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
     open_hours = db.Column(db.String(30), nullable=False)
     close_hours = db.Column(db.String(30), nullable=False)
     image_url = db.Column(db.String, nullable=False)
