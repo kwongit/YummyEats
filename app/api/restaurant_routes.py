@@ -11,3 +11,12 @@ def get_all_restaurants():
     """
     restaurants = Restaurant.query.all()
     return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}
+
+
+@restaurant_routes.route('/<int:id>')
+def get_restaurant_by_id(id):
+    """Query for restaurant by restaurant.id"""
+    one_restaurant = Restaurant.query.get(id)
+    return one_restaurant.to_dict()
+
+
