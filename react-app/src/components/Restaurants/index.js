@@ -1,25 +1,30 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { thunkGetRestaurants } from "../../store/restaurants";
 import RestaurantTile from "../RestaurantTile";
-import './all-restaurants.css'
-import categories from "../Restaurants/categories"
-import offer from "../../assets/bogo.png"
-import overall from "../../assets/top_eats.png"
-
-
+import "./all-restaurants.css";
+import categories from "../Restaurants/categories";
+import offer from "../../assets/bogo.png";
+import overall from "../../assets/top_eats.png";
 
 export const Restaurants = () => {
-  const [restaurants, setRestaurants] = useState([]);
+  const dispatch = useDispatch();
+
+  const getRestaurants = useSelector(
+    (state) => state.restaurant.allRestaurants
+  );
+
+  const restaurants = Object.values(getRestaurants);
 
   useEffect(() => {
-    fetch("/api/restaurants")
-      .then((response) => response.json())
-      .then((data) => setRestaurants(data.restaurants))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+    dispatch(thunkGetRestaurants());
+  }, [dispatch]);
+
+  if (!restaurants.length) return null;
 
   const showAlert = () => {
-    window.alert("Coming Soon")
-  }
+    window.alert("Coming Soon");
+  };
 
   return (
     <>
@@ -31,7 +36,6 @@ export const Restaurants = () => {
         <img src={offer}></img>
       </div>
       <div id="main-body-container">
-
         <div id="restaurants-sidebar">
           <h1>All Stores</h1>
           <a onClick={showAlert}>Sort</a>
