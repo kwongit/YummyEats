@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { thunkCreateRestaurant } from "../../store/restaurants";
+import { thunkUpdateRestaurant } from "../../store/restaurants";
 
-export const CreateRestaurant = ({ user }) => {
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [price, setPrice] = useState("");
-  const [open_hours, setOpenHours] = useState("");
-  const [open_minutes, setOpenMinutes] = useState("");
-  const [close_hours, setCloseHours] = useState("");
-  const [close_minutes, setCloseMinutes] = useState("");
-  const [image_url, setImageUrl] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export const UpdateRestaurant = ({ restaurant }) => {
+  const [address, setAddress] = useState(restaurant?.address);
+  const [city, setCity] = useState(restaurant?.city);
+  const [state, setState] = useState(restaurant?.state);
+  const [name, setName] = useState(restaurant?.name);
+  const [type, setType] = useState(restaurant?.type);
+  const [price, setPrice] = useState(restaurant?.price);
+  const [open_hours, setOpenHours] = useState(restaurant?.open_hours);
+  const [open_minutes, setOpenMinutes] = useState(restaurant?.open_minutes);
+  const [close_hours, setCloseHours] = useState(restaurant?.close_hours);
+  const [close_minutes, setCloseMinutes] = useState(restaurant?.close_minutes);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
   const dispatch = useDispatch();
+
+  if (!restaurant) {
+    history.push("/");
+  }
 
   useEffect(() => {
     const errors = {};
@@ -41,14 +43,6 @@ export const CreateRestaurant = ({ user }) => {
       errors.close_hours = "Close hours must be less than 12";
     if (!close_minutes || close_minutes > 59 || close_minutes < 0)
       errors.close_minutes = "Close minutes must be less than 60";
-    if (!image_url) errors.image_url = "Preview image is required";
-    if (
-      image_url &&
-      !image_url.endsWith("jpg") &&
-      !image_url.endsWith("jpeg") &&
-      !image_url.endsWith("png")
-    )
-      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
     setErrors(errors);
   }, [
@@ -61,16 +55,13 @@ export const CreateRestaurant = ({ user }) => {
     open_minutes,
     close_hours,
     close_minutes,
-    image_url,
   ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
-    setIsSubmitting(true);
     setSubmitted(true);
 
-    const newRestaurant = {
+    const updatedRestaurant = {
       address,
       city,
       state,
@@ -80,28 +71,26 @@ export const CreateRestaurant = ({ user }) => {
       open_minutes,
       close_hours,
       close_minutes,
-      image_url,
     };
 
     if (!Object.values(errors).length) {
-      const addRestaurant = await dispatch(
-        thunkCreateRestaurant(newRestaurant, user)
+      const updateRestaurant = await dispatch(
+        thunkUpdateRestaurant(updatedRestaurant, restaurant.id)
       );
 
-      const combinedErrors = { ...errors, Errors: addRestaurant.errors };
+      const combinedErrors = { ...errors, Errors: updateRestaurant.errors };
 
-      if (addRestaurant.errors) {
+      if (updateRestaurant.errors) {
         setErrors(combinedErrors);
       } else {
-        history.push(`/restaurants/${addRestaurant.id}`);
+        history.push(`/restaurants/${restaurant.id}`);
       }
     }
-    setIsSubmitting(false);
   };
 
   return (
     <div className="create-restaurant-form-container">
-      <h1>Create a New Restaurant</h1>
+      <h1>Update Your Restaurant</h1>
       <form onSubmit={handleSubmit}>
         <div className="location-container">
           <h3>Get Started</h3>
@@ -241,22 +230,6 @@ export const CreateRestaurant = ({ user }) => {
           </div>
         </div>
 
-        <div className="images-container">
-          <h3>Liven up your restaurant with photos</h3>
-          <p>Submit a link to at least one photo to publish your restaurant.</p>
-          <div className="image-url-container">
-            <input
-              type="url"
-              value={image_url}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Preview Image URL"
-            />
-            {errors.image_url && submitted && (
-              <p className="on-submit-errors">{errors.image_url}</p>
-            )}
-          </div>
-        </div>
-
         <div className="button-container">
           <button
             className="create-restaurant-button"
@@ -272,12 +245,11 @@ export const CreateRestaurant = ({ user }) => {
                 open_hours ||
                 open_minutes ||
                 close_hours ||
-                close_minutes ||
-                image_url
+                close_minutes
               )
             }
           >
-            Create Restaurant
+            Update Restaurant
           </button>
         </div>
       </form>
