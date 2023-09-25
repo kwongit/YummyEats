@@ -4,7 +4,7 @@ from app.models import Restaurant
 restaurant_routes = Blueprint('restaurant', __name__)
 
 
-@restaurant_routes.route('/restaurants', methods=['GET'])
+@restaurant_routes.route('/')
 def get_all_restaurants():
     """
     Query for all restaurants and returns them in a list of restaurant dictionaries
