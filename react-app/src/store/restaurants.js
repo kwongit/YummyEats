@@ -73,6 +73,22 @@ export const thunkGetRestaurantInfo = (restaurantId) => async (dispatch) => {
   }
 };
 
+export const thunkCreateRestaurant = (restaurant, user) => async (dispatch) => {
+  const res = await csrfFetch("/api/restaurants", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(restaurant),
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
+
 // REDUCERS
 const initialState = { allRestaurants: {}, singleRestaurant: {} };
 
@@ -90,6 +106,15 @@ const restaurantsReducer = (state = initialState, action) => {
     case GET_RESTAURANT:
       newState = { ...state, singleRestaurant: {} };
       newState.singleRestaurant = action.restaurant;
+      return newState;
+
+    case CREATE_RESTAURANT:
+      newState = {
+        ...state,
+        allRestaurants: { ...state.allRestaurants },
+        singleRestaurant: { ...action.restaurant },
+      };
+      newState.allRestaurants[action.restaurant.id] = action.restaurant;
       return newState;
 
     default:
