@@ -1,25 +1,24 @@
-body{
-    box-sizing: border-box;
-    font-family: "Helvetica", sans-serif;
-    margin:0px;
 
+a,button {
+    cursor: pointer;
 }
 .restaurant-details-container img {
 
     width: 100%;
-    height: 200px;
+    height: 120px;
     border-radius: 10px 10px 10px 10px;
 }
 
 .restaurant-details-container{
 
-    background-color: aqua;
+    /* background-color: aqua; */
     list-style-type: none;
     display:flex;
     flex-wrap: wrap;
     gap: 20px;
      justify-content: center;
      padding: 0px;
+     /* margin-left: 25%; */
 }
 
 .all-restaurants-container{
@@ -33,12 +32,12 @@ body{
   border-radius: 10px 10px 10px 10px;
   transition:  all 0.3s;
 
-&:hover{
+/* &:hover{
 
-    /* background-color: red; */
+    background-color: red;
     transition:  all 0.3s;
     transform: scale(1.1);
-}
+} */
 
 }
 
@@ -59,11 +58,6 @@ cursor: pointer;
     height: 60px;
 
 }
-
-/* #categories-bar-container img:hover {
-    border: 2px solid rgba(200, 200, 200, 0.5);
-    border-radius: 50%;
-} */
 
 
 .image-container {
@@ -100,6 +94,7 @@ cursor: pointer;
 #middle-header-container{
     display: flex;
     margin-top: 30px;
+
 }
 #middle-header-container img{
     height: 150px;
@@ -107,3 +102,28 @@ cursor: pointer;
     margin-left: 200px;
     cursor: pointer;
 }
+
+
+#main-body-container{
+   /* background-color: chartreuse; */
+   display: flex;
+   min-height: 100vh;
+   align-items: flex-start;
+}
+
+
+#restaurants-sidebar{
+    /* background-color: aqua; */
+    position: sticky;
+    width: 90%;
+    top: 30px;
+    display: inline;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* #restaurants-main{
+    background-color: blueviolet;
+} */
