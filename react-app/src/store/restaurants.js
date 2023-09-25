@@ -6,7 +6,7 @@ const GET_RESTAURANTS = "restaurants/getRestaurants";
 const GET_RESTAURANT = "restaurants/getRestaurant";
 const CREATE_RESTAURANT = "restaurants/createRestaurant";
 const UPDATE_RESTAURANT = "restaurants/updateRestaurant";
-const DELETE_RESTAURANT = "restaurants/deleteRestaurantt";
+const DELETE_RESTAURANT = "restaurants/deleteRestaurant";
 
 // ACTION CREATORS
 
@@ -69,42 +69,10 @@ const restaurantsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RESTAURANTS:
       newState = { ...state, allRestaurants: {} };
-      action.restaurants.Restaurants.forEach((restaurant) => {
+      action.restaurants.restaurants.forEach((restaurant) => {
         newState.allRestaurants[restaurant.id] = restaurant;
       });
       return newState;
-
-    case GET_RESTAURANT:
-      newState = { ...state, singleRestaurant: {} };
-      newState.singleRestaurant = action.restaurant;
-      return newState;
-
-    // case CREATE_SPOT:
-    //   newState = {
-    //     ...state,
-    //     allSpots: { ...state.allSpots },
-    //     singleSpot: { ...action.spot },
-    //   };
-    //   newState.allSpots[action.spot.id] = action.spot;
-    //   return newState;
-
-    // case UPDATE_SPOT:
-    //   newState = {
-    //     ...state,
-    //     allSpots: {},
-    //     singleSpot: { ...state.singleSpot },
-    //   };
-    //   newState.singleSpot = { ...newState.singleSpot, ...action.spot };
-    //   return newState;
-
-    // case DELETE_SPOT:
-    //   newState = {
-    //     ...state,
-    //     allSpots: { ...state.allSpots },
-    //     singleSpot: {},
-    //   };
-    //   delete newState.allSpots[action.spotId];
-    //   return newState;
 
     default:
       return state;
