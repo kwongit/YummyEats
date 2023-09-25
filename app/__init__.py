@@ -18,6 +18,10 @@ login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
 
+@login.unauthorized_handler
+def unauthorized():
+    return { "message": "Authentication required!" }, 401
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
