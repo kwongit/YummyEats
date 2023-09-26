@@ -30,6 +30,7 @@ export const CreateRestaurant = ({ user }) => {
       errors.description = "Description needs 2 or more characters";
     if (!name) errors.name = "Name is required";
     if (name.length > 29) errors.name = "Name must be less than 30 characters";
+    if (!type) errors.type = "Type is required";
     if (!price || price < 1) errors.price = "Price is required";
     if (!open_hours || open_hours > 12 || open_hours < 0)
       errors.open_hours = "Open hours must be less than 12";
@@ -45,7 +46,17 @@ export const CreateRestaurant = ({ user }) => {
       errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
     setErrors(errors);
-  }, [address, city, state, name, price, open_hours, close_hours, image_url]);
+  }, [
+    address,
+    city,
+    state,
+    name,
+    type,
+    price,
+    open_hours,
+    close_hours,
+    image_url,
+  ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,6 +69,7 @@ export const CreateRestaurant = ({ user }) => {
       city,
       state,
       name,
+      type,
       price,
       open_hours,
       close_hours,
@@ -65,8 +77,8 @@ export const CreateRestaurant = ({ user }) => {
     };
 
     if (!Object.values(errors).length) {
-      const addRestaurant = await dispatch(
-        thunkCreateRestaurant(newRestaurant, user)
+      const addRestaurant = dispatch(
+        await thunkCreateRestaurant(newRestaurant, user)
       );
 
       const combinedErrors = { ...errors, Errors: addRestaurant.errors };

@@ -2,7 +2,6 @@ import { useHistory } from "react-router";
 import "./RestaurantTile.css";
 
 const RestaurantTile = ({ restaurant }) => {
-  // destructure props of `restaurant` obj
   const {
     id,
     address,
@@ -19,8 +18,7 @@ const RestaurantTile = ({ restaurant }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    // tbd
-    history.push(`/`);
+    history.push(`/restaurants/${restaurant.id}`);
   };
 
   return (

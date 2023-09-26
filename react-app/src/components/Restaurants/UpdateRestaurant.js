@@ -29,17 +29,16 @@ export const UpdateRestaurant = ({ restaurant }) => {
     if (!city) errors.city = "City is required";
     if (!state) errors.state = "State is required";
     if (!name || name.length < 2)
-      errors.description = "Description needs 2 or more characters";
+      errors.description = "Name needs 2 or more characters";
     if (!name) errors.name = "Name is required";
     if (name.length > 29) errors.name = "Name must be less than 30 characters";
+    if (!type) errors.type = "Type is required";
     if (!price || price < 1) errors.price = "Price is required";
-    if (!open_hours || open_hours > 12 || open_hours < 0)
-      errors.open_hours = "Open hours must be less than 12";
-    if (!close_hours || close_hours > 12 || close_hours < 0)
-      errors.close_hours = "Close hours must be less than 12";
+    if (!open_hours) errors.open_hours = "Open hours is required";
+    if (!close_hours) errors.close_hours = "Close hours is required";
 
     setErrors(errors);
-  }, [address, city, state, name, price, open_hours, close_hours]);
+  }, [address, city, state, name, type, price, open_hours, close_hours]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,14 +49,15 @@ export const UpdateRestaurant = ({ restaurant }) => {
       city,
       state,
       name,
+      type,
       price,
       open_hours,
       close_hours,
     };
 
     if (!Object.values(errors).length) {
-      const updateRestaurant = await dispatch(
-        thunkUpdateRestaurant(updatedRestaurant, restaurant.id)
+      const updateRestaurant = dispatch(
+        await thunkUpdateRestaurant(updatedRestaurant, restaurant.id)
       );
 
       const combinedErrors = { ...errors, Errors: updateRestaurant.errors };
@@ -75,8 +75,6 @@ export const UpdateRestaurant = ({ restaurant }) => {
       <h1>Update Your Restaurant</h1>
       <form onSubmit={handleSubmit}>
         <div className="location-container">
-          <h3>Get Started</h3>
-
           <div className="address-container">
             <div className="address-container">
               <label>Store Address</label>

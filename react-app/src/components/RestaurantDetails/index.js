@@ -35,14 +35,23 @@ export const RestaurantDetails = () => {
   return (
     <div className="view-restaurant-details">
       <div className="restaurant-image">
-        <img className="image" src={image_url} alt="main" />
+        <img
+          className="preview-image"
+          src={image_url}
+          alt={name}
+          title={name}
+        ></img>
       </div>
 
       <h1>
         {name} ({address})
       </h1>
       <p>
-        {type}, {price}
+        star-icon avg-rating (num of ratings) · {type} ·{" "}
+        {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
+      </p>
+      <p>
+        Hours: {open_hours} - {close_hours}
       </p>
 
       {/* <MenuItems /> */}
