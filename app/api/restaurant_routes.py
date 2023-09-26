@@ -14,7 +14,7 @@ def get_all_restaurants():
     """
     Query for all restaurants and returns them in a list of restaurant dictionaries
     """
-    print("----------------CURRENT USER --------------------", {current_user.id})
+    # print("----------------CURRENT USER --------------------", {current_user.id})
     restaurants = Restaurant.query.all()
     return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}
 
