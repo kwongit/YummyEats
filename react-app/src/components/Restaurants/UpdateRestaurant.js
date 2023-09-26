@@ -156,12 +156,16 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="type-container">
           <div className="type-container">
             <label>Restaurant Type</label>
-            <input
-              type="text"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              placeholder="Restaurant Type"
-            />
+            <select onChange={(e) => setType(e.target.value)}>
+              <option value="0">Select Type</option>
+              <option value="American">American</option>
+              <option value="Asian">Asian</option>
+              <option value="Breakfast and Brunch">Breakfast and Brunch</option>
+              <option value="Cafe">Cafe</option>
+              <option value="Mexican">Mexican</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Wings">Wings</option>
+            </select>
             {errors.type && submitted && (
               <p className="on-submit-errors">{errors.type}</p>
             )}
@@ -170,13 +174,13 @@ export const UpdateRestaurant = ({ restaurant }) => {
 
         <div className="price-container">
           <div className="price-container">
-            <label>Restaurant Price</label>
-            <input
-              type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="Restaurant Price"
-            />
+            <label>Restaurant Expensiveness</label>
+            <select onChange={(e) => setPrice(e.target.value)}>
+              <option value="0">Select Expensiveness</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
             {errors.price && submitted && (
               <p className="on-submit-errors">{errors.price}</p>
             )}
@@ -186,24 +190,66 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="store-hours-container">
           <div className="store-open-hours-container">
             <label>Restaurant Open Hours</label>
-            <input
-              type="text"
-              value={open_hours}
-              onChange={(e) => setOpenHours(e.target.value)}
-              placeholder="Restaurant Open Hours"
-            />
+            <select onChange={(e) => setOpenHours(e.target.value)}>
+              <option value="0">Select Open Hours</option>
+              <option value="1:00">1:00</option>
+              <option value="1:30">1:30</option>
+              <option value="2:00">2:00</option>
+              <option value="2:30">2:30</option>
+              <option value="3:00">3:00</option>
+              <option value="3:30">3:30</option>
+              <option value="4:00">4:00</option>
+              <option value="4:30">4:30</option>
+              <option value="5:00">5:00</option>
+              <option value="5:30">5:30</option>
+              <option value="6:00">6:00</option>
+              <option value="6:30">6:30</option>
+              <option value="7:00">7:00</option>
+              <option value="7:30">7:30</option>
+              <option value="8:00">8:00</option>
+              <option value="8:30">8:30</option>
+              <option value="9:00">9:00</option>
+              <option value="9:30">9:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+            </select>
             {errors.open_hours && submitted && (
               <p className="on-submit-errors">{errors.open_hours}</p>
             )}
           </div>
           <div className="store-close-hours-container">
             <label>Restaurant Close Hours</label>
-            <input
-              type="text"
-              value={close_hours}
-              onChange={(e) => setCloseHours(e.target.value)}
-              placeholder="Restaurant Close Hours"
-            />
+            <select onChange={(e) => setCloseHours(e.target.value)}>
+              <option value="0">Select Close Hours</option>
+              <option value="1:00">1:00</option>
+              <option value="1:30">1:30</option>
+              <option value="2:00">2:00</option>
+              <option value="2:30">2:30</option>
+              <option value="3:00">3:00</option>
+              <option value="3:30">3:30</option>
+              <option value="4:00">4:00</option>
+              <option value="4:30">4:30</option>
+              <option value="5:00">5:00</option>
+              <option value="5:30">5:30</option>
+              <option value="6:00">6:00</option>
+              <option value="6:30">6:30</option>
+              <option value="7:00">7:00</option>
+              <option value="7:30">7:30</option>
+              <option value="8:00">8:00</option>
+              <option value="8:30">8:30</option>
+              <option value="9:00">9:00</option>
+              <option value="9:30">9:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+            </select>
             {errors.close_hours && submitted && (
               <p className="on-submit-errors">{errors.close_hours}</p>
             )}

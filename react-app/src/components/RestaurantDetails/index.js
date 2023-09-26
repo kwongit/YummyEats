@@ -24,7 +24,8 @@ export const RestaurantDetails = () => {
     city,
     state,
     name,
-    avgStarRating,
+    avg_rating,
+    num_reviews,
     type,
     price,
     open_hours,
@@ -47,8 +48,8 @@ export const RestaurantDetails = () => {
         {name} ({address})
       </h1>
       <p>
-        star-icon avg-rating (num of ratings) · {type} ·{" "}
-        {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
+        <i className="fa-solid fa-star"></i> {avg_rating} ({num_reviews} ratings
+        ) · {type} · {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
       </p>
       <p>
         Hours: {open_hours} - {close_hours}
