@@ -157,26 +157,17 @@ const restaurantsReducer = (state = initialState, action) => {
       newState.allRestaurants[action.restaurant.id] = action.restaurant;
       return newState;
 
-    // case UPDATE_RESTAURANT:
-    //   newState = {
-    //     ...state,
-    //     allRestaurants: {},
-    //     singleRestaurant: { ...state.singleRestaurant },
-    //   };
-    //   newState.singleRestaurant = {
-    //     ...newState.singleRestaurant,
-    //     ...action.restaurant,
-    //   };
-    //   return newState;
-
     case UPDATE_RESTAURANT:
-      return {
+      newState = {
         ...state,
-        singleRestaurant: {
-          ...state.singleRestaurant,
-          [action.restaurant.id]: action.restaurant,
-        },
+        allRestaurants: {},
+        singleRestaurant: { ...state.singleRestaurant },
       };
+      newState.singleRestaurant = {
+        ...newState.singleRestaurant,
+        ...action.restaurant,
+      };
+      return newState;
 
     case DELETE_RESTAURANT:
       newState = {
