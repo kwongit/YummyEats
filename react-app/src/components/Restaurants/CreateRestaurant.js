@@ -11,9 +11,7 @@ export const CreateRestaurant = ({ user }) => {
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
   const [open_hours, setOpenHours] = useState("");
-  const [open_minutes, setOpenMinutes] = useState("");
   const [close_hours, setCloseHours] = useState("");
-  const [close_minutes, setCloseMinutes] = useState("");
   const [image_url, setImageUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -35,12 +33,8 @@ export const CreateRestaurant = ({ user }) => {
     if (!price || price < 1) errors.price = "Price is required";
     if (!open_hours || open_hours > 12 || open_hours < 0)
       errors.open_hours = "Open hours must be less than 12";
-    if (!open_minutes || open_minutes > 59 || open_minutes < 0)
-      errors.open_minutes = "Open minutes must be less than 60";
     if (!close_hours || close_hours > 12 || close_hours < 0)
       errors.close_hours = "Close hours must be less than 12";
-    if (!close_minutes || close_minutes > 59 || close_minutes < 0)
-      errors.close_minutes = "Close minutes must be less than 60";
     if (!image_url) errors.image_url = "Preview image is required";
     if (
       image_url &&
@@ -51,18 +45,7 @@ export const CreateRestaurant = ({ user }) => {
       errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
     setErrors(errors);
-  }, [
-    address,
-    city,
-    state,
-    name,
-    price,
-    open_hours,
-    open_minutes,
-    close_hours,
-    close_minutes,
-    image_url,
-  ]);
+  }, [address, city, state, name, price, open_hours, close_hours, image_url]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,9 +60,7 @@ export const CreateRestaurant = ({ user }) => {
       name,
       price,
       open_hours,
-      open_minutes,
       close_hours,
-      close_minutes,
       image_url,
     };
 
@@ -206,16 +187,6 @@ export const CreateRestaurant = ({ user }) => {
             {errors.open_hours && submitted && (
               <p className="on-submit-errors">{errors.open_hours}</p>
             )}
-            <label>Restaurant Open Minutes</label>
-            <input
-              type="text"
-              value={open_minutes}
-              onChange={(e) => setOpenMinutes(e.target.value)}
-              placeholder="Restaurant Open Minutes"
-            />
-            {errors.open_minutes && submitted && (
-              <p className="on-submit-errors">{errors.open_minutes}</p>
-            )}
           </div>
           <div className="store-close-hours-container">
             <label>Restaurant Close Hours</label>
@@ -227,16 +198,6 @@ export const CreateRestaurant = ({ user }) => {
             />
             {errors.close_hours && submitted && (
               <p className="on-submit-errors">{errors.close_hours}</p>
-            )}
-            <label>Restaurant Close Minutes</label>
-            <input
-              type="text"
-              value={close_minutes}
-              onChange={(e) => setCloseMinutes(e.target.value)}
-              placeholder="Restaurant Close Minutes"
-            />
-            {errors.close_minutes && submitted && (
-              <p className="on-submit-errors">{errors.close_minutes}</p>
             )}
           </div>
         </div>
@@ -270,9 +231,7 @@ export const CreateRestaurant = ({ user }) => {
                 type ||
                 price ||
                 open_hours ||
-                open_minutes ||
                 close_hours ||
-                close_minutes ||
                 image_url
               )
             }

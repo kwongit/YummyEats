@@ -11,9 +11,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
   const [type, setType] = useState(restaurant?.type);
   const [price, setPrice] = useState(restaurant?.price);
   const [open_hours, setOpenHours] = useState(restaurant?.open_hours);
-  const [open_minutes, setOpenMinutes] = useState(restaurant?.open_minutes);
   const [close_hours, setCloseHours] = useState(restaurant?.close_hours);
-  const [close_minutes, setCloseMinutes] = useState(restaurant?.close_minutes);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -37,25 +35,11 @@ export const UpdateRestaurant = ({ restaurant }) => {
     if (!price || price < 1) errors.price = "Price is required";
     if (!open_hours || open_hours > 12 || open_hours < 0)
       errors.open_hours = "Open hours must be less than 12";
-    if (!open_minutes || open_minutes > 59 || open_minutes < 0)
-      errors.open_minutes = "Open minutes must be less than 60";
     if (!close_hours || close_hours > 12 || close_hours < 0)
       errors.close_hours = "Close hours must be less than 12";
-    if (!close_minutes || close_minutes > 59 || close_minutes < 0)
-      errors.close_minutes = "Close minutes must be less than 60";
 
     setErrors(errors);
-  }, [
-    address,
-    city,
-    state,
-    name,
-    price,
-    open_hours,
-    open_minutes,
-    close_hours,
-    close_minutes,
-  ]);
+  }, [address, city, state, name, price, open_hours, close_hours]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,9 +52,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
       name,
       price,
       open_hours,
-      open_minutes,
       close_hours,
-      close_minutes,
     };
 
     if (!Object.values(errors).length) {
@@ -195,16 +177,6 @@ export const UpdateRestaurant = ({ restaurant }) => {
             {errors.open_hours && submitted && (
               <p className="on-submit-errors">{errors.open_hours}</p>
             )}
-            <label>Restaurant Open Minutes</label>
-            <input
-              type="text"
-              value={open_minutes}
-              onChange={(e) => setOpenMinutes(e.target.value)}
-              placeholder="Restaurant Open Minutes"
-            />
-            {errors.open_minutes && submitted && (
-              <p className="on-submit-errors">{errors.open_minutes}</p>
-            )}
           </div>
           <div className="store-close-hours-container">
             <label>Restaurant Close Hours</label>
@@ -216,16 +188,6 @@ export const UpdateRestaurant = ({ restaurant }) => {
             />
             {errors.close_hours && submitted && (
               <p className="on-submit-errors">{errors.close_hours}</p>
-            )}
-            <label>Restaurant Close Minutes</label>
-            <input
-              type="text"
-              value={close_minutes}
-              onChange={(e) => setCloseMinutes(e.target.value)}
-              placeholder="Restaurant Close Minutes"
-            />
-            {errors.close_minutes && submitted && (
-              <p className="on-submit-errors">{errors.close_minutes}</p>
             )}
           </div>
         </div>
@@ -243,9 +205,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
                 type ||
                 price ||
                 open_hours ||
-                open_minutes ||
-                close_hours ||
-                close_minutes
+                close_hours
               )
             }
           >
