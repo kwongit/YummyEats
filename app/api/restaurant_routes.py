@@ -80,7 +80,7 @@ def create_restaurant():
         return { "errors": form.errors }
 
 
-@restaurant_routes.route("/update/<int:restaurantId>", methods=["GET", "POST"])
+@restaurant_routes.route("/<int:restaurantId>", methods=["PUT"])
 @login_required
 def update_restaurant(restaurantId):
     form = RestaurantForm()
@@ -109,7 +109,7 @@ def update_restaurant(restaurantId):
         return { "message": "FORBIDDEN" }, 403
 
 
-@restaurant_routes.route("/delete/<int:restaurantId>")
+@restaurant_routes.route("/<int:restaurantId>", methods=["DELETE"])
 @login_required
 def delete(restaurantId):
     restaurant_to_delete = Restaurant.query.get(restaurantId)
