@@ -26,10 +26,10 @@ def get_all_restaurants():
         sum_stars = 0
         for restaurant_review in restaurant_reviews:
             sum_stars += restaurant_review["stars"]
-
-        avg_rating = sum_stars / len(restaurant_reviews)
-        restaurant_obj["avg_rating"] = avg_rating
-        restaurant_obj["num_reviews"] = len(restaurant_reviews)
+        if sum_stars > 0:
+            avg_rating = sum_stars / len(restaurant_reviews)
+            restaurant_obj["avg_rating"] = avg_rating
+            restaurant_obj["num_reviews"] = len(restaurant_reviews)
 
     return { "restaurants": all_restaurant_list}
 
@@ -49,10 +49,10 @@ def get_restaurant_by_id(id):
 
     for review in restaurant_reviews:
         sum_stars += review["stars"]
-
-    avg_rating = sum_stars / len(restaurant_reviews)
-    one_restaurant["avg_rating"] = avg_rating
-    one_restaurant["num_reviews"] = len(restaurant_reviews)
+    if sum_stars > 0:
+        avg_rating = sum_stars / len(restaurant_reviews)
+        one_restaurant["avg_rating"] = avg_rating
+        one_restaurant["num_reviews"] = len(restaurant_reviews)
 
     if not one_restaurant:
         return { "message": "Restaurant not found!" }, 404
@@ -78,10 +78,10 @@ def get_owned_restaurants():
         sum_stars = 0
         for restaurant_review in restaurant_reviews:
             sum_stars += restaurant_review["stars"]
-
-        avg_rating = sum_stars / len(restaurant_reviews)
-        restaurant_obj["avg_rating"] = avg_rating
-        restaurant_obj["num_reviews"] = len(restaurant_reviews)
+        if sum_stars > 0:
+            avg_rating = sum_stars / len(restaurant_reviews)
+            restaurant_obj["avg_rating"] = avg_rating
+            restaurant_obj["num_reviews"] = len(restaurant_reviews)
 
 
     return { "restaurants": owned_restaurants }

@@ -18,7 +18,7 @@ class Restaurant(db.Model):
     price = db.Column(db.Integer, nullable=False)
     open_hours = db.Column(db.String, nullable=False)
     close_hours = db.Column(db.String, nullable=False)
-    image_url = db.Column(db.String, nullable=False)
+    image_url = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
