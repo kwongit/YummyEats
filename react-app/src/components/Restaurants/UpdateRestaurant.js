@@ -12,6 +12,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
   const [price, setPrice] = useState(restaurant?.price);
   const [open_hours, setOpenHours] = useState(restaurant?.open_hours);
   const [close_hours, setCloseHours] = useState(restaurant?.close_hours);
+  const [image_url, setImageUrl] = useState(restaurant?.image_url);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -36,9 +37,27 @@ export const UpdateRestaurant = ({ restaurant }) => {
     if (!price || price < 1) errors.price = "Price is required";
     if (!open_hours) errors.open_hours = "Open hours is required";
     if (!close_hours) errors.close_hours = "Close hours is required";
+    if (!image_url) errors.image_url = "Preview image is required";
+    if (
+      image_url &&
+      !image_url.endsWith("jpg") &&
+      !image_url.endsWith("jpeg") &&
+      !image_url.endsWith("png")
+    )
+      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
     setErrors(errors);
-  }, [address, city, state, name, type, price, open_hours, close_hours]);
+  }, [
+    address,
+    city,
+    state,
+    name,
+    type,
+    price,
+    open_hours,
+    close_hours,
+    image_url,
+  ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,6 +72,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
       price,
       open_hours,
       close_hours,
+      image_url,
     };
 
     if (!Object.values(errors).length) {
@@ -190,6 +210,21 @@ export const UpdateRestaurant = ({ restaurant }) => {
           </div>
         </div>
 
+        <div className="images-container">
+          <label>Preview image</label>
+          <div className="image-url-container">
+            <input
+              type="url"
+              value={image_url}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="Preview Image URL"
+            />
+            {errors.image_url && submitted && (
+              <p className="on-submit-errors">{errors.image_url}</p>
+            )}
+          </div>
+        </div>
+
         <div className="button-container">
           <button
             className="create-restaurant-button"
@@ -203,7 +238,8 @@ export const UpdateRestaurant = ({ restaurant }) => {
                 type ||
                 price ||
                 open_hours ||
-                close_hours
+                close_hours ||
+                image_url
               )
             }
           >
