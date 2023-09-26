@@ -6,6 +6,10 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { Restaurants } from "./components/Restaurants";
+import { CreateRestaurant } from "./components/Restaurants/CreateRestaurant";
+import { ManageRestaurants } from "./components/ManageRestaurants";
+import { GetRestaurantToUpdate } from "./components/Restaurants/GetRestaurantToUpdate";
+import { RestaurantDetails } from "./components/RestaurantDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +31,18 @@ function App() {
           </Route>
           <Route exact path="/">
             <Restaurants />
+          </Route>
+          <Route exact path="/restaurants/new">
+            <CreateRestaurant />
+          </Route>
+          <Route exact path="/restaurants/current">
+            <ManageRestaurants />
+          </Route>
+          <Route exact path="/restaurants/:restaurantId/edit">
+            <GetRestaurantToUpdate />
+          </Route>
+          <Route exact path="/restaurants/:restaurantId">
+            <RestaurantDetails />
           </Route>
         </Switch>
       )}
