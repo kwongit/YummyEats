@@ -21,7 +21,9 @@ def get_all_restaurants():
 
 @restaurant_routes.route('/<int:id>')
 def get_restaurant_by_id(id):
-    """Query for restaurant by restaurant.id"""
+    """
+    Query for restaurant by restaurant.id
+    """
 
     one_restaurant = Restaurant.query.get(id)
 
@@ -34,6 +36,9 @@ def get_restaurant_by_id(id):
 @restaurant_routes.route('/current')
 @login_required
 def get_owned_restaurants():
+    """
+    GET all owned restaurant route
+    """
 
     all_restaurants = Restaurant.query.all()
     owned_restaurants = [ restaurant.to_dict() for restaurant in all_restaurants if restaurant.owner_id == current_user.id ]
@@ -41,19 +46,16 @@ def get_owned_restaurants():
     return { "restaurants": owned_restaurants }
 
 
-
 @restaurant_routes.route('/', methods=["POST"])
 @login_required
 def create_restaurant():
-    """Route to post a new restaurant"""
-
-    if current_user is None:
-        return { "message": "Authentication required" }
+    """
+    Route to post a new restaurant
+    """
 
     form = RestaurantForm()
 
     form["csrf_token"].data = request.cookies["csrf_token"]
-
 
     if form.validate_on_submit():
 
@@ -77,12 +79,15 @@ def create_restaurant():
 
     else:
         print(form.errors)
-        return { "errors": form.errors }
+        return { "errors": form.errors }, 400
 
 
 @restaurant_routes.route("/<int:restaurantId>", methods=["PUT"])
 @login_required
 def update_restaurant(restaurantId):
+    """
+    Update a current restaurant
+    """
     form = RestaurantForm()
 
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -112,6 +117,9 @@ def update_restaurant(restaurantId):
 @restaurant_routes.route("/<int:restaurantId>", methods=["DELETE"])
 @login_required
 def delete(restaurantId):
+    """
+    Delete a restaurant
+    """
     restaurant_to_delete = Restaurant.query.get(restaurantId)
 
     if restaurant_to_delete:
