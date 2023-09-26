@@ -24,7 +24,8 @@ export const RestaurantDetails = () => {
     city,
     state,
     name,
-    avgStarRating,
+    avg_rating,
+    num_reviews,
     type,
     price,
     open_hours,
@@ -35,14 +36,23 @@ export const RestaurantDetails = () => {
   return (
     <div className="view-restaurant-details">
       <div className="restaurant-image">
-        <img className="image" src={image_url} alt="main" />
+        <img
+          className="preview-image"
+          src={image_url}
+          alt={name}
+          title={name}
+        ></img>
       </div>
 
       <h1>
         {name} ({address})
       </h1>
       <p>
-        {type}, {price}
+        <i className="fa-solid fa-star"></i> {avg_rating} ({num_reviews} ratings
+        ) · {type} · {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
+      </p>
+      <p>
+        Hours: {open_hours} - {close_hours}
       </p>
 
       {/* <MenuItems /> */}
