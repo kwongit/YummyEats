@@ -32,10 +32,8 @@ export const CreateRestaurant = ({ user }) => {
     if (name.length > 29) errors.name = "Name must be less than 30 characters";
     if (!type) errors.type = "Type is required";
     if (!price || price < 1) errors.price = "Price is required";
-    if (!open_hours || open_hours > 12 || open_hours < 0)
-      errors.open_hours = "Open hours must be less than 12";
-    if (!close_hours || close_hours > 12 || close_hours < 0)
-      errors.close_hours = "Close hours must be less than 12";
+    if (!open_hours) errors.open_hours = "Open hours is required";
+    if (!close_hours) errors.close_hours = "Close hours is required";
     if (!image_url) errors.image_url = "Preview image is required";
     if (
       image_url &&
