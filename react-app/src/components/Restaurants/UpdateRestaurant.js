@@ -56,8 +56,8 @@ export const UpdateRestaurant = ({ restaurant }) => {
     };
 
     if (!Object.values(errors).length) {
-      const updateRestaurant = dispatch(
-        await thunkUpdateRestaurant(updatedRestaurant, restaurant.id)
+      const updateRestaurant = await dispatch(
+        thunkUpdateRestaurant(updatedRestaurant, restaurant.id)
       );
 
       const combinedErrors = { ...errors, Errors: updateRestaurant.errors };

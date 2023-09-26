@@ -36,5 +36,6 @@ class RestaurantForm(FlaskForm):
     price = IntegerField("Price", validators=[DataRequired(), NumberRange(min=1, max=3, message="Price must be an integer between 1 and 3!")])
     open_hours = SelectField("Open Hours", choices=hours, validators=[DataRequired()])
     close_hours = SelectField("Closing Hour", choices=hours, validators=[DataRequired()])
-    image_url = URLField("Restaurant image", validators=[DataRequired(), my_url_validator])
+    # image_url = URLField("Restaurant image", validators=[DataRequired(), my_url_validator])
+    image_url = URLField("Restaurant image")
     submit = SubmitField("Create Restaurant")

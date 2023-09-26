@@ -14,7 +14,7 @@ def get_all_restaurants():
     """
     Query for all restaurants and returns them in a list of restaurant dictionaries
     """
-    
+
     restaurants = Restaurant.query.all()
     return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}
 
@@ -69,7 +69,7 @@ def create_restaurant():
             price=form.data["price"],
             open_hours=form.data["open_hours"],
             close_hours=form.data["close_hours"],
-            image_url=form.data["image_url"],
+            # image_url=form.data["image_url"],
             created_at = date.today(),
             updated_at = date.today()
         )
@@ -103,7 +103,7 @@ def update_restaurant(restaurantId):
             restaurant_to_update.price = form.data["price"]
             restaurant_to_update.open_hours = form.data["open_hours"]
             restaurant_to_update.close_hours = form.data["close_hours"]
-            restaurant_to_update.image_url = form.data["image_url"]
+            # restaurant_to_update.image_url = form.data["image_url"]
             db.session.commit()
             return restaurant_to_update.to_dict()
 

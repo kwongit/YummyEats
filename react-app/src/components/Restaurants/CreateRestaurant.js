@@ -77,8 +77,8 @@ export const CreateRestaurant = ({ user }) => {
     };
 
     if (!Object.values(errors).length) {
-      const addRestaurant = dispatch(
-        await thunkCreateRestaurant(newRestaurant, user)
+      const addRestaurant = await dispatch(
+        thunkCreateRestaurant(newRestaurant, user)
       );
 
       const combinedErrors = { ...errors, Errors: addRestaurant.errors };
