@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, redirect
-from app.models import Restaurant, User
+from app.models import Restaurant, User, Review
 from ..forms.restaurant_form import RestaurantForm
 from datetime import date
 from ..models.db import db
@@ -16,7 +16,22 @@ def get_all_restaurants():
     """
 
     restaurants = Restaurant.query.all()
-    return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}
+    reviews = Review.query.all()
+
+    all_restaurant_list = [restaurant.to_dict() for restaurant in restaurants]
+    all_review_list = [review.to_dict() for review in reviews]
+
+    for restaurant_obj in all_restaurant_list:
+        restaurant_reviews = [ review for review in all_review_list if review["restaurant_id"] == restaurant_obj["id"] ]
+        sum_stars = 0
+        for restaurant_review in restaurant_reviews:
+            sum_stars += restaurant_review["stars"]
+
+        avg_rating = sum_stars / len(restaurant_reviews)
+        restaurant_obj["avg_rating"] = avg_rating
+        restaurant_obj["num_reviews"] = len(restaurant_reviews)
+
+    return { "restaurants": all_restaurant_list}
 
 
 @restaurant_routes.route('/<int:id>')
@@ -25,12 +40,24 @@ def get_restaurant_by_id(id):
     Query for restaurant by restaurant.id
     """
 
-    one_restaurant = Restaurant.query.get(id)
+    one_restaurant = Restaurant.query.get(id).to_dict()
+    reviews = Review.query.all()
+    all_reviews = [review.to_dict() for review in reviews]
+
+    restaurant_reviews = [ review for review in all_reviews if review["restaurant_id"] == one_restaurant["id"] ]
+    sum_stars = 0
+
+    for review in restaurant_reviews:
+        sum_stars += review["stars"]
+
+    avg_rating = sum_stars / len(restaurant_reviews)
+    one_restaurant["avg_rating"] = avg_rating
+    one_restaurant["num_reviews"] = len(restaurant_reviews)
 
     if not one_restaurant:
         return { "message": "Restaurant not found!" }, 404
 
-    return one_restaurant.to_dict()
+    return one_restaurant
 
 
 @restaurant_routes.route('/current')
@@ -41,7 +68,21 @@ def get_owned_restaurants():
     """
 
     all_restaurants = Restaurant.query.all()
+    reviews = Review.query.all()
     owned_restaurants = [ restaurant.to_dict() for restaurant in all_restaurants if restaurant.owner_id == current_user.id ]
+
+    all_review_list = [review.to_dict() for review in reviews]
+
+    for restaurant_obj in owned_restaurants:
+        restaurant_reviews = [ review for review in all_review_list if review["restaurant_id"] == restaurant_obj["id"] ]
+        sum_stars = 0
+        for restaurant_review in restaurant_reviews:
+            sum_stars += restaurant_review["stars"]
+
+        avg_rating = sum_stars / len(restaurant_reviews)
+        restaurant_obj["avg_rating"] = avg_rating
+        restaurant_obj["num_reviews"] = len(restaurant_reviews)
+
 
     return { "restaurants": owned_restaurants }
 
