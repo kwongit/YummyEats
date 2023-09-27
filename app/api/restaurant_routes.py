@@ -22,7 +22,9 @@ def get_all_restaurants():
     all_restaurant_list = [restaurant.to_dict() for restaurant in restaurants]
     all_review_list = [review.to_dict() for review in reviews]
 
+
     for restaurant_obj in all_restaurant_list:
+        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", restaurant_obj.review)
         restaurant_reviews = [ review for review in all_review_list if review["restaurant_id"] == restaurant_obj["id"] ]
         sum_stars = 0
         for restaurant_review in restaurant_reviews:
