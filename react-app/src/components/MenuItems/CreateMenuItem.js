@@ -1,99 +1,84 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { thunkCreateRestaurant } from "../../store/restaurants";
+import { useHistory, useParams } from "react-router-dom";
+import { thunkCreateMenuItem } from "../../store/menuItems"
 
 export const CreateMenuItem = ({ user }) => {
-  return (
-    <h1>
-      HELLO
-    </h1>
-  )
-  // const [address, setAddress] = useState("");
-  // const [city, setCity] = useState("");
-  // const [state, setState] = useState("");
-  // const [name, setName] = useState("");
-  // const [type, setType] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [open_hours, setOpenHours] = useState("");
-  // const [close_hours, setCloseHours] = useState("");
-  // const [image_url, setImageUrl] = useState("");
-  // const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [submitted, setSubmitted] = useState(false);
-  // const [errors, setErrors] = useState({});
+  const [name, setName] = useState("");
+  const [size, setSize] = useState("");
+  const [calories, setCalories] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [image_url, setImageUrl] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  // const history = useHistory();
-  // const dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const errors = {};
+  const { restaurantId } = useParams();
 
-  //   if (!address) errors.address = "Address is required";
-  //   if (!city) errors.city = "City is required";
-  //   if (!state) errors.state = "State is required";
-  //   if (!name || name.length < 2)
-  //     errors.description = "Description needs 2 or more characters";
-  //   if (!name) errors.name = "Name is required";
-  //   if (name.length > 29) errors.name = "Name must be less than 30 characters";
-  //   if (!type) errors.type = "Type is required";
-  //   if (!price || price < 1) errors.price = "Price is required";
-  //   if (!open_hours) errors.open_hours = "Open hours is required";
-  //   if (!close_hours) errors.close_hours = "Close hours is required";
-  //   if (!image_url) errors.image_url = "Preview image is required";
-  //   if (
-  //     image_url &&
-  //     !image_url.endsWith("jpg") &&
-  //     !image_url.endsWith("jpeg") &&
-  //     !image_url.endsWith("png")
-  //   )
-  //     errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
+  useEffect(() => {
+    const errors = {};
 
-  //   setErrors(errors);
-  // }, [
-  //   address,
-  //   city,
-  //   state,
-  //   name,
-  //   type,
-  //   price,
-  //   open_hours,
-  //   close_hours,
-  //   image_url,
-  // ]);
+    if (!name) errors.name = "Name is required";
+    if (!name || name.length < 2)
+      errors.description = "Name needs to be 2 or more characters";
+    if (name.length > 29) errors.name = "Name must be less than 30 characters";
+    if (calories < 0) errors.calories = "Calories must be zero or greater"
+    if (!price || price < 0) errors.price = "Valid price is required";
+    if (!image_url) errors.image_url = "Preview image is required";
+    if (
+      image_url &&
+      !image_url.endsWith("jpg") &&
+      !image_url.endsWith("jpeg") &&
+      !image_url.endsWith("png")
+    )
+      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (isSubmitting) return;
-  //   setIsSubmitting(true);
-  //   setSubmitted(true);
+    setErrors(errors);
+  }, [
+    name,
+    size,
+    calories,
+    price,
+    description,
+    image_url,
+  ]);
 
-  //   const newRestaurant = {
-  //     address,
-  //     city,
-  //     state,
-  //     name,
-  //     type,
-  //     price,
-  //     open_hours,
-  //     close_hours,
-  //     image_url,
-  //   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitted(true);
 
-  //   if (!Object.values(errors).length) {
-  //     const addRestaurant = await dispatch(
-  //       thunkCreateRestaurant(newRestaurant, user)
-  //     );
+    const newMenuItem = {
+      name,
+      size,
+      calories,
+      description,
+      price,
+      image_url,
+    };
 
-  //     const combinedErrors = { ...errors, Errors: addRestaurant.errors };
+    if (!Object.values(errors).length) {
+      const addMenuItem = await dispatch(
+        thunkCreateMenuItem(newMenuItem, restaurantId)
+      );
 
-  //     if (addRestaurant.errors) {
-  //       setErrors(combinedErrors);
-  //     } else {
-  //       history.push(`/restaurants/${addRestaurant.id}`);
-  //     }
-  //   }
-  //   setIsSubmitting(false);
-  // };
+      const combinedErrors = { ...errors, Errors: addMenuItem.errors};
+
+      if (addMenuItem.errors) {
+        setErrors(combinedErrors);
+      } else {
+        history.push(`/menuitems/${addMenuItem.id}`);
+      }
+    }
+    setIsSubmitting(false);
+  };
+
+  return null;
 
   // return (
   //   <div className="create-restaurant-form-container">

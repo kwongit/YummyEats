@@ -75,6 +75,22 @@ export const thunkGetMenuItemInfo = (menuItemId) => async (dispatch) => {
   }
 };
 
+export const thunkCreateMenuItem = (menuItem, restaurantId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/restaurants/${restaurantId}/createmenuitem`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(menuItem),
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
+
 // REDUCERS
 const initialState = { allMenuItems: {}, singleMenuItem: {} };
 
