@@ -10,7 +10,7 @@ import { CreateRestaurant } from "./components/Restaurants/CreateRestaurant";
 import { ManageRestaurants } from "./components/ManageRestaurants";
 import { GetRestaurantToUpdate } from "./components/Restaurants/GetRestaurantToUpdate";
 import { RestaurantDetails } from "./components/RestaurantDetails";
-
+import {MenuItemDetails} from "./components/MenuItemDetails"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,6 +44,10 @@ function App() {
           <Route exact path="/restaurants/:restaurantId">
             <RestaurantDetails />
           </Route>
+          <Route exact path="/menuitems/:menuItemId">
+            <MenuItemDetails/>
+          </Route>
+
         </Switch>
       )}
     </>
