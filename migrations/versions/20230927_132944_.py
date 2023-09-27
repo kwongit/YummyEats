@@ -1,21 +1,16 @@
 """empty message
 
-Revision ID: 1dbfc19a1397
-Revises:
-Create Date: 2023-09-26 11:14:04.508503
+Revision ID: e43f6ada2c29
+Revises: 
+Create Date: 2023-09-27 13:29:44.217032
 
 """
 from alembic import op
 import sqlalchemy as sa
 
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
-
 # revision identifiers, used by Alembic.
-revision = '1dbfc19a1397'
+revision = 'e43f6ada2c29'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,8 +27,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     op.create_table('restaurants',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
@@ -48,11 +41,9 @@ def upgrade():
     sa.Column('image_url', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE restaurants SET SCHEMA {SCHEMA};")
     op.create_table('menu_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('restaurantId', sa.Integer(), nullable=False),
@@ -64,11 +55,9 @@ def upgrade():
     sa.Column('imageUrl', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['restaurantId'], ['restaurants.id'], ),
+    sa.ForeignKeyConstraint(['restaurantId'], ['restaurants.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE menu_items SET SCHEMA {SCHEMA};")
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=False),
@@ -77,12 +66,10 @@ def upgrade():
     sa.Column('stars', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
