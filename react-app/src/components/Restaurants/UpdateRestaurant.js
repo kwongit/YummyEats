@@ -4,17 +4,19 @@ import { useHistory } from "react-router-dom";
 import { thunkUpdateRestaurant } from "../../store/restaurants";
 
 export const UpdateRestaurant = ({ restaurant }) => {
-  const [address, setAddress] = useState(restaurant?.address);
-  const [city, setCity] = useState(restaurant?.city);
-  const [state, setState] = useState(restaurant?.state);
-  const [name, setName] = useState(restaurant?.name);
-  const [type, setType] = useState(restaurant?.type);
-  const [price, setPrice] = useState(restaurant?.price);
-  const [open_hours, setOpenHours] = useState(restaurant?.open_hours);
-  const [close_hours, setCloseHours] = useState(restaurant?.close_hours);
-  const [image_url, setImageUrl] = useState(restaurant?.image_url);
+  const [address, setAddress] = useState(restaurant?.address );
+  const [city, setCity] = useState(restaurant?.city );
+  const [state, setState] = useState(restaurant?.state );
+  const [name, setName] = useState(restaurant?.name );
+  const [type, setType] = useState(restaurant?.type );
+  const [price, setPrice] = useState(restaurant?.price );
+  const [open_hours, setOpenHours] = useState(restaurant?.open_hours );
+  const [close_hours, setCloseHours] = useState(restaurant?.close_hours );
+  const [image_url, setImageUrl] = useState(restaurant?.image_url );
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+
+// console.log( "address =======>>>>>>>>>>>>>>>",restaurant)
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -26,15 +28,16 @@ export const UpdateRestaurant = ({ restaurant }) => {
   useEffect(() => {
     const errors = {};
 
-    setAddress(restaurant.address);
-    setCity(restaurant.city);
-    setState(restaurant.state);
-    setName(restaurant.name);
-    setType(restaurant.type);
-    setPrice(restaurant.price);
-    setOpenHours(restaurant.open_hours);
-    setCloseHours(restaurant.close_hours);
-    setImageUrl(restaurant.image_url);
+
+    // setAddress(restaurant.address);
+    // setCity(restaurant.city);
+    // setState(restaurant.state);
+    // setName(restaurant.name);
+    // setType(restaurant.type);
+    // setPrice(restaurant.price);
+    // setOpenHours(restaurant.open_hours);
+    // setCloseHours(restaurant.close_hours);
+    // setImageUrl(restaurant.image_url);
 
     if (!address) errors.address = "Address is required";
     if (!city) errors.city = "City is required";

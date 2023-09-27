@@ -7,6 +7,7 @@ import { UpdateRestaurant } from "./UpdateRestaurant";
 export const GetRestaurantToUpdate = () => {
   const dispatch = useDispatch();
   const { restaurantId } = useParams();
+  console.log("restaurant id =====>>>>>>", restaurantId)
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
   );
