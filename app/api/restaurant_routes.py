@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, redirect
 from app.models import Restaurant, User, Review, MenuItem
 from ..forms.restaurant_form import RestaurantForm
 from ..forms.menu_item_form import MenuItemForm
+from ..forms.review_form import ReviewForm
 from datetime import date
 from ..models.db import db
 from flask_login import current_user, login_required
@@ -176,6 +177,7 @@ def delete(restaurantId):
     else:
         return { "message": "Restaurant not found!" }, 404
 
+
 @restaurant_routes.route('/<int:restaurantId>/menuitems')
 #/api/restaurants/:restaurantId/menuitems
 def get_restaurant_menu_items(restaurantId):
@@ -188,6 +190,7 @@ def get_restaurant_menu_items(restaurantId):
     restaurant_menu_items = [menu_item.to_dict() for menu_item in all_menu_items if menu_item.restaurantId == restaurantId]
 
     return restaurant_menu_items
+
 
 @restaurant_routes.route('/<int:restaurantId>/createmenuitem', methods=["POST"])
 #/api/restaurants/:restaurantId/createmenuitem
@@ -221,3 +224,49 @@ def create_menu_item(restaurantId):
     else:
         print(form.errors)
         return { "errors": form.errors }, 400
+
+
+@restaurant_routes.route('/<int:restaurantId>/reviews')
+def get_restaurant_reviews(restaurantId):
+    """
+    Query for all reviews for a specific restaurant
+    """
+
+    all_reviews = Review.query.all()
+
+    restaurant_reviews = [review.to_dict() for review in all_reviews if review.restaurant_id == restaurantId]
+
+    return restaurant_reviews
+
+
+@restaurant_routes.route('/<int:restaurantId>/createreview', methods=["POST"])
+@login_required
+def create_review(restaurantId):
+    """
+    Route to post a new review
+    """
+
+    form = ReviewForm()
+
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+
+        new_review = Review(
+            restaurant_id=restaurantId,
+            user_id=current_user.id,
+            review=form.data["review"],
+            stars=form.data["stars"],
+            created_at = date.today(),
+            updated_at = date.today()
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict(), 201
+
+    else:
+        print(form.errors)
+        return { "errors": form.errors }, 400
+
+
+
