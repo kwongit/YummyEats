@@ -22,22 +22,15 @@ export const MenuItemDetails = () => {
   console.log("name ******", name, size, calories, price, description, imageUrl)
   return (
     <div className="view-menu-item-details">
-      <h1>{name} this is the name</h1>
-      <p>{price}</p>
-      <p>{description}</p>
-      <p>{calories}</p>
-      <p>{size}</p>
-      <button>Buy Now * ${price}</button> 
-      {/* <div className="menu-item-image">
+      <div className="menu-item-image">
         <img className="image" src={imageUrl} alt="main" />
       </div>
-      <h1>this is the place </h1>
-      <h1>{name} this is the name</h1>
+      <h1>{name}</h1>
       <p>{price}</p>
       <p>{description}</p>
       <p>{calories}</p>
       <p>{size}</p>
-      <button>Buy Now * ${price}</button> */}
+      <button>Buy Now * ${price}</button>
     </div>
   );
 };
