@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
+import {MenuItems} from '../MenuItems'
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export const RestaurantDetails = () => {
         Hours: {open_hours} - {close_hours}
       </p>
 
-      {/* <MenuItems /> */}
+      <MenuItems restaurantId={restaurantId}/>
       {/* <RestaurantReviews /> */}
     </div>
   );

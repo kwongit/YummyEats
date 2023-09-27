@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetMenuItems } from "../../store/menuItems";
 import MenuItemTile from "../MenuItemTile";
 
-export const MenuItems = () => {
+export const MenuItems = ({restaurantId}) => {
   const dispatch = useDispatch();
 
   const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
-
+// console.log("get menu items =====>",getMenuItems)
   const menuItems = Object.values(getMenuItems);
-
+// console.log("menu items=====>>>>>>", menuItems)
   useEffect(() => {
-    dispatch(thunkGetMenuItems());
+    dispatch(thunkGetMenuItems(restaurantId));
   }, [dispatch]);
 
   if (!menuItems.length) return null;
@@ -20,7 +20,7 @@ export const MenuItems = () => {
     <>
       <div id="main-body-container">
         <div>
-          {getMenuItems.map((menuItem) => (
+          {menuItems.map((menuItem) => (
             <MenuItemTile key={menuItem.id} menuItem={menuItem} />
           ))}
         </div>
