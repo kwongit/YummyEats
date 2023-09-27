@@ -12,6 +12,7 @@ export const RestaurantDetails = () => {
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
   );
+  const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
@@ -55,6 +56,10 @@ export const RestaurantDetails = () => {
       <p>
         Hours: {open_hours} - {close_hours}
       </p>
+
+      {oneRestaurant.owner_id === currentUser.id && (
+        <button>Create New Menu Item</button>
+      )}
 
       <MenuItems restaurantId={restaurantId}/>
       {/* <RestaurantReviews /> */}
