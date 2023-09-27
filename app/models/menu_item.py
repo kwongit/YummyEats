@@ -9,7 +9,7 @@ class MenuItem(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    restaurantId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id")), nullable=False)
+    restaurantId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id", ondelete="CASCADE")), nullable=False)
     name = db.Column(db.String(255), nullable=False)
     size = db.Column(db.String(255))
     calories = db.Column(db.Integer)
