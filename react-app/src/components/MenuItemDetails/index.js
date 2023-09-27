@@ -24,7 +24,6 @@ export const MenuItemDetails = () => {
       <div className="menu-item-image">
         <img className="image" src={imageUrl} alt="main" />
       </div>
-
       <h1>{name}</h1>
       <p>{price}</p>
       <p>{description}</p>

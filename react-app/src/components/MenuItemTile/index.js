@@ -1,13 +1,13 @@
 import { useHistory } from "react-router";
 
 const MenuItemTile = ({ menuItem }) => {
-  const { id, name, price, image_url } = menuItem;
-
+  const { id, name, price, imageUrl } = menuItem;
+// console.log('image url ====>' , image_url)
   const history = useHistory();
 
   const handleClick = () => {
     // tbd
-    history.push(`/`);
+    history.push(`/menuitems/${id}`);
   };
 
   return (
@@ -15,7 +15,7 @@ const MenuItemTile = ({ menuItem }) => {
       <div>
         <img
           className="preview-image"
-          src={image_url}
+          src={imageUrl}
           alt={name}
           title={name}
         ></img>
