@@ -26,15 +26,15 @@ export const UpdateRestaurant = ({ restaurant }) => {
   useEffect(() => {
     const errors = {};
 
-    setAddress(restaurant.address);
-    setCity(restaurant.city);
-    setState(restaurant.state);
-    setName(restaurant.name);
-    setType(restaurant.type);
-    setPrice(restaurant.price);
-    setOpenHours(restaurant.open_hours);
-    setCloseHours(restaurant.close_hours);
-    setImageUrl(restaurant.image_url);
+    // setAddress(restaurant.address);
+    // setCity(restaurant.city);
+    // setState(restaurant.state);
+    // setName(restaurant.name);
+    // setType(restaurant.type);
+    // setPrice(restaurant.price);
+    // setOpenHours(restaurant.open_hours);
+    // setCloseHours(restaurant.close_hours);
+    // setImageUrl(restaurant.image_url);
 
     if (!address) errors.address = "Address is required";
     if (!city) errors.city = "City is required";
