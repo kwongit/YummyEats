@@ -24,9 +24,10 @@ export const CreateMenuItem = ({ user }) => {
 
     if (!name) errors.name = "Name is required";
     if (!name || name.length < 2)
-      errors.description = "Name needs to be 2 or more characters";
+      errors.name = "Name needs to be 2 or more characters";
     if (name.length > 29) errors.name = "Name must be less than 30 characters";
-    if (calories < 0) errors.calories = "Calories must be zero or greater"
+    if (size.length > 20) errors.size = "Size must be less than 20 characters";
+    if (calories < 0) errors.calories = "Calories must be zero or greater";
     if (!price || price < 0) errors.price = "Valid price is required";
     if (!image_url) errors.image_url = "Preview image is required";
     if (
@@ -78,214 +79,119 @@ export const CreateMenuItem = ({ user }) => {
     setIsSubmitting(false);
   };
 
-  return null;
+  return (
+    <div className="create-menu-item-form-container">
+      <h1>Create a New Menu Item</h1>
+      <form onSubmit={handleSubmit}>
 
-  // return (
-  //   <div className="create-restaurant-form-container">
-  //     <h1>Create a New Restaurant</h1>
-  //     <form onSubmit={handleSubmit}>
-  //       <div className="location-container">
-  //         <h3>Get Started</h3>
+        <div className="name-container">
+          <div className="name-container">
+            <label>Item Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Item Name"
+              required={true}
+            />
+            {errors.name && submitted && (
+              <p className="on-submit-errors">{errors.name}</p>
+            )}
+          </div>
+        </div>
 
-  //         <div className="address-container">
-  //           <div className="address-container">
-  //             <label>Store Address</label>
-  //             <input
-  //               type="text"
-  //               value={address}
-  //               onChange={(e) => setAddress(e.target.value)}
-  //               placeholder="Store Address"
-  //             />
-  //             {errors.address && submitted && (
-  //               <p className="on-submit-errors">{errors.address}</p>
-  //             )}
-  //           </div>
-  //         </div>
+        <div className="size-container">
+          <div className="size-container">
+            <label>Size</label>
+            <input
+              type="text"
+              value={size}
+              onChange={(e) => setSize(e.target.value)}
+              placeholder="Size"
+            />
+            {errors.size && submitted && (
+              <p className="on-submit-errors">{errors.size}</p>
+            )}
+          </div>
+        </div>
 
-  //         <div className="city-and-state-container">
-  //           <div className="city-container">
-  //             <label>City</label>
-  //             <input
-  //               type="text"
-  //               value={city}
-  //               onChange={(e) => setCity(e.target.value)}
-  //               placeholder="City"
-  //             />
-  //             {errors.city && submitted && (
-  //               <p className="on-submit-errors">{errors.city}</p>
-  //             )}
-  //           </div>
-  //           <div className="state-container">
-  //             <label>State</label>
-  //             <input
-  //               type="text"
-  //               value={state}
-  //               onChange={(e) => setState(e.target.value)}
-  //               placeholder="State"
-  //             />
-  //             {errors.state && submitted && (
-  //               <p className="on-submit-errors">{errors.state}</p>
-  //             )}
-  //           </div>
-  //         </div>
-  //       </div>
+        <div className="calories-container">
+          <div className="calories-container">
+            <label>Calories</label>
+            <input
+              type="number"
+              value={calories}
+              onChange={(e) => setCalories(e.target.value)}
+              placeholder="Calories"
+            />
+            {errors.calories && submitted && (
+              <p className="on-submit-errors">{errors.calories}</p>
+            )}
+          </div>
+        </div>
 
-  //       <div className="name-container">
-  //         <div className="name-container">
-  //           <label>Restaurant Name</label>
-  //           <input
-  //             type="text"
-  //             value={name}
-  //             onChange={(e) => setName(e.target.value)}
-  //             placeholder="Restaurant Name"
-  //           />
-  //           {errors.name && submitted && (
-  //             <p className="on-submit-errors">{errors.name}</p>
-  //           )}
-  //         </div>
-  //       </div>
+        <div className="price-container">
+          <div className="price-container">
+            <label>Item Price</label>
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="Item Price"
+              required={true}
+            />
+            {errors.price && submitted && (
+              <p className="on-submit-errors">{errors.price}</p>
+            )}
+          </div>
+        </div>
 
-  //       <div className="type-container">
-  //         <div className="type-container">
-  //           <label>Restaurant Type</label>
-  //           <select onChange={(e) => setType(e.target.value)}>
-  //             <option value="0">Select Type</option>
-  //             <option value="American">American</option>
-  //             <option value="Asian">Asian</option>
-  //             <option value="Breakfast and Brunch">Breakfast and Brunch</option>
-  //             <option value="Cafe">Cafe</option>
-  //             <option value="Mexican">Mexican</option>
-  //             <option value="Pizza">Pizza</option>
-  //             <option value="Wings">Wings</option>
-  //           </select>
-  //           {errors.type && submitted && (
-  //             <p className="on-submit-errors">{errors.type}</p>
-  //           )}
-  //         </div>
-  //       </div>
+        <div className="description-container">
+          <div className="description-container">
+            <label>Item Description</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Add a description for your item."
+            />
+            {errors.description && submitted && (
+              <p className="on-submit-errors">{errors.description}</p>
+            )}
+          </div>
+        </div>
 
-  //       <div className="price-container">
-  //         <div className="price-container">
-  //           <label>Restaurant Price</label>
-  //           <select onChange={(e) => setPrice(e.target.value)}>
-  //             <option value="0">Select Expensiveness</option>
-  //             <option value="1">1</option>
-  //             <option value="2">2</option>
-  //             <option value="3">3</option>
-  //           </select>
-  //           {errors.price && submitted && (
-  //             <p className="on-submit-errors">{errors.price}</p>
-  //           )}
-  //         </div>
-  //       </div>
+        <div className="images-container">
+          <p>Submit a link to one photo to create your menu item.</p>
+          <div className="image-url-container">
+            <input
+              type="url"
+              value={image_url}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="Preview Image URL"
+              required={true}
+            />
+            {errors.image_url && submitted && (
+              <p className="on-submit-errors">{errors.image_url}</p>
+            )}
+          </div>
+        </div>
 
-  //       <div className="store-hours-container">
-  //         <div className="store-open-hours-container">
-  //           <label>Restaurant Open Hours</label>
-  //           <select onChange={(e) => setOpenHours(e.target.value)}>
-  //             <option value="0">Select Open Hours</option>
-  //             <option value="1:00">1:00</option>
-  //             <option value="1:30">1:30</option>
-  //             <option value="2:00">2:00</option>
-  //             <option value="2:30">2:30</option>
-  //             <option value="3:00">3:00</option>
-  //             <option value="3:30">3:30</option>
-  //             <option value="4:00">4:00</option>
-  //             <option value="4:30">4:30</option>
-  //             <option value="5:00">5:00</option>
-  //             <option value="5:30">5:30</option>
-  //             <option value="6:00">6:00</option>
-  //             <option value="6:30">6:30</option>
-  //             <option value="7:00">7:00</option>
-  //             <option value="7:30">7:30</option>
-  //             <option value="8:00">8:00</option>
-  //             <option value="8:30">8:30</option>
-  //             <option value="9:00">9:00</option>
-  //             <option value="9:30">9:30</option>
-  //             <option value="10:00">10:00</option>
-  //             <option value="10:30">10:30</option>
-  //             <option value="11:00">11:00</option>
-  //             <option value="11:30">11:30</option>
-  //             <option value="12:00">12:00</option>
-  //             <option value="12:30">12:30</option>
-  //           </select>
-  //           {errors.open_hours && submitted && (
-  //             <p className="on-submit-errors">{errors.open_hours}</p>
-  //           )}
-  //         </div>
-  //         <div className="store-close-hours-container">
-  //           <label>Restaurant Close Hours</label>
-  //           <select onChange={(e) => setCloseHours(e.target.value)}>
-  //             <option value="0">Select Close Hours</option>
-  //             <option value="1:00">1:00</option>
-  //             <option value="1:30">1:30</option>
-  //             <option value="2:00">2:00</option>
-  //             <option value="2:30">2:30</option>
-  //             <option value="3:00">3:00</option>
-  //             <option value="3:30">3:30</option>
-  //             <option value="4:00">4:00</option>
-  //             <option value="4:30">4:30</option>
-  //             <option value="5:00">5:00</option>
-  //             <option value="5:30">5:30</option>
-  //             <option value="6:00">6:00</option>
-  //             <option value="6:30">6:30</option>
-  //             <option value="7:00">7:00</option>
-  //             <option value="7:30">7:30</option>
-  //             <option value="8:00">8:00</option>
-  //             <option value="8:30">8:30</option>
-  //             <option value="9:00">9:00</option>
-  //             <option value="9:30">9:30</option>
-  //             <option value="10:00">10:00</option>
-  //             <option value="10:30">10:30</option>
-  //             <option value="11:00">11:00</option>
-  //             <option value="11:30">11:30</option>
-  //             <option value="12:00">12:00</option>
-  //             <option value="12:30">12:30</option>
-  //           </select>
-  //           {errors.close_hours && submitted && (
-  //             <p className="on-submit-errors">{errors.close_hours}</p>
-  //           )}
-  //         </div>
-  //       </div>
-
-  //       <div className="images-container">
-  //         <h3>Liven up your restaurant with photos</h3>
-  //         <p>Submit a link to at least one photo to publish your restaurant.</p>
-  //         <div className="image-url-container">
-  //           <input
-  //             type="url"
-  //             value={image_url}
-  //             onChange={(e) => setImageUrl(e.target.value)}
-  //             placeholder="Preview Image URL"
-  //           />
-  //           {errors.image_url && submitted && (
-  //             <p className="on-submit-errors">{errors.image_url}</p>
-  //           )}
-  //         </div>
-  //       </div>
-
-  //       <div className="button-container">
-  //         <button
-  //           className="create-restaurant-button"
-  //           type="submit"
-  //           disabled={
-  //             !(
-  //               address ||
-  //               city ||
-  //               state ||
-  //               name ||
-  //               type ||
-  //               price ||
-  //               open_hours ||
-  //               close_hours ||
-  //               image_url
-  //             )
-  //           }
-  //         >
-  //           Create Restaurant
-  //         </button>
-  //       </div>
-  //     </form>
-  //   </div>
-  // );
+        <div className="button-container">
+          <button
+            className="create-menu-item-button"
+            type="submit"
+            disabled={
+              !(
+                name ||
+                price ||
+                image_url
+              )
+            }
+          >
+            Create Menu Item
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
