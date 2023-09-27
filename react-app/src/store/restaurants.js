@@ -74,7 +74,7 @@ export const thunkGetRestaurantInfo = (restaurantId) => async (dispatch) => {
 };
 
 export const thunkCreateRestaurant = (restaurant, user) => async (dispatch) => {
-  const res = await csrfFetch("/api/restaurants", {
+  const res = await csrfFetch("/api/restaurants/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(restaurant),

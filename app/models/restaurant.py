@@ -9,7 +9,7 @@ class Restaurant(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"), nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(100), nullable=False)
@@ -18,14 +18,14 @@ class Restaurant(db.Model):
     price = db.Column(db.Integer, nullable=False)
     open_hours = db.Column(db.String, nullable=False)
     close_hours = db.Column(db.String, nullable=False)
-    image_url = db.Column(db.String, nullable=False)
+    image_url = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     #relationship
     user = db.relationship("User", back_populates = "restaurant")
-    menu_item = db.relationship("MenuItem", back_populates = "restaurant")
-    review = db.relationship("Review", back_populates = "restaurant")
+    menu_item = db.relationship("MenuItem", back_populates="restaurant", cascade="all, delete-orphan")
+    reviews = db.relationship("Review", back_populates = "restaurant", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

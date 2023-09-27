@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, redirect
-from app.models import Restaurant, User, Review
+from app.models import Restaurant, User, Review, MenuItem
 from ..forms.restaurant_form import RestaurantForm
+from ..forms.menu_item_form import MenuItemForm
 from datetime import date
 from ..models.db import db
 from flask_login import current_user, login_required
@@ -21,15 +22,17 @@ def get_all_restaurants():
     all_restaurant_list = [restaurant.to_dict() for restaurant in restaurants]
     all_review_list = [review.to_dict() for review in reviews]
 
+
     for restaurant_obj in all_restaurant_list:
+        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", restaurant_obj.review)
         restaurant_reviews = [ review for review in all_review_list if review["restaurant_id"] == restaurant_obj["id"] ]
         sum_stars = 0
         for restaurant_review in restaurant_reviews:
             sum_stars += restaurant_review["stars"]
-
-        avg_rating = sum_stars / len(restaurant_reviews)
-        restaurant_obj["avg_rating"] = avg_rating
-        restaurant_obj["num_reviews"] = len(restaurant_reviews)
+        if sum_stars > 0:
+            avg_rating = sum_stars / len(restaurant_reviews)
+            restaurant_obj["avg_rating"] = avg_rating
+            restaurant_obj["num_reviews"] = len(restaurant_reviews)
 
     return { "restaurants": all_restaurant_list}
 
@@ -49,10 +52,10 @@ def get_restaurant_by_id(id):
 
     for review in restaurant_reviews:
         sum_stars += review["stars"]
-
-    avg_rating = sum_stars / len(restaurant_reviews)
-    one_restaurant["avg_rating"] = avg_rating
-    one_restaurant["num_reviews"] = len(restaurant_reviews)
+    if sum_stars > 0:
+        avg_rating = sum_stars / len(restaurant_reviews)
+        one_restaurant["avg_rating"] = avg_rating
+        one_restaurant["num_reviews"] = len(restaurant_reviews)
 
     if not one_restaurant:
         return { "message": "Restaurant not found!" }, 404
@@ -78,10 +81,10 @@ def get_owned_restaurants():
         sum_stars = 0
         for restaurant_review in restaurant_reviews:
             sum_stars += restaurant_review["stars"]
-
-        avg_rating = sum_stars / len(restaurant_reviews)
-        restaurant_obj["avg_rating"] = avg_rating
-        restaurant_obj["num_reviews"] = len(restaurant_reviews)
+        if sum_stars > 0:
+            avg_rating = sum_stars / len(restaurant_reviews)
+            restaurant_obj["avg_rating"] = avg_rating
+            restaurant_obj["num_reviews"] = len(restaurant_reviews)
 
 
     return { "restaurants": owned_restaurants }
@@ -172,3 +175,49 @@ def delete(restaurantId):
             return { "message": "FORBIDDEN" }, 403
     else:
         return { "message": "Restaurant not found!" }, 404
+
+@restaurant_routes.route('/<int:restaurantId>/menuitems')
+#/api/restaurants/:restaurantId/menuitems
+def get_restaurant_menu_items(restaurantId):
+    """
+    Query for all menu items for a specific restaurant
+    """
+
+    all_menu_items = MenuItem.query.all()
+
+    restaurant_menu_items = [menu_item.to_dict() for menu_item in all_menu_items if menu_item.restaurantId == restaurantId]
+
+    return restaurant_menu_items
+
+@restaurant_routes.route('/<int:restaurantId>/createmenuitem', methods=["POST"])
+#/api/restaurants/:restaurantId/createmenuitem
+@login_required
+def create_menu_item(restaurantId):
+    """
+    Route to post a new menu item
+    """
+
+    form = MenuItemForm()
+
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+
+        new_menu_item = MenuItem(
+            restaurantId=restaurantId,
+            name=form.data["name"],
+            size=form.data["size"],
+            calories=form.data["calories"],
+            price=form.data["price"],
+            description=form.data["description"],
+            imageUrl=form.data["image_url"],
+            created_at = date.today(),
+            updated_at = date.today()
+        )
+        db.session.add(new_menu_item)
+        db.session.commit()
+        return new_menu_item.to_dict(), 201
+
+    else:
+        print(form.errors)
+        return { "errors": form.errors }, 400
