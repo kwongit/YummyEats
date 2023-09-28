@@ -60,8 +60,8 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li> Hello, {user.user.username}</li>
-            <li>{user.user.email}</li>
+            <li> Hello, {user.username}</li>
+            <li>{user.email}</li>
             <li>
               <NavLink
                 exact

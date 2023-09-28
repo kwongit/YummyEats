@@ -67,7 +67,7 @@ export const RestaurantDetails = () => {
       </p>
 
       <div>
-        {oneRestaurant.owner_id === currentUser.user.id && (
+        {oneRestaurant.owner_id === currentUser.id && (
           <button onClick={handleClick}>Create New Menu Item</button>
         )}
       </div>
