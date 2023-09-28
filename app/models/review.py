@@ -27,6 +27,7 @@ class Review(db.Model, UserMixin):
             'user_id': self.user_id,
             'review': self.review,
             'stars': self.stars,
+            'restaurant_name': self.restaurant.name,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
         }

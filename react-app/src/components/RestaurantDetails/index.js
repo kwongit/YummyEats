@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
-import {MenuItems} from '../MenuItems'
+import { MenuItems } from "../MenuItems";
 import { useHistory } from "react-router";
 import { setUser, thunkGetUserInfo } from "../../store/session";
 
@@ -17,6 +17,7 @@ export const RestaurantDetails = () => {
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
   );
+  const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
@@ -72,7 +73,7 @@ export const RestaurantDetails = () => {
         )}
       </div>
 
-      <MenuItems restaurantId={restaurantId}/>
+      <MenuItems restaurantId={restaurantId} />
       {/* <RestaurantReviews /> */}
     </div>
   );
