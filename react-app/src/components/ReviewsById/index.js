@@ -5,6 +5,7 @@ import { thunkGetRestaurantReviews } from "../../store/reviews";
 import { thunkGetRestaurants } from "../../store/restaurants";
 import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal"
 import OpenModalButton from "../OpenModalButton";
+import { UpdateReviewModal } from "../ReviewModal/UpdateReviewModal";
 import "../ManageReviews/ManageReviews.css"
 
 export const RestaurantReviews = ({restaurantId}) => {
@@ -46,7 +47,7 @@ export const RestaurantReviews = ({restaurantId}) => {
         dispatch(thunkGetRestaurantReviews(restaurantId));
         dispatch(thunkGetRestaurants());
 
-    }, [dispatch]);
+    }, [dispatch, reviewsList.length]);
 
     if (!user) return null;
 
@@ -79,11 +80,18 @@ export const RestaurantReviews = ({restaurantId}) => {
                     </div>
                     <div>
                         {review.user_id === user.id && (
-                            <OpenModalButton
-                                className="delete-button"
-                                buttonText='Delete'
-                                modalComponent={<DeleteReviewModal review={review}/>}
-                            />
+                            <div>
+                                <OpenModalButton
+                                    className="delete-button"
+                                    buttonText='Delete'
+                                    modalComponent={<DeleteReviewModal review={review}/>}
+                                />
+                                <OpenModalButton
+                                    className="delete-button"
+                                    buttonText='Update'
+                                    modalComponent={<UpdateReviewModal updateReview={review}/>}
+                                />
+                            </div>
                         )}
                     </div>
                 </div>
