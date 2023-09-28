@@ -28,7 +28,12 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
       <div className="menu-item-tile-info" onClick={handleClick}>
         <div className="menu-item-tile-info-left-col">
           <div className="menu-item-small-name">{name}</div>
-          <div className="menu-item-small-info">${price} <span>&#183;</span> <span style={{color:"grey"}}>{calories} Cal.</span></div>
+          <div className="menu-item-small-info">${price}
+          {calories &&
+            <>
+              <span>&#183;</span> <span style={{color:"grey"}}>{calories} Cal.</span>
+            </>}
+          </div>
         </div>
         <div className="menu-item-tile-info-right-col">
           {restaurant.owner_id === currentUser.id && (
