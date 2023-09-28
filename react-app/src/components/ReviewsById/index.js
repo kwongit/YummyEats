@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, NavLink } from "react-router-dom";
-import { thunkGetUserReviews } from "../../store/reviews";
+import { useHistory, NavLink, useParams } from "react-router-dom";
+import { thunkGetRestaurantReviews } from "../../store/reviews";
 import { thunkGetRestaurants } from "../../store/restaurants";
-import "./ManageReviews.css"
+import "../ManageReviews/ManageReviews.css"
 
-export const ManageReviews = () => {
+export const RestaurantReviews = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { restaurantId } = useParams();
 
     const user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => state.reviews.allReviews);
@@ -40,9 +41,9 @@ export const ManageReviews = () => {
 
 
     useEffect(() => {
-        dispatch(thunkGetUserReviews());
+        dispatch(thunkGetRestaurantReviews(restaurantId));
         dispatch(thunkGetRestaurants());
-        
+
     }, [dispatch]);
 
     if (!user) return null;
@@ -53,7 +54,7 @@ export const ManageReviews = () => {
     // review.restaurant.name
     return (
         <div className="all-reviews-container">
-            <h1>Manage Your Reviews</h1>
+            <h1>Restaurant Reviews</h1>
             {reviewsList.map((review) => (
                 <div className="review-container" key={review.id}>
                     <div className="review-stars">
@@ -66,10 +67,7 @@ export const ManageReviews = () => {
                         <div className= {review.stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                     </div>
                     <div>
-                        <h4>Restaurant: </h4>
-                        <NavLink to={`/restaurants/${review.restaurant_id}`}>
-                            {review.restaurant_name}
-                        </NavLink>
+                        <h4>Reviewer: </h4> {review.user}
                     </div>
                     <div className="review-div">
                         <h4>Review:</h4> {review.review}

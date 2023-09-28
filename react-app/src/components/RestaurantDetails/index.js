@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
-import {MenuItems} from '../MenuItems'
+import { thunkGetRestaurantReviews } from "../../store/reviews";
+import { MenuItems } from '../MenuItems';
+import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
 
 export const RestaurantDetails = () => {
@@ -11,13 +13,15 @@ export const RestaurantDetails = () => {
 
   const { restaurantId } = useParams();
 
-  const oneRestaurant = useSelector(
-    (state) => state.restaurant.singleRestaurant
-  );
+  const oneRestaurant = useSelector((state) => state.restaurant.singleRestaurant);
   const currentUser = useSelector(state => state.session.user);
+  const reviews = useSelector((state) => state.reviews.allReviews)
+
+  const reviewsList = Object.values(reviews)
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
+    dispatch(thunkGetRestaurantReviews(restaurantId))
   }, [dispatch, restaurantId]);
 
   const handleClick = () => {
@@ -69,7 +73,7 @@ export const RestaurantDetails = () => {
       )}
 
       <MenuItems restaurantId={restaurantId}/>
-      {/* <RestaurantReviews /> */}
+      <RestaurantReviews restaurantId={restaurantId}/>
     </div>
   );
 };
