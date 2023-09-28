@@ -24,17 +24,20 @@ export const UpdateRestaurant = ({ restaurant }) => {
   }
 
   useEffect(() => {
-    const errors = {};
+    // Pre-populate the form fields with restaurant data
+    setAddress(restaurant.address);
+    setCity(restaurant.city);
+    setState(restaurant.state);
+    setName(restaurant.name);
+    setType(restaurant.type);
+    setPrice(restaurant.price);
+    setOpenHours(restaurant.open_hours);
+    setCloseHours(restaurant.close_hours);
+    setImageUrl(restaurant.image_url);
+  }, [dispatch, restaurant]);
 
-    // setAddress(restaurant.address);
-    // setCity(restaurant.city);
-    // setState(restaurant.state);
-    // setName(restaurant.name);
-    // setType(restaurant.type);
-    // setPrice(restaurant.price);
-    // setOpenHours(restaurant.open_hours);
-    // setCloseHours(restaurant.close_hours);
-    // setImageUrl(restaurant.image_url);
+  useEffect(() => {
+    const errors = {};
 
     if (!address) errors.address = "Address is required";
     if (!city) errors.city = "City is required";
@@ -67,7 +70,6 @@ export const UpdateRestaurant = ({ restaurant }) => {
     open_hours,
     close_hours,
     image_url,
-    restaurant,
   ]);
 
   const handleSubmit = async (e) => {
@@ -113,7 +115,6 @@ export const UpdateRestaurant = ({ restaurant }) => {
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="Store Address"
               />
               {errors.address && submitted && (
                 <p className="on-submit-errors">{errors.address}</p>
