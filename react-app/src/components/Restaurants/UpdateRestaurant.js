@@ -115,6 +115,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+                placeholder="Store Address"
               />
               {errors.address && submitted && (
                 <p className="on-submit-errors">{errors.address}</p>
