@@ -104,6 +104,19 @@ export const thunkGetUserReviews = () => async (dispatch) => {
     }
 };
 
+export const thunkGetRestaurantReviews = (restaurantId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/restaurants/${restaurantId}/reviews`);
+
+    if (res.ok) {
+        const reviews = await res.json();
+        dispatch(getReviews(reviews))
+        return reviews;
+    } else {
+        const errors = await res.json()
+        return errors
+    }
+}
+
 export const thunkUpdateReview = (review, restaurantId) => async (dispatch) => {
     const res = await csrfFetch(`/api/restaurants/${restaurantId}`, {
         method: "PUT",
