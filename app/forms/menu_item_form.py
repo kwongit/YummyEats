@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, StringField, SubmitField, URLField, IntegerField, FloatField, TextAreaField
-from wtforms.validators import DataRequired, Length, URL, NumberRange, ValidationError
+from wtforms.validators import DataRequired, Length, URL, NumberRange, ValidationError, Optional
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 # def my_url_validator(form, field):
@@ -10,7 +10,7 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 class MenuItemForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
     size = StringField("Size")
-    calories = IntegerField("Calories", validators=[NumberRange(min=0, message="Calories must be an integer greater than 0!")])
+    calories = IntegerField("Calories", validators=[Optional()])
     price = FloatField("Price", validators=[DataRequired(), NumberRange(min=0, max=10000, message="Price must be between 0 and 10,000 USD!")])
     description = TextAreaField("Description")
     image_url = URLField("Menu Item Image")
