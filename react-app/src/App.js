@@ -10,9 +10,10 @@ import { CreateRestaurant } from "./components/Restaurants/CreateRestaurant";
 import { ManageRestaurants } from "./components/ManageRestaurants";
 import { GetRestaurantToUpdate } from "./components/Restaurants/GetRestaurantToUpdate";
 import { RestaurantDetails } from "./components/RestaurantDetails";
-import { MenuItemDetails } from "./components/MenuItemDetails"
-import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem"
+import { MenuItemDetails } from "./components/MenuItemDetails";
+import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem";
 import { ManageReviews } from "./components/ManageReviews";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -54,9 +55,8 @@ function App() {
             <RestaurantDetails />
           </Route>
           <Route exact path="/menuitems/:menuItemId">
-            <MenuItemDetails/>
+            <MenuItemDetails />
           </Route>
-
         </Switch>
       )}
     </>
