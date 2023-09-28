@@ -46,10 +46,10 @@ export const UpdateRestaurant = ({ restaurant }) => {
       errors.description = "Name needs 2 or more characters";
     if (!name) errors.name = "Name is required";
     if (name.length > 29) errors.name = "Name must be less than 30 characters";
-    if (!type) errors.type = "Type is required";
-    if (!price || price < 1) errors.price = "Price is required";
-    if (!open_hours) errors.open_hours = "Open hours is required";
-    if (!close_hours) errors.close_hours = "Close hours is required";
+    if (type === "0") errors.type = "Type is required";
+    if (price === "0") errors.price = "Price is required";
+    if (open_hours === "0") errors.open_hours = "Open hours is required";
+    if (close_hours === "0") errors.close_hours = "Close hours is required";
     if (!image_url) errors.image_url = "Preview image is required";
     if (
       image_url &&
