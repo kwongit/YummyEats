@@ -1,0 +1,37 @@
+.view-menu-item-details{
+  background-color: aquamarine;
+  display: flex;
+}
+
+.menu-item-left-col{
+  width: 50%;
+}
+
+.menu-item-image{
+  width: 90%;
+  height: 400px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.menu-item-right-col{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
+  padding: 0 20px;
+}
+
+.buy-menu-item-button{
+  background-color: black;
+  color: white;
+  font-size: 13px;
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+}
+
+.buy-menu-item-button:hover{
+  opacity: 80%;
+}
