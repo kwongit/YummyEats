@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
-import {MenuItems} from '../MenuItems'
+import { MenuItems } from "../MenuItems";
 import { useHistory } from "react-router";
+import { setUser, thunkGetUserInfo } from "../../store/session";
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -11,10 +12,11 @@ export const RestaurantDetails = () => {
 
   const { restaurantId } = useParams();
 
+  const currentUser = useSelector((state) => state.session.user);
+
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
   );
-  const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
@@ -64,11 +66,13 @@ export const RestaurantDetails = () => {
         Hours: {open_hours} - {close_hours}
       </p>
 
-      {oneRestaurant.owner_id === currentUser.id && (
-        <button onClick={handleClick}>Create New Menu Item</button>
-      )}
+      <div>
+        {oneRestaurant.owner_id === currentUser.user.id && (
+          <button onClick={handleClick}>Create New Menu Item</button>
+        )}
+      </div>
 
-      <MenuItems restaurantId={restaurantId}/>
+      <MenuItems restaurantId={restaurantId} />
       {/* <RestaurantReviews /> */}
     </div>
   );
