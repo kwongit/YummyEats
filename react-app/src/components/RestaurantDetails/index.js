@@ -17,7 +17,11 @@ export const RestaurantDetails = () => {
   const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
-    dispatch(thunkGetRestaurantInfo(restaurantId));
+    dispatch(thunkGetRestaurantInfo(restaurantId))
+  //   .then(() => {
+  //     dispatch(fetchSpotReviews(spotId))
+
+  // })
   }, [dispatch, restaurantId]);
 
   const handleClick = () => {
