@@ -169,7 +169,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="type-container">
           <div className="type-container">
             <label>Restaurant Type</label>
-            <select onChange={(e) => setType(e.target.value)}>
+            <select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="0">Select Type</option>
               <option value="American">American</option>
               <option value="Asian">Asian</option>
@@ -188,7 +188,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="price-container">
           <div className="price-container">
             <label>Restaurant Expensiveness</label>
-            <select onChange={(e) => setPrice(e.target.value)}>
+            <select value={price} onChange={(e) => setPrice(e.target.value)}>
               <option value="0">Select Expensiveness</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -203,7 +203,10 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="store-hours-container">
           <div className="store-open-hours-container">
             <label>Restaurant Open Hours</label>
-            <select onChange={(e) => setOpenHours(e.target.value)}>
+            <select
+              value={open_hours}
+              onChange={(e) => setOpenHours(e.target.value)}
+            >
               <option value="0">Select Open Hours</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
@@ -236,7 +239,10 @@ export const UpdateRestaurant = ({ restaurant }) => {
           </div>
           <div className="store-close-hours-container">
             <label>Restaurant Close Hours</label>
-            <select onChange={(e) => setCloseHours(e.target.value)}>
+            <select
+              value={close_hours}
+              onChange={(e) => setCloseHours(e.target.value)}
+            >
               <option value="0">Select Close Hours</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
