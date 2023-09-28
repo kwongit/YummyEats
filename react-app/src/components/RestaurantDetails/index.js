@@ -7,6 +7,7 @@ import {  MenuItems  } from "../MenuItems";
 import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
 // import { setUser, thunkGetUserInfo } from "../../store/session";
+import "./RestaurantDetails.css"
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export const RestaurantDetails = () => {
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
-    dispatch(thunkGetRestaurantReviews(restaurantId))
+    dispatch(thunkGetRestaurantReviews(restaurantId));
   }, [dispatch, restaurantId]);
 
   const handleClick = () => {
@@ -50,34 +51,42 @@ export const RestaurantDetails = () => {
 
   return (
     <div className="view-restaurant-details">
-      <div className="restaurant-image">
-        <img
-          className="preview-image"
-          src={image_url}
-          alt={name}
-          title={name}
-        ></img>
+      <img
+        className="restaurant-image"
+        src={image_url}
+        alt={name}
+        title={name}
+      ></img>
+
+      <div className="restaurant-non-image-content">
+        <div className="restaurant-info">
+          <div className="restaurant-info-left-col">
+            <p className="restaurant-header">
+              {name} ({address})
+            </p>
+            <p className="restaurant-subheader">
+              <i className="fa-solid fa-star"></i> {avg_rating} ({num_reviews} ratings
+              ) · {type} · {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
+            </p>
+            <p className="restaurant-hours">
+              Hours: {open_hours} - {close_hours}
+            </p>
+          </div>
+          <div className="restaurant-info-right-col">
+            <div>
+              {oneRestaurant.owner_id === currentUser.id && (
+                <button className="create-restaurant-button" onClick={handleClick}>Create New Menu Item</button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="restaurant-menu-items-grid">
+          <MenuItems restaurantId={restaurantId}/>
+        </div>
+        <RestaurantReviews restaurantId={restaurantId}/>
       </div>
 
-      <h1>
-        {name} ({address})
-      </h1>
-      <p>
-        <i className="fa-solid fa-star"></i> {avg_rating} ({num_reviews} ratings
-        ) · {type} · {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
-      </p>
-      <p>
-        Hours: {open_hours} - {close_hours}
-      </p>
-
-      <div>
-        {oneRestaurant.owner_id === currentUser.id && (
-          <button onClick={handleClick}>Create New Menu Item</button>
-        )}
-      </div>
-
-      <MenuItems restaurantId={restaurantId}/>
-      <RestaurantReviews restaurantId={restaurantId}/>
     </div>
   );
 };

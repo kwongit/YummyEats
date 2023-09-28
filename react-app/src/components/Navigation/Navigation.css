@@ -5,3 +5,41 @@
 .hidden {
   display: none;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#header{
+  display: flex;
+  /* border-bottom: solid 2px lightgrey; */
+  list-style-type: none;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-top: 0px;
+  padding-left: 20px ;
+  padding-right: 20px;
+  height: 70px;
+  }
+
+  #logo-image{
+    width: 200px;
+    height: 70px;
+
+    }
+.user-nav button{
+  /* background-color: blue; */
+  border: none;
+  font-size: 23px;
+  background-color: white;
+}
+
+#menu-drop-down{
+  background-color: lightgrey;
+  z-index: 1;
+  height: 100%;
+  width: 200px;
+  margin-left: 0px;
+  /* display: grid; */
+}

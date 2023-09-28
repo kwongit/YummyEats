@@ -1,0 +1,14 @@
+.open-modal-button{
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-weight: 500;
+  background-color: black;
+  color: white;
+  font-size: 11px;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 7px;
+}
+
+.open-modal-button:hover{
+  opacity: 80%;
+}
