@@ -16,10 +16,6 @@ export const ManageReviews = () => {
     const reviewsList = Object.values(reviews);
     const restaurantsList = Object.values(restaurants)
 
-    // restaurantsList.map(restaurant => console.log("single restaurant: ", restaurant.name))
-    console.log("restaurantList: ", restaurantsList)
-    console.log("reviewList: ", reviewsList)
-
     function lowBudgetDateConverter(date) {
         let newDate = String(new Date(date))
         let month = newDate.substring(4, 7)
@@ -28,16 +24,19 @@ export const ManageReviews = () => {
         return month.concat(day, ",".concat(year))
     }
 
-    // console.log(">>>>>>>>>>>>> LOOK: ", reviewsList.restaurant)
-
     // function getRestaurantName(restaurantId) {
-    //     const target_restaurant = restaurantsList.find((restaurant) => {
-    //         restaurant.id === restaurantId
+    //     let name = ""
+    //     restaurantsList.forEach((restaurant) => {
+    //         // console.log("restaurant: ", restaurant.id)
+    //         console.log(" 111111111111111111111111: ", restaurant.id === restaurantId)
+    //         if (restaurant.id === restaurantId) {
+    //             name = restaurant.name
+    //         }
     //     })
-    //     return target_restaurant.name
+    //     return name
     // }
-    // console.log(getRestaurantName(1))
 
+    // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", getRestaurantName(1))
 
     useEffect(() => {
         dispatch(thunkGetUserReviews());
