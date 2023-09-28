@@ -41,8 +41,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
   // }, [dispatch, restaurant]);
 
   useEffect(() => {
-    const errors = {};
-
+    // Pre-populate the form fields with restaurant data
 
     setAddress(restaurant.address);
     setCity(restaurant.city);
@@ -53,6 +52,10 @@ export const UpdateRestaurant = ({ restaurant }) => {
     setOpenHours(restaurant.open_hours);
     setCloseHours(restaurant.close_hours);
     setImageUrl(restaurant.image_url);
+  }, [dispatch, restaurant]);
+
+  useEffect(() => {
+    const errors = {};
 
     if (!address) errors.address = "Address is required";
     if (!city) errors.city = "City is required";
@@ -61,10 +64,10 @@ export const UpdateRestaurant = ({ restaurant }) => {
       errors.description = "Name needs 2 or more characters";
     if (!name) errors.name = "Name is required";
     if (name.length > 29) errors.name = "Name must be less than 30 characters";
-    if (!type) errors.type = "Type is required";
-    if (!price || price < 1) errors.price = "Price is required";
-    if (!open_hours) errors.open_hours = "Open hours is required";
-    if (!close_hours) errors.close_hours = "Close hours is required";
+    if (type === "0") errors.type = "Type is required";
+    if (price === "0") errors.price = "Price is required";
+    if (open_hours === "0") errors.open_hours = "Open hours is required";
+    if (close_hours === "0") errors.close_hours = "Close hours is required";
     if (!image_url) errors.image_url = "Preview image is required";
     if (
       image_url &&
@@ -191,7 +194,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="type-container">
           <div className="type-container">
             <label>Restaurant Type</label>
-            <select onChange={(e) => setType(e.target.value)}>
+            <select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="0">Select Type</option>
               <option value="American">American</option>
               <option value="Asian">Asian</option>
@@ -200,6 +203,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
               <option value="Mexican">Mexican</option>
               <option value="Pizza">Pizza</option>
               <option value="Wings">Wings</option>
+              <option value="Other">Other</option>
             </select>
             {errors.type && submitted && (
               <p className="on-submit-errors">{errors.type}</p>
@@ -210,11 +214,11 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="price-container">
           <div className="price-container">
             <label>Restaurant Expensiveness</label>
-            <select onChange={(e) => setPrice(e.target.value)}>
+            <select value={price} onChange={(e) => setPrice(e.target.value)}>
               <option value="0">Select Expensiveness</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+              <option value="1">$</option>
+              <option value="2">$$</option>
+              <option value="3">$$$</option>
             </select>
             {errors.price && submitted && (
               <p className="on-submit-errors">{errors.price}</p>
@@ -225,7 +229,10 @@ export const UpdateRestaurant = ({ restaurant }) => {
         <div className="store-hours-container">
           <div className="store-open-hours-container">
             <label>Restaurant Open Hours</label>
-            <select onChange={(e) => setOpenHours(e.target.value)}>
+            <select
+              value={open_hours}
+              onChange={(e) => setOpenHours(e.target.value)}
+            >
               <option value="0">Select Open Hours</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
@@ -258,7 +265,10 @@ export const UpdateRestaurant = ({ restaurant }) => {
           </div>
           <div className="store-close-hours-container">
             <label>Restaurant Close Hours</label>
-            <select onChange={(e) => setCloseHours(e.target.value)}>
+            <select
+              value={close_hours}
+              onChange={(e) => setCloseHours(e.target.value)}
+            >
               <option value="0">Select Close Hours</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
