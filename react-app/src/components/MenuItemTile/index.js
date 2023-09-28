@@ -18,14 +18,14 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
   const currentUser = useSelector((state) => state.session.user);
 
   return (
-    <div className="menu-item-tile-container" key={id}>
+    <div className="menu-item-tile-container" key={id} onClick={handleClick}>
       <img
         className="menu-item-tile-image"
         src={imageUrl}
         alt={name}
         title={name}
       ></img>
-      <div className="menu-item-tile-info" onClick={handleClick}>
+      <div className="menu-item-tile-info">
         <div className="menu-item-tile-info-left-col">
           <div className="menu-item-small-name">{name}</div>
           <div className="menu-item-small-info">${price}
