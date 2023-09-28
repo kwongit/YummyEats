@@ -2,11 +2,17 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
+import { MenuItems } from "../MenuItems";
+import { useHistory } from "react-router";
+import { setUser, thunkGetUserInfo } from "../../store/session";
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { restaurantId } = useParams();
+
+  const currentUser = useSelector((state) => state.session.user);
 
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
@@ -15,6 +21,11 @@ export const RestaurantDetails = () => {
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
   }, [dispatch, restaurantId]);
+
+  const handleClick = () => {
+    // tbd
+    history.push(`/restaurants/${restaurantId}/createmenuitem`);
+  };
 
   if (!oneRestaurant.id) return null;
 
@@ -55,7 +66,13 @@ export const RestaurantDetails = () => {
         Hours: {open_hours} - {close_hours}
       </p>
 
-      {/* <MenuItems /> */}
+      <div>
+        {oneRestaurant.owner_id === currentUser.id && (
+          <button onClick={handleClick}>Create New Menu Item</button>
+        )}
+      </div>
+
+      <MenuItems restaurantId={restaurantId} />
       {/* <RestaurantReviews /> */}
     </div>
   );

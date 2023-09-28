@@ -1,27 +1,41 @@
 import { useHistory } from "react-router";
+import OpenModalButton from "../OpenModalButton";
+import { DeleteMenuItemModal } from "./DeleteMenuItemModal";
+import { useSelector } from "react-redux";
 
-const MenuItemTile = ({ menuItem }) => {
-  const { id, name, price, image_url } = menuItem;
-
+const MenuItemTile = ({ menuItem, restaurantId }) => {
+  const { id, name, price, imageUrl } = menuItem;
   const history = useHistory();
 
   const handleClick = () => {
     // tbd
-    history.push(`/`);
+    history.push(`/menuitems/${id}`);
   };
 
+  const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
+
+  const currentUser = useSelector((state) => state.session.user);
+
   return (
-    <div key={id} onClick={handleClick}>
-      <div>
+    <div className="menu-item-details-container" key={id}>
+      <div className="menu-item-tile" onClick={handleClick}>
         <img
           className="preview-image"
-          src={image_url}
+          src={imageUrl}
           alt={name}
           title={name}
         ></img>
+        <div>{name}</div>
+        <div>{price}</div>
       </div>
-      <div>{name}</div>
-      <div>{price}</div>
+
+      {restaurant.owner_id === currentUser.id && (
+        <OpenModalButton
+          className="delete-button"
+          buttonText="Delete"
+          modalComponent={<DeleteMenuItemModal menuItemId={menuItem.id} />}
+        />
+      )}
     </div>
   );
 };
