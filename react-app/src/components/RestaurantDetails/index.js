@@ -23,7 +23,7 @@ export const RestaurantDetails = () => {
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
-    dispatch(thunkGetRestaurantReviews(restaurantId))
+    dispatch(thunkGetRestaurantReviews(restaurantId));
   }, [dispatch, restaurantId]);
 
   const handleClick = () => {
