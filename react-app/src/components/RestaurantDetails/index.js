@@ -75,13 +75,15 @@ export const RestaurantDetails = () => {
           <div className="restaurant-info-right-col">
             <div>
               {oneRestaurant.owner_id === currentUser.id && (
-                <button onClick={handleClick}>Create New Menu Item</button>
+                <button className="create-restaurant-button" onClick={handleClick}>Create New Menu Item</button>
               )}
             </div>
           </div>
         </div>
 
-        <MenuItems restaurantId={restaurantId}/>
+        <div className="restaurant-menu-items-grid">
+          <MenuItems restaurantId={restaurantId}/>
+        </div>
         <RestaurantReviews restaurantId={restaurantId}/>
       </div>
 

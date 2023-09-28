@@ -37,5 +37,23 @@
   font-size: 11px;
   color: grey;
   font-weight: 500;
-  margin: 5px 0;
+  margin: 5px 0 5px 2px;
+}
+
+.create-restaurant-button{
+  font-family: 'Wix Madefor Display', sans-serif;
+  background-color: black;
+  color: white;
+  font-size: 13px;
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+}
+
+.create-restaurant-button:hover{
+  opacity: 80%;
+}
+
+.restaurant-menu-items-grid{
+  margin: 20px 0;
 }
