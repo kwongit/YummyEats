@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkCreateRestaurant } from "../../store/restaurants";
-import ''
+import './CreateRestaurant.css'
 
 export const CreateRestaurant = ({ user }) => {
   const [address, setAddress] = useState("");
@@ -93,13 +93,13 @@ export const CreateRestaurant = ({ user }) => {
 
   return (
     <div className="create-restaurant-form-container">
-      <h1>Create a New Restaurant</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="location-container">
+      <form onSubmit={handleSubmit} id='form-container'>
+      <h2>Create a New Restaurant</h2>
+        {/* <div className="location-container"> */}
           <h3>Get Started</h3>
 
-          <div className="address-container">
-            <div className="address-container">
+          <div className="form-div-container">
+            <div className="address-container label-container">
               <label>Store Address</label>
               <input
                 type="text"
@@ -113,8 +113,8 @@ export const CreateRestaurant = ({ user }) => {
             </div>
           </div>
 
-          <div className="city-and-state-container">
-            <div className="city-container">
+          {/* <div className="form-div-container "> */}
+            <div className="city-container label-container">
               <label>City</label>
               <input
                 type="text"
@@ -126,7 +126,8 @@ export const CreateRestaurant = ({ user }) => {
                 <p className="on-submit-errors">{errors.city}</p>
               )}
             </div>
-            <div className="state-container">
+
+            <div className="state-container label-container">
               <label>State</label>
               <input
                 type="text"
@@ -138,11 +139,11 @@ export const CreateRestaurant = ({ user }) => {
                 <p className="on-submit-errors">{errors.state}</p>
               )}
             </div>
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
 
-        <div className="name-container">
-          <div className="name-container">
+        <div className="form-div-container">
+          <div className="name-container label-container">
             <label>Restaurant Name</label>
             <input
               type="text"
@@ -156,8 +157,8 @@ export const CreateRestaurant = ({ user }) => {
           </div>
         </div>
 
-        <div className="type-container">
-          <div className="type-container">
+        <div className="form-div-container">
+          <div className="type-container label-container">
             <label>Restaurant Type</label>
             <select onChange={(e) => setType(e.target.value)}>
               <option value="0">Select Type</option>
@@ -176,8 +177,8 @@ export const CreateRestaurant = ({ user }) => {
           </div>
         </div>
 
-        <div className="price-container">
-          <div className="price-container">
+        <div className="form-div-container">
+          <div className="price-container label-container">
             <label>Restaurant Price</label>
             <select onChange={(e) => setPrice(e.target.value)}>
               <option value="0">Select Expensiveness</option>
@@ -191,8 +192,8 @@ export const CreateRestaurant = ({ user }) => {
           </div>
         </div>
 
-        <div className="store-hours-container">
-          <div className="store-open-hours-container">
+        <div className="form-div-container">
+          <div className="store-open-hours-container label-container">
             <label>Restaurant Open Hours</label>
             <select onChange={(e) => setOpenHours(e.target.value)}>
               <option value="0">Select Open Hours</option>
@@ -225,7 +226,7 @@ export const CreateRestaurant = ({ user }) => {
               <p className="on-submit-errors">{errors.open_hours}</p>
             )}
           </div>
-          <div className="store-close-hours-container">
+          <div className="store-close-hours-container label-container">
             <label>Restaurant Close Hours</label>
             <select onChange={(e) => setCloseHours(e.target.value)}>
               <option value="0">Select Close Hours</option>
@@ -260,10 +261,10 @@ export const CreateRestaurant = ({ user }) => {
           </div>
         </div>
 
-        <div className="images-container">
+        <div className="images-container ">
           <h3>Liven up your restaurant with photos</h3>
           <p>Submit a link to at least one photo to publish your restaurant.</p>
-          <div className="image-url-container">
+          <div className="image-url-container label-container">
             <input
               type="url"
               value={image_url}
@@ -293,8 +294,9 @@ export const CreateRestaurant = ({ user }) => {
                 image_url
               )
             }
+            
           >
-            Create Restaurant
+            Submit
           </button>
         </div>
       </form>
