@@ -1,4 +1,7 @@
 import { useHistory } from "react-router";
+import OpenModalButton from "../OpenModalButton";
+import { DeleteMenuItemModal } from "./DeleteMenuItemModal";
+
 
 const MenuItemTile = ({ menuItem }) => {
   const { id, name, price, imageUrl } = menuItem;
@@ -11,17 +14,25 @@ const MenuItemTile = ({ menuItem }) => {
   };
 
   return (
-    <div key={id} onClick={handleClick}>
-      <div>
+    <div className="menu-item-details-container" key={id}>
+      <div className="menu-item-tile" onClick={handleClick}>
         <img
           className="preview-image"
           src={imageUrl}
           alt={name}
           title={name}
         ></img>
-      </div>
       <div>{name}</div>
       <div>{price}</div>
+      </div>
+
+      <OpenModalButton
+        className="delete-button"
+        buttonText="Delete"
+        modalComponent={
+          <DeleteMenuItemModal menuItemId={menuItem.id} />
+        }
+      />
     </div>
   );
 };
