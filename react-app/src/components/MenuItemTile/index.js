@@ -31,7 +31,7 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
           <div className="menu-item-small-info">${price}
           {calories &&
             <>
-              <span>&#183;</span> <span style={{color:"grey"}}>{calories} Cal.</span>
+              <span style={{fontWeight: "bold"}}> &#183;</span> <span style={{color:"grey"}}>{calories} Cal.</span>
             </>}
           </div>
         </div>
