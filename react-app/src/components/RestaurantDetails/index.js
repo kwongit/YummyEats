@@ -17,7 +17,6 @@ export const RestaurantDetails = () => {
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
   );
-  const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
