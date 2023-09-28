@@ -28,14 +28,16 @@ export const ManageReviews = () => {
         return month.concat(day, ",".concat(year))
     }
 
-    function getRestaurantName(restaurantId) {
-        restaurantsList.map((restaurant) => {
-            console.log("restaurant: ", restaurant)
-            if (restaurant.id === restaurantId) {
-                return restaurant.name
-            }
-        })
-    }
+    // console.log(">>>>>>>>>>>>> LOOK: ", reviewsList.restaurant)
+
+    // function getRestaurantName(restaurantId) {
+    //     const target_restaurant = restaurantsList.find((restaurant) => {
+    //         restaurant.id === restaurantId
+    //     })
+    //     return target_restaurant.name
+    // }
+    // console.log(getRestaurantName(1))
+
 
     useEffect(() => {
         dispatch(thunkGetUserReviews());
@@ -47,10 +49,10 @@ export const ManageReviews = () => {
     const handleClick = () => {
         // COMEBACK LATER
     }
-
+    // review.restaurant.name
     return (
         <div className="all-reviews-container">
-            <h1>Manage Reviews</h1>
+            <h1>Manage Your Reviews</h1>
             {reviewsList.map((review) => (
                 <div className="review-container" key={review.id}>
                     <div className="review-stars">
@@ -62,13 +64,10 @@ export const ManageReviews = () => {
                         <div className= {review.stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                         <div className= {review.stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                     </div>
-                    {/* <div>
-                        Restaurant: {getRestaurantName(review.restaurant_id)}
-                    </div> */}
                     <div>
-                        <h4>Restaurant id: </h4>
+                        <h4>Restaurant: </h4>
                         <NavLink to={`/restaurants/${review.restaurant_id}`}>
-                            {review.restaurant_id}
+                            {review.restaurant_name}
                         </NavLink>
                     </div>
                     <div className="review-div">
