@@ -12,6 +12,7 @@ import { GetRestaurantToUpdate } from "./components/Restaurants/GetRestaurantToU
 import { RestaurantDetails } from "./components/RestaurantDetails";
 import { MenuItemDetails } from "./components/MenuItemDetails"
 import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem"
+import { ManageReviews } from "./components/ManageReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/restaurants/current">
             <ManageRestaurants />
+          </Route>
+          <Route exact path ="/reviews/current">
+            <ManageReviews />
           </Route>
           <Route exact path="/restaurants/:restaurantId/edit">
             <GetRestaurantToUpdate />
