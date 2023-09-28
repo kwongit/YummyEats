@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, URL, NumberRange, Validatio
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 
-restaurant_types = [ "American", "Asian", "Breakfast and Brunch", "Cafe", "Mexican", "Pizza", "Wings" ]
+restaurant_types = [ "American", "Asian", "Breakfast and Brunch", "Cafe", "Mexican", "Pizza", "Wings", "Other" ]
 
 hours = [
     "12:00", "12:30",

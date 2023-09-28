@@ -178,6 +178,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
               <option value="Mexican">Mexican</option>
               <option value="Pizza">Pizza</option>
               <option value="Wings">Wings</option>
+              <option value="Other">Other</option>
             </select>
             {errors.type && submitted && (
               <p className="on-submit-errors">{errors.type}</p>
@@ -190,9 +191,9 @@ export const UpdateRestaurant = ({ restaurant }) => {
             <label>Restaurant Expensiveness</label>
             <select value={price} onChange={(e) => setPrice(e.target.value)}>
               <option value="0">Select Expensiveness</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+              <option value="1">$</option>
+              <option value="2">$$</option>
+              <option value="3">$$$</option>
             </select>
             {errors.price && submitted && (
               <p className="on-submit-errors">{errors.price}</p>
