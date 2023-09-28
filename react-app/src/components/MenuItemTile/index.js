@@ -3,7 +3,6 @@ import OpenModalButton from "../OpenModalButton";
 import { DeleteMenuItemModal } from "./DeleteMenuItemModal";
 import { useSelector } from "react-redux";
 
-
 const MenuItemTile = ({ menuItem, restaurantId }) => {
   const { id, name, price, imageUrl } = menuItem;
   const history = useHistory();
@@ -13,11 +12,9 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
     history.push(`/menuitems/${id}`);
   };
 
-  const restaurant = useSelector(
-    (state) => state.restaurant.singleRestaurant
-  );
+  const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
 
-  const currentUser = useSelector(state => state.session.user);
+  const currentUser = useSelector((state) => state.session.user);
 
   return (
     <div className="menu-item-details-container" key={id}>
@@ -28,17 +25,15 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
           alt={name}
           title={name}
         ></img>
-      <div>{name}</div>
-      <div>{price}</div>
+        <div>{name}</div>
+        <div>{price}</div>
       </div>
 
-      {restaurant.owner_id === currentUser.id && (
+      {restaurant.owner_id === currentUser.user.id && (
         <OpenModalButton
           className="delete-button"
           buttonText="Delete"
-          modalComponent={
-            <DeleteMenuItemModal menuItemId={menuItem.id} />
-          }
+          modalComponent={<DeleteMenuItemModal menuItemId={menuItem.id} />}
         />
       )}
     </div>
