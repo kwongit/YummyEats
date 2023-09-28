@@ -4,8 +4,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_MENU_ITEMS = "menuItems/getMenuItems";
 const GET_MENU_ITEM = "menuItems/getMenuItem";
-const CREATE_MENU_ITEM = "menuItems/createMenuItem";
-const UPDATE_MENU_ITEM = "menuItems/updateMenuItem";
+// const CREATE_MENU_ITEM = "menuItems/createMenuItem";
+// const UPDATE_MENU_ITEM = "menuItems/updateMenuItem";
 const DELETE_MENU_ITEM = "menuItems/deleteMenuItem";
 
 // ACTION CREATORS
@@ -24,19 +24,19 @@ const getMenuItem = (menuItem) => {
   };
 };
 
-const createMenuItem = (menuItem) => {
-  return {
-    type: CREATE_MENU_ITEM,
-    menuItem,
-  };
-};
+// const createMenuItem = (menuItem) => {
+//   return {
+//     type: CREATE_MENU_ITEM,
+//     menuItem,
+//   };
+// };
 
-const updateMenuItem = (menuItem) => {
-  return {
-    type: UPDATE_MENU_ITEM,
-    menuItem,
-  };
-};
+// const updateMenuItem = (menuItem) => {
+//   return {
+//     type: UPDATE_MENU_ITEM,
+//     menuItem,
+//   };
+// };
 
 const deleteMenuItem = (menuItemId) => {
   return {
@@ -91,6 +91,15 @@ export const thunkCreateMenuItem = (menuItem, restaurantId) => async (dispatch) 
   }
 };
 
+export const thunkDeleteMenuItem = (menuItemId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/menuitems/${menuItemId}`, {
+    method: "DELETE",
+  });
+
+  dispatch(deleteMenuItem(menuItemId));
+  return res;
+};
+
 // REDUCERS
 const initialState = { allMenuItems: {}, singleMenuItem: {} };
 
@@ -110,6 +119,15 @@ const menuItemsReducer = (state = initialState, action) => {
       newState = { ...state, singleMenuItem: {} };
       newState.singleMenuItem = action.menuItem;
       return newState;
+
+      case DELETE_MENU_ITEM:
+        newState = {
+          ...state,
+          allMenuItems: { ...state.allMenuItems },
+          singleMenuItem: {},
+        };
+        delete newState.allMenuItems[action.menuItemId];
+        return newState;
 
     default:
       return state;
