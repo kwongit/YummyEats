@@ -26,12 +26,11 @@ export const MenuItemDetails = () => {
         <img className="menu-item-image" src={imageUrl} alt="main" />
       </div >
       <div className="menu-item-right-col">
-        <h1>{name}</h1>
-        <p>${Number.parseFloat(price).toFixed(2)}</p>
-        <p>{description}</p>
-        <p>{calories}</p>
-        <p>{size}</p>
-        <button className="buy-menu-item-button">Buy Now <span style={{fontWeight: "bold"}}>&#183;</span> ${price}</button>
+        <p className="menu-item-name">{name}</p>
+        {calories && <p className="menu-item-description">{calories} calories</p>}
+        <p className="menu-item-price">${Number.parseFloat(price).toFixed(2)}</p>
+        {description && <p className="menu-item-description">{description}</p>}
+        <button className="buy-menu-item-button">Buy Now <span style={{fontWeight: "bold"}}>&#183;</span> ${Number.parseFloat(price).toFixed(2)}</button>
       </div>
     </div>
   );
