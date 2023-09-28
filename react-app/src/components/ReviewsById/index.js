@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink, useParams } from "react-router-dom";
 import { thunkGetRestaurantReviews } from "../../store/reviews";
 import { thunkGetRestaurants } from "../../store/restaurants";
+import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal"
+import OpenModalButton from "../OpenModalButton";
 import "../ManageReviews/ManageReviews.css"
 
 export const RestaurantReviews = ({restaurantId}) => {
@@ -51,7 +53,7 @@ export const RestaurantReviews = ({restaurantId}) => {
     const handleClick = () => {
         // COMEBACK LATER
     }
-    // review.restaurant.name
+
     return (
         <div className="all-reviews-container">
             <h1>Restaurant Reviews</h1>
@@ -74,6 +76,15 @@ export const RestaurantReviews = ({restaurantId}) => {
                     </div>
                     <div>
                         <h4>Updated on: </h4> {lowBudgetDateConverter(review.updated_at)}
+                    </div>
+                    <div>
+                        {review.user_id === user.id && (
+                            <OpenModalButton
+                                className="delete-button"
+                                buttonText='Delete'
+                                modalComponent={<DeleteReviewModal review={review}/>}
+                            />
+                        )}
                     </div>
                 </div>
             ))}

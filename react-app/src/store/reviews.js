@@ -117,8 +117,8 @@ export const thunkGetRestaurantReviews = (restaurantId) => async (dispatch) => {
     }
 }
 
-export const thunkUpdateReview = (review, restaurantId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/restaurants/${restaurantId}`, {
+export const thunkUpdateReview = (review, reviewId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}/updatereview`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review)

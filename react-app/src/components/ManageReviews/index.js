@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { thunkGetUserReviews } from "../../store/reviews";
 import { thunkGetRestaurants } from "../../store/restaurants";
+import OpenModalButton from "../OpenModalButton";
+import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal";
+import { UpdateReviewModal } from "../ReviewModal/UpdateReviewModal";
 import "./ManageReviews.css"
 
 export const ManageReviews = () => {
@@ -41,8 +44,7 @@ export const ManageReviews = () => {
     useEffect(() => {
         dispatch(thunkGetUserReviews());
         dispatch(thunkGetRestaurants());
-        
-    }, [dispatch]);
+    }, [dispatch, reviewsList.length]);
 
     if (!user) return null;
 
@@ -75,6 +77,18 @@ export const ManageReviews = () => {
                     </div>
                     <div>
                         <h4>Updated on: </h4> {lowBudgetDateConverter(review.updated_at)}
+                    </div>
+                    <div>
+                        <OpenModalButton
+                            className="delete-button"
+                            buttonText="Delete"
+                            modalComponent={<DeleteReviewModal review={review}/>}
+                        />
+                        <OpenModalButton
+                            className="update-button"
+                            buttonText="Update"
+                            modalComponent={<UpdateReviewModal updateReview={review}/>}
+                        />
                     </div>
                 </div>
             ))}
