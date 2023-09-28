@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
-import { MenuItems } from "../MenuItems";
+import { thunkGetRestaurantReviews } from "../../store/reviews";
+import {  MenuItems  } from "../MenuItems";
+import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
-import { setUser, thunkGetUserInfo } from "../../store/session";
+// import { setUser, thunkGetUserInfo } from "../../store/session";
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -14,12 +16,14 @@ export const RestaurantDetails = () => {
 
   const currentUser = useSelector((state) => state.session.user);
 
-  const oneRestaurant = useSelector(
-    (state) => state.restaurant.singleRestaurant
-  );
+  const oneRestaurant = useSelector((state) => state.restaurant.singleRestaurant);
+  // const reviews = useSelector((state) => state.reviews.allReviews)
+
+  // const reviewsList = Object.values(reviews)
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
+    dispatch(thunkGetRestaurantReviews(restaurantId))
   }, [dispatch, restaurantId]);
 
   const handleClick = () => {
@@ -72,8 +76,8 @@ export const RestaurantDetails = () => {
         )}
       </div>
 
-      <MenuItems restaurantId={restaurantId} />
-      {/* <RestaurantReviews /> */}
+      <MenuItems restaurantId={restaurantId}/>
+      <RestaurantReviews restaurantId={restaurantId}/>
     </div>
   );
 };
