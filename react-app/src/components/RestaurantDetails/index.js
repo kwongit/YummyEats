@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
 import { thunkGetRestaurantReviews } from "../../store/reviews";
-import { MenuItems } from '../MenuItems';
+import {  MenuItems  } from "../MenuItems";
 import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
+// import { setUser, thunkGetUserInfo } from "../../store/session";
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,12 @@ export const RestaurantDetails = () => {
 
   const { restaurantId } = useParams();
 
-  const oneRestaurant = useSelector((state) => state.restaurant.singleRestaurant);
-  const currentUser = useSelector(state => state.session.user);
-  const reviews = useSelector((state) => state.reviews.allReviews)
+  const currentUser = useSelector((state) => state.session.user);
 
-  const reviewsList = Object.values(reviews)
+  const oneRestaurant = useSelector((state) => state.restaurant.singleRestaurant);
+  // const reviews = useSelector((state) => state.reviews.allReviews)
+
+  // const reviewsList = Object.values(reviews)
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
@@ -68,9 +70,11 @@ export const RestaurantDetails = () => {
         Hours: {open_hours} - {close_hours}
       </p>
 
-      {oneRestaurant.owner_id === currentUser.id && (
-        <button onClick={handleClick}>Create New Menu Item</button>
-      )}
+      <div>
+        {oneRestaurant.owner_id === currentUser.id && (
+          <button onClick={handleClick}>Create New Menu Item</button>
+        )}
+      </div>
 
       <MenuItems restaurantId={restaurantId}/>
       <RestaurantReviews restaurantId={restaurantId}/>

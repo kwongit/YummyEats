@@ -5,10 +5,10 @@ import { thunkGetRestaurantReviews } from "../../store/reviews";
 import { thunkGetRestaurants } from "../../store/restaurants";
 import "../ManageReviews/ManageReviews.css"
 
-export const RestaurantReviews = () => {
+export const RestaurantReviews = ({restaurantId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { restaurantId } = useParams();
+    // const { restaurantId } = useParams();
 
     const user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => state.reviews.allReviews);
