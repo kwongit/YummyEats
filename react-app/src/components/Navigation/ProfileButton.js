@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <div className="user-nav">
-        {user ? (
+        {/* {user ? (
           <span>
             <NavLink className="create-new-restaurant" to="/restaurants/new">
               Create a New Restaurant
@@ -51,17 +51,27 @@ function ProfileButton({ user }) {
           </span>
         ) : (
           ""
-        )}
+        )} */}
         <button className="user-button-container" onClick={openMenu}>
           <i className="fa-solid fa-bars"></i>
-          <i className="fas fa-user-circle" />
+          {/* <i className="fas fa-user-circle" /> */}
         </button>
       </div>
-      <ul className={ulClassName} ref={ulRef}>
+      
+      <ul className={ulClassName} ref={ulRef} id="menu-drop-down">
         {user ? (
           <>
             <li> Hello, {user.firstName}</li>
             <li>{user.email}</li>
+            {user ? (
+          <li>
+            <NavLink className="create-new-restaurant" to="/restaurants/new">
+              Create a New Restaurant
+            </NavLink>
+          </li>
+        ) : (
+          ""
+        )}
             <li>
               <NavLink
                 exact

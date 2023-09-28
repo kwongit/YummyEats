@@ -31,7 +31,7 @@ export const Restaurants = () => {
       {categories}
       <hr id="cat-hr"></hr>
       <div id="middle-header-container">
-        <h1>RESTAURANTS TEST PAGE</h1>
+        
         <h1>..Crave it? Get it.</h1>
         <img src={offer}></img>
       </div>

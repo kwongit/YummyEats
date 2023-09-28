@@ -13,7 +13,8 @@ export const GetRestaurantToUpdate = () => {
   );
 
   useEffect(() => {
-    dispatch(thunkGetRestaurantInfo(restaurantId));
+    dispatch(thunkGetRestaurantInfo(restaurantId))
+    
   }, [restaurantId, dispatch]);
 
   if (!oneRestaurant.id) return null;

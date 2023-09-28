@@ -160,13 +160,12 @@ const restaurantsReducer = (state = initialState, action) => {
     case UPDATE_RESTAURANT:
       newState = {
         ...state,
-        allRestaurants: {},
-        singleRestaurant: { ...state.singleRestaurant },
+        singleRestaurant: {
+          ...state.singleRestaurant,
+          [action.restaurant.id]:action.id,
+         },
       };
-      newState.singleRestaurant = {
-        ...newState.singleRestaurant,
-        ...action.restaurant,
-      };
+
       return newState;
 
     case DELETE_RESTAURANT:

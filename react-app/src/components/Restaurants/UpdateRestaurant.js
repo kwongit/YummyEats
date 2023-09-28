@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkUpdateRestaurant } from "../../store/restaurants";
+import { thunkGetRestaurantInfo } from "../../store/restaurants";
 
 export const UpdateRestaurant = ({ restaurant }) => {
   const [address, setAddress] = useState(restaurant?.address );
@@ -25,19 +26,33 @@ export const UpdateRestaurant = ({ restaurant }) => {
     history.push("/");
   }
 
+  // useEffect(() => {
+
+
+  //   setAddress(restaurant.address);
+  //   setCity(restaurant.city);
+  //   setState(restaurant.state);
+  //   setName(restaurant.name);
+  //   setType(restaurant.type);
+  //   setPrice(restaurant.price);
+  //   setOpenHours(restaurant.open_hours);
+  //   setCloseHours(restaurant.close_hours);
+  //   setImageUrl(restaurant.image_url);
+  // }, [dispatch, restaurant]);
+
   useEffect(() => {
     const errors = {};
 
 
-    // setAddress(restaurant.address);
-    // setCity(restaurant.city);
-    // setState(restaurant.state);
-    // setName(restaurant.name);
-    // setType(restaurant.type);
-    // setPrice(restaurant.price);
-    // setOpenHours(restaurant.open_hours);
-    // setCloseHours(restaurant.close_hours);
-    // setImageUrl(restaurant.image_url);
+    setAddress(restaurant.address);
+    setCity(restaurant.city);
+    setState(restaurant.state);
+    setName(restaurant.name);
+    setType(restaurant.type);
+    setPrice(restaurant.price);
+    setOpenHours(restaurant.open_hours);
+    setCloseHours(restaurant.close_hours);
+    setImageUrl(restaurant.image_url);
 
     if (!address) errors.address = "Address is required";
     if (!city) errors.city = "City is required";
@@ -70,7 +85,7 @@ export const UpdateRestaurant = ({ restaurant }) => {
     open_hours,
     close_hours,
     image_url,
-    restaurant,
+
   ]);
 
   const handleSubmit = async (e) => {
@@ -101,8 +116,14 @@ export const UpdateRestaurant = ({ restaurant }) => {
       } else {
         history.push(`/restaurants/${restaurant.id}`);
       }
+
+
+
     }
+
   };
+
+
 
   return (
     <div className="create-restaurant-form-container">

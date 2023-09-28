@@ -17,43 +17,47 @@ export const RestaurantDetails = () => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
   }, [dispatch, restaurantId]);
 
+  useEffect(() => {
+    console.log("one restaurant ==========>>>>>> " , oneRestaurant)
+  }, [oneRestaurant]);
+
   if (!oneRestaurant.id) return null;
 
-  const {
-    Owner,
-    address,
-    city,
-    state,
-    name,
-    avg_rating,
-    num_reviews,
-    type,
-    price,
-    open_hours,
-    close_hours,
-    image_url,
-  } = oneRestaurant;
+  // const {
+  //   Owner,
+  //   address,
+  //   city,
+  //   state,
+  //   name,
+  //   avg_rating,
+  //   num_reviews,
+  //   type,
+  //   price,
+  //   open_hours,
+  //   close_hours,
+  //   image_url,
+  // } = oneRestaurant;
 
   return (
     <div className="view-restaurant-details">
       <div className="restaurant-image">
         <img
           className="preview-image"
-          src={image_url}
-          alt={name}
-          title={name}
+          src={oneRestaurant.image_url}
+          alt={oneRestaurant.name}
+          title={oneRestaurant.name}
         ></img>
       </div>
 
       <h1>
-        {name} ({address})
+        {oneRestaurant.name} ({oneRestaurant.address})
       </h1>
       <p>
-        <i className="fa-solid fa-star"></i> {avg_rating} ({num_reviews} ratings
-        ) · {type} · {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
+        <i className="fa-solid fa-star"></i> {oneRestaurant.avg_rating} ({oneRestaurant.num_reviews} ratings
+        ) · {oneRestaurant.type} · {oneRestaurant.price === 3 ? "$$$" : oneRestaurant.price === 2 ? "$$" : "$"}
       </p>
       <p>
-        Hours: {open_hours} - {close_hours}
+        Hours: {oneRestaurant.open_hours} - {oneRestaurant.close_hours}
       </p>
 
       <MenuItems restaurantId={restaurantId}/>
