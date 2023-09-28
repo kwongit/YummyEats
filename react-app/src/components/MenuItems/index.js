@@ -19,7 +19,7 @@ export const MenuItems = ({restaurantId}) => {
   return (
     <>
       <div id="main-body-container">
-        <div>
+        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", columnGap: "10px", rowGap: "10px"}}>
           {menuItems.map((menuItem) => (
             <MenuItemTile key={menuItem.id} menuItem={menuItem} />
           ))}
