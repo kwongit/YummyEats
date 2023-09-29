@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteAccount } from "../../store/session";
 import { useHistory } from "react-router-dom";
+import "./Account.css";
 
 export const DeleteAccountModal = () => {
   const dispatch = useDispatch();
