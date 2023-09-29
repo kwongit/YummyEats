@@ -36,15 +36,15 @@ export const Restaurants = () => {
       <div id="middle-header-container">
 
         <h1>..Crave it? Get it.</h1>
-        <img src={offer}></img>
-        <img src={offer2}></img>
-        <img src={offer3}></img>
+        <img src={offer} onClick={showAlert}></img>
+        <img src={offer2}onClick={showAlert}></img>
+        <img src={offer3} onClick={showAlert}></img>
       </div>
       <div id="main-body-container">
         <div id="restaurants-sidebar">
           <h1>All Stores</h1>
           <a onClick={showAlert}>Sort</a>
-          <a onClick={showAlert}>From Uber Eats</a>
+          <a onClick={showAlert}>From Yummy Eats</a>
           <a onClick={showAlert}>Price Range</a>
           <a onClick={showAlert}>Max Delivery Fee</a>
           <a onClick={showAlert}>Dietary</a>
