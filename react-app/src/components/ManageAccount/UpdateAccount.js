@@ -23,7 +23,10 @@ export const UpdateAccount = () => {
       const data = await dispatch(
         updateAccount(username, email, password, sessionUser.id)
       );
-      // console.log("DATA ERRORS:", data.errors)
+      // if (data) {
+      //   setErrors(data);
+      // }
+      // history.push("/");
       if (data && data.errors) {
         setErrors(data.errors);
       } else {
