@@ -37,7 +37,7 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
           </div>
       </div>
       <div className="menu-item-tile-delete-button">
-        {restaurant.owner_id === currentUser.id && (
+        {currentUser && restaurant.owner_id === currentUser.id && (
           <OpenModalButton
             buttonText="Delete"
             modalComponent={<DeleteMenuItemModal menuItemId={menuItem.id} />}
