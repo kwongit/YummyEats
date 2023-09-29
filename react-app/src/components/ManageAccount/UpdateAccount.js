@@ -25,9 +25,10 @@ export const UpdateAccount = () => {
       );
       if (data.errors && data) {
         setErrors(data.errors);
+      } else {
+        history.push("/");
+        alert("Successfully updated account!");
       }
-      console.log("ERRORS>>>>", errors);
-      history.push("/");
     } else {
       setErrors([
         "Confirm Password field must be the same as the Password field",
@@ -39,7 +40,11 @@ export const UpdateAccount = () => {
     <>
       <h1>Update Account</h1>
       <form onSubmit={handleSubmit}>
-        <ul>{errors}</ul>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
         <label>
           Email
           <input
