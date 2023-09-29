@@ -56,7 +56,8 @@ export const CreateReviewModal = ({ restaurant }) => {
 
         try {
             await dispatch(reviewActions.thunkCreateReview({ stars, review }, restaurant.id))
-            setSubmitted(true)
+            .then(setSubmitted(true))
+            .then(closeModal)
         } catch (error) {
             if (error) {
                 const data = await error.json()
@@ -141,8 +142,8 @@ export const CreateReviewModal = ({ restaurant }) => {
 
                 </div>
                 <div className="updateButtons">
-                    <button className="b yesButton"> Yes (Update Review) </button>
-                    <button className="b noButton" onClick={closeModal}> No (Cancel Update) </button>
+                    <button className="b yesButton"> Yes (Create Review) </button>
+                    <button className="b noButton" onClick={closeModal}> No (Cancel Review) </button>
                 </div>
             </form>
         </div>

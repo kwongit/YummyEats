@@ -48,16 +48,11 @@ export const RestaurantReviews = ({restaurantId}) => {
     useEffect(() => {
         dispatch(thunkGetRestaurantReviews(restaurantId));
         dispatch(thunkGetRestaurantInfo(restaurantId));
-
-    }, [dispatch, reviewsList.length]);
+    }, [dispatch]);
 
     if (!user) user = 0;
     if (!reviews) return null;
     // if (!restaurants) return null;
-
-    const handleClick = () => {
-        // COMEBACK LATER
-    }
 
     return (
         <div className="all-reviews-container">
