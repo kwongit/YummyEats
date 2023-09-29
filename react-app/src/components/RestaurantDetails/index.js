@@ -24,6 +24,8 @@ export const RestaurantDetails = () => {
 
   // const reviewsList = Object.values(reviews)
 
+  console.log("oneRestaurant: ", oneRestaurant)
+
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
     dispatch(thunkGetRestaurantReviews(restaurantId));
