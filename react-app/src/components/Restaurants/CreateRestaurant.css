@@ -93,7 +93,7 @@ select {
 }
 
 
-#p-in-textarea {
+/* #p-in-textarea {
     font-size: 12px;
 
 }
@@ -122,7 +122,7 @@ textarea {
 
 #price-div input {
     width: 100%;
-}
+} */
 
 .button-container {
     display: flex;
@@ -133,12 +133,13 @@ textarea {
     margin-top: 30px;
     box-shadow: 2px 2px;
     background-color: black;
-    border: 2px solid black;
+    border: none;
     color: white;
     /* margin-right: 0px; */
     width: 250px;
-    border-radius: 3px;
+    border-radius: 7px;
     height: 30px;
+    font-family: 'Wix Madefor Display', sans-serif;
 }
 
 .create-restaurant-button[disabled] {
