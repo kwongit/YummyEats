@@ -89,3 +89,17 @@ text-decoration: none;
 margin-top: 40px;
 
 }
+
+#sign-in-container{
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-around;
+  margin-right: 40px;
+
+}
+
+#sign-in-container button{
+  height: 40px;
+}
