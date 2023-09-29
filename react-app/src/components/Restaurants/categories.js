@@ -18,74 +18,74 @@ let categories = (
     <div >
         <ul id="categories-bar-container">
             <li onClick={showAlert} >
-                <div class="image-container" >
+                <div className="image-container" >
                     <img src={deals} alt="deals" ></img>
                 </div>
                 <p>Deals</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={grocery} alt="grocery" ></img>
                 </div>
                 <p>Grocery</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={convenience} alt="convenience" ></img>
                 </div>
                 <p>Convenience</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={pizza} alt="pizza" ></img>
                 </div>
                 <p>Pizza</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={alcohol} alt="alcohol" ></img>
                 </div>
                 <p>Alcohol</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={pharmacy} alt="pharmacy" ></img>
                 </div>
                 <p>Pharmacy</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={baby} alt="baby" ></img>
                 </div>
                 <p>Baby</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={specialty} alt="specialty" ></img>
                 </div>
                 <p>Specialty Foods</p>
 
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={pet} alt="pet" ></img>
                 </div>
                 <p>Pet Supplies</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={flowers} alt="flowers" ></img>
                 </div>
                 <p>Flowers</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={retail} alt="retail" ></img>
                 </div>
                 <p>Retail</p>
             </li>
             <li onClick={showAlert}>
-                <div class="image-container">
+                <div className="image-container">
                     <img src={overall} alt="best" ></img>
                 </div>
                 <p>Best overall</p>
