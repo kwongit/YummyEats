@@ -30,7 +30,7 @@ a,button {
     /* justify-content: center; */
   /* align-items: center; */
   border-radius: 10px 10px 10px 10px;
- 
+
 }
 
 #categories-bar-container {
@@ -92,7 +92,6 @@ cursor: pointer;
 #middle-header-container img{
     height: 150px;
     width: 300px;
-    margin-left: 200px;
     cursor: pointer;
 }
 
