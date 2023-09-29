@@ -75,8 +75,8 @@ export const thunkGetReviewInfo = (reviewId) => async (dispatch) => {
     }
 }
 
-export const thunkCreateReview = (review, user) => async (dispatch) => {
-    const res = await csrfFetch("/api/reviews/", {
+export const thunkCreateReview = (review, restaurantId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/restaurants/${restaurantId}/createreview`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review)
@@ -104,8 +104,21 @@ export const thunkGetUserReviews = () => async (dispatch) => {
     }
 };
 
-export const thunkUpdateReview = (review, restaurantId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/restaurants/${restaurantId}`, {
+export const thunkGetRestaurantReviews = (restaurantId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/restaurants/${restaurantId}/reviews`);
+
+    if (res.ok) {
+        const reviews = await res.json();
+        dispatch(getReviews(reviews))
+        return reviews;
+    } else {
+        const errors = await res.json()
+        return errors
+    }
+}
+
+export const thunkUpdateReview = (review, reviewId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}/updatereview`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review)

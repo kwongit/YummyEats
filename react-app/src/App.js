@@ -13,7 +13,7 @@ import { RestaurantDetails } from "./components/RestaurantDetails";
 import { MenuItemDetails } from "./components/MenuItemDetails";
 import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem";
 import { ManageReviews } from "./components/ManageReviews";
-
+import { UpdateAccount } from "./components/ManageAccount/UpdateAccount";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,10 +39,13 @@ function App() {
           <Route exact path="/restaurants/new">
             <CreateRestaurant />
           </Route>
+          <Route exact path="/account/current">
+            <UpdateAccount />
+          </Route>
           <Route exact path="/restaurants/current">
             <ManageRestaurants />
           </Route>
-          <Route exact path ="/reviews/current">
+          <Route exact path="/reviews/current">
             <ManageReviews />
           </Route>
           <Route exact path="/restaurants/:restaurantId/edit">

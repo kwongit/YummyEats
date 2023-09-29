@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { thunkGetUserReviews } from "../../store/reviews";
 import { thunkGetRestaurants } from "../../store/restaurants";
+import OpenModalButton from "../OpenModalButton";
+import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal";
+import { UpdateReviewModal } from "../ReviewModal/UpdateReviewModal";
 import "./ManageReviews.css"
 
 export const ManageReviews = () => {
@@ -11,14 +14,8 @@ export const ManageReviews = () => {
 
     const user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => state.reviews.allReviews);
-    const restaurants = useSelector((state) => state.restaurant.allRestaurants);
 
     const reviewsList = Object.values(reviews);
-    const restaurantsList = Object.values(restaurants)
-
-    // restaurantsList.map(restaurant => console.log("single restaurant: ", restaurant.name))
-    console.log("restaurantList: ", restaurantsList)
-    console.log("reviewList: ", reviewsList)
 
     function lowBudgetDateConverter(date) {
         let newDate = String(new Date(date))
@@ -28,28 +25,27 @@ export const ManageReviews = () => {
         return month.concat(day, ",".concat(year))
     }
 
-    // console.log(">>>>>>>>>>>>> LOOK: ", reviewsList.restaurant)
-
     // function getRestaurantName(restaurantId) {
-    //     const target_restaurant = restaurantsList.find((restaurant) => {
-    //         restaurant.id === restaurantId
+    //     let name = ""
+    //     restaurantsList.forEach((restaurant) => {
+    //         // console.log("restaurant: ", restaurant.id)
+    //         console.log(" 111111111111111111111111: ", restaurant.id === restaurantId)
+    //         if (restaurant.id === restaurantId) {
+    //             name = restaurant.name
+    //         }
     //     })
-    //     return target_restaurant.name
+    //     return name
     // }
-    // console.log(getRestaurantName(1))
 
+    // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", getRestaurantName(1))
 
     useEffect(() => {
         dispatch(thunkGetUserReviews());
-        dispatch(thunkGetRestaurants())
-    }, [dispatch]);
+        // dispatch(thunkGetRestaurants());
+    }, [dispatch, reviewsList.length]);
 
     if (!user) return null;
 
-    const handleClick = () => {
-        // COMEBACK LATER
-    }
-    // review.restaurant.name
     return (
         <div className="all-reviews-container">
             <h1>Manage Your Reviews</h1>
@@ -75,6 +71,18 @@ export const ManageReviews = () => {
                     </div>
                     <div>
                         <h4>Updated on: </h4> {lowBudgetDateConverter(review.updated_at)}
+                    </div>
+                    <div className="update-delete-button">
+                        <OpenModalButton
+                            className="delete-button"
+                            buttonText="Delete"
+                            modalComponent={<DeleteReviewModal review={review}/>}
+                        />
+                        <OpenModalButton
+                            className="update-button"
+                            buttonText="Update"
+                            modalComponent={<UpdateReviewModal updateReview={review}/>}
+                        />
                     </div>
                 </div>
             ))}

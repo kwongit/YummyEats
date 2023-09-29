@@ -1,0 +1,41 @@
+.menu-item-tile-container{
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  transition: box-shadow 0.3s;
+}
+
+.menu-item-tile-container:hover{
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.menu-item-tile-image{
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.menu-item-tile-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 2px;
+}
+
+.menu-item-small-name{
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.menu-item-small-info{
+  font-size: 10px;
+  font-weight: 400;
+  margin: 1px 0;
+}
+
+.menu-item-tile-delete-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}

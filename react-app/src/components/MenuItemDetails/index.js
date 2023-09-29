@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetMenuItemInfo } from "../../store/menuItems";
+import "./MenuItemDetails.css"
 
 export const MenuItemDetails = () => {
   const dispatch = useDispatch();
@@ -21,15 +22,16 @@ export const MenuItemDetails = () => {
 
   return (
     <div className="view-menu-item-details">
-      <div className="menu-item-image">
-        <img className="image" src={imageUrl} alt="main" />
+      <div className="menu-item-left-col">
+        <img className="menu-item-image" src={imageUrl} alt="main" />
+      </div >
+      <div className="menu-item-right-col">
+        <p className="menu-item-name">{name}</p>
+        {calories && <p className="menu-item-description">{calories} calories</p>}
+        <p className="menu-item-price">${Number.parseFloat(price).toFixed(2)}</p>
+        {description && <p className="menu-item-description">{description}</p>}
+        <button className="buy-menu-item-button">Buy Now <span style={{fontWeight: "bold"}}>&#183;</span> ${Number.parseFloat(price).toFixed(2)}</button>
       </div>
-      <h1>{name}</h1>
-      <p>{price}</p>
-      <p>{description}</p>
-      <p>{calories}</p>
-      <p>{size}</p>
-      <button>Buy Now * ${price}</button>
     </div>
   );
 };
