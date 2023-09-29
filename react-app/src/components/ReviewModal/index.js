@@ -28,7 +28,7 @@ export const CreateReviewModal = ({ restaurant }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (isSubmitting) return;
+        // if (isSubmitting) return;
         setIsSubmitting(true);
         setSubmitted(true);
 
@@ -45,12 +45,14 @@ export const CreateReviewModal = ({ restaurant }) => {
                 history.push(`/restaurants/${restaurant.id}`)
             }
         }
-        setIsSubmitting(false).then(closeModal)
+        setIsSubmitting(false)
+        closeModal()
+        // setIsSubmitting(false).then(closeModal)
     }
 
     return (
         <div className="updateModal">
-            <h2>Update your Review</h2>
+            <h2>Create a Review</h2>
             <form onSubmit={handleSubmit}>
 
                 <div className="updateForm">

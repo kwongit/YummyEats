@@ -14,7 +14,7 @@ export const RestaurantReviews = ({restaurantId}) => {
     const history = useHistory();
     // const { restaurantId } = useParams();
 
-    const user = useSelector((state) => state.session.user);
+    let user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => state.reviews.allReviews);
     const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
 
@@ -43,7 +43,7 @@ export const RestaurantReviews = ({restaurantId}) => {
     // }
     // console.log(getRestaurantName(1))
 
-    console.log("reviewsList.find", reviewsList.find((review) => review.user_id === user.id ))
+    // console.log("reviewsList.find", reviewsList.find((review) => review.user_id === user.id ))
 
     useEffect(() => {
         dispatch(thunkGetRestaurantReviews(restaurantId));
@@ -51,7 +51,7 @@ export const RestaurantReviews = ({restaurantId}) => {
 
     }, [dispatch, reviewsList.length]);
 
-    if (!user) return null;
+    if (!user) user = 0;
     if (!reviews) return null;
     // if (!restaurants) return null;
 
@@ -62,7 +62,7 @@ export const RestaurantReviews = ({restaurantId}) => {
     return (
         <div className="all-reviews-container">
             <h1>Restaurant Reviews</h1>
-            {!(reviewsList.find((review) => review.user_id === user.id )) && user.id !== restaurant.owner_id ?
+            {!(reviewsList.find((review) => review.user_id === user.id )) && user.id !== restaurant.owner_id && user.id ?
                 <OpenModalButton
                     className="delete-button"
                     buttonText='Create a Review'
