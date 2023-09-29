@@ -23,9 +23,10 @@ export const UpdateAccount = () => {
       const data = await dispatch(
         updateAccount(username, email, password, sessionUser.id)
       );
-      if (data) {
-        setErrors(data);
+      if (data.errors && data) {
+        setErrors(data.errors);
       }
+      console.log("ERRORS>>>>", errors);
       history.push("/");
     } else {
       setErrors([
@@ -34,17 +35,11 @@ export const UpdateAccount = () => {
     }
   };
 
-  // console.log("errors>>>>>>>>>>>>", errors);
-
   return (
     <>
       <h1>Update Account</h1>
       <form onSubmit={handleSubmit}>
-        {/* <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul> */}
+        <ul>{errors}</ul>
         <label>
           Email
           <input

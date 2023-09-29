@@ -113,14 +113,17 @@ export const updateAccount =
         password,
       }),
     });
+    console.log("THUNK RESPONSE>>>>>>>>>", response);
 
     if (response.ok) {
       const data = await response.json();
       dispatch(updateUser(data));
+      console.log("THUNK DATA>>>>>>>>>", data);
       return data;
     } else {
       const errors = await response.json();
-      return errors;
+      console.log("THUNK ERRORS>>>>>>>>>", errors.errors);
+      throw errors;
     }
   };
 
