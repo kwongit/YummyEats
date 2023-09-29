@@ -32,7 +32,7 @@ const RestaurantTile = ({ restaurant }) => {
         ></img>
       </div>
       <div className="name-address-rating">
-        {name} <span id="address-span">({address})</span>
+        {name} ({address})
       </div>
     </div>
   );
