@@ -13,6 +13,7 @@ const RestaurantTile = ({ restaurant }) => {
     open_hours,
     close_hours,
     image_url,
+    avg_rating,
   } = restaurant;
 
   const history = useHistory();
@@ -32,7 +33,7 @@ const RestaurantTile = ({ restaurant }) => {
         ></img>
       </div>
       <div className="name-address-rating">
-        {name} <span id="address-span">({address})</span>
+      <p id="address-span">{name} ({address}) </p><span id="review-in-block">{avg_rating}</span>
       </div>
     </div>
   );

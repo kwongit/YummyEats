@@ -1,14 +1,46 @@
-.preview-image {
+/* .preview-image {
   width: 10%;
   border-radius: 5%;
   object-fit: cover;
   aspect-ratio: 1 / 1;
   cursor: pointer;
-}
+} */
 #address-span{
   /* color: red; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 10px;
+  width: 90%;
+}
+
+.all-restaurants-container{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 20%;
+  width: 200px;
+
+  /* background-color: blueviolet; */
+
+  border-radius: 10px 10px 10px 10px;
+  gap: 20px
+}
+
+.name-address-rating{
+  overflow: hidden;
+  /* width: 120px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#review-in-block{
+  font-size: .7rem;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(236, 234, 234);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
 }

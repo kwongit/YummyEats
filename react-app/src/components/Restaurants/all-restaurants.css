@@ -21,25 +21,7 @@ a,button {
      /* margin-left: 25%; */
 }
 
-.all-restaurants-container{
-    display: flex;
-    flex-direction: column;
-    flex-basis: 20%;
-    /* border: 1px solid black; */
-    /* background-color: blueviolet; */
-    /* justify-content: center; */
-  /* align-items: center; */
-  border-radius: 10px 10px 10px 10px;
-  transition:  all 0.3s;
 
-/* &:hover{
-
-    background-color: red;
-    transition:  all 0.3s;
-    transform: scale(1.1);
-} */
-
-}
 
 #categories-bar-container {
 display: flex;
@@ -106,7 +88,7 @@ cursor: pointer;
 
 
 #main-body-container{
-   /* background-color: chartreuse; */
+   /* background-color: lightgrey; */
    display: flex;
    min-height: 100vh;
    align-items: flex-start;
