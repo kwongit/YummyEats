@@ -33,11 +33,11 @@ export const Restaurants = () => {
       {categories}
       <hr id="cat-hr"></hr>
       <div id="middle-header-container">
-        
+
         <h1>..Crave it? Get it.</h1>
-        <img src={offer}></img>
-        <img src={offer2}></img>
-        <img src={offer3}></img>
+        <img src={offer}onClick={showAlert}></img>
+        <img src={offer2} onClick={showAlert}></img>
+        <img src={offer3} onClick={showAlert}></img>
       </div>
       <div id="main-body-container">
         <div id="restaurants-sidebar">
