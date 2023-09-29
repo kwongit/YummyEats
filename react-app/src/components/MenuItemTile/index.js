@@ -2,7 +2,7 @@ import { useHistory } from "react-router";
 import OpenModalButton from "../OpenModalButton";
 import { DeleteMenuItemModal } from "./DeleteMenuItemModal";
 import { useSelector } from "react-redux";
-import "./MenuItemTile.css"
+import "./MenuItemTile.css";
 
 const MenuItemTile = ({ menuItem, restaurantId }) => {
   const { id, name, price, calories, imageUrl } = menuItem;
@@ -28,15 +28,18 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
       <div className="menu-item-tile-info">
         <div className="menu-item-tile-info-left-col">
           <div className="menu-item-small-name">{name}</div>
-          <div className="menu-item-small-info">${price}
-          {calories &&
-            <>
-              <span style={{fontWeight: "bold"}}> &#183;</span> <span style={{color:"grey"}}>{calories} Cal.</span>
-            </>}
+          <div className="menu-item-small-info">
+            ${price}
+            {calories && (
+              <>
+                <span style={{ fontWeight: "bold" }}> &#183;</span>{" "}
+                <span style={{ color: "grey" }}>{calories} Cal.</span>
+              </>
+            )}
           </div>
         </div>
         <div className="menu-item-tile-info-right-col">
-          {restaurant.owner_id === currentUser.id && (
+          {currentUser && restaurant.owner_id === currentUser.id && (
             <OpenModalButton
               buttonText="Delete"
               modalComponent={<DeleteMenuItemModal menuItemId={menuItem.id} />}
@@ -44,7 +47,6 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
           )}
         </div>
       </div>
-
     </div>
   );
 };
