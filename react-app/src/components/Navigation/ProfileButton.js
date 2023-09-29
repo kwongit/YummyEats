@@ -63,6 +63,11 @@ function ProfileButton({ user }) {
             <li> Hello, {user.username}</li>
             <li>{user.email}</li>
             <li>
+              <NavLink exact to="/account/current" className="manage-account">
+                Manage Account
+              </NavLink>
+            </li>
+            <li>
               <NavLink
                 exact
                 to="/restaurants/current"
