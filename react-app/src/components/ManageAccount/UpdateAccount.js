@@ -87,13 +87,13 @@ export const UpdateAccount = () => {
           </div>
         </div>
         <div className="update-button-container">
-          <button className="open-modal-button" type="submit">
+          <button className="open-update-button" type="submit">
             Update
           </button>
         </div>
       </form>
       <OpenModalButton
-        className="delete-button"
+        className="delete-account-button"
         buttonText="Delete Account"
         modalComponent={<DeleteAccountModal />}
       />

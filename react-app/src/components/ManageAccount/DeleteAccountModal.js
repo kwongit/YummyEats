@@ -19,15 +19,23 @@ export const DeleteAccountModal = () => {
   };
 
   return (
-    <div className="delete-modal-content">
+    <div className="delete-account-modal-content">
       <div className="delete-account-container">
         <h3>Confirm Delete</h3>
         <p>Are you sure you want to delete this account?</p>
-        <div className="yes-no-container">
-          <button className="yes-button" type="button" onClick={handleClick}>
+        <div className="delete-yes-no-container">
+          <button
+            className="delete-yes-button"
+            type="button"
+            onClick={handleClick}
+          >
             Yes
           </button>
-          <button className="no-button" type="button" onClick={closeModal}>
+          <button
+            className="delete-no-button"
+            type="button"
+            onClick={closeModal}
+          >
             No
           </button>
         </div>

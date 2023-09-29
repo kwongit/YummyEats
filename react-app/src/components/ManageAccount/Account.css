@@ -28,15 +28,21 @@ input {
   padding: 10px 0px;
 }
 
-.open-modal-button {
-  margin: 10px 0px;
-  width: 40%;
-  align-self: center;
+.open-update-button {
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-weight: 500;
+  background-color: black;
+  color: white;
+  font-size: 11px;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 7px;
 }
 
 .update-button-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .errors-container {
@@ -45,7 +51,7 @@ input {
   padding-left: 20px;
 }
 
-.delete-modal-content {
+.delete-account-modal-content {
   border-radius: 20px;
   position: fixed;
   top: 100px;
@@ -57,6 +63,7 @@ input {
   height: 200px;
   background-color: #ffffff;
   border: 2px solid black;
+  margin-top: 20px;
 }
 
 .delete-account-container {
@@ -67,15 +74,15 @@ input {
   margin-right: 20px;
 }
 
-.yes-no-container {
+.delete-yes-no-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
 }
 
-.yes-button,
-.no-button {
+.delete-yes-button,
+.delete-no-button {
   font-family: 'Wix Madefor Display', sans-serif;
   font-weight: 500;
   background-color: black;
