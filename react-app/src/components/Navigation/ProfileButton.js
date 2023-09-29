@@ -52,11 +52,14 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef} id="menu-drop-down">
         {user ? (
           <>
+<div id="user-name-container">
             <li> Hello, {user.username}</li>
             <li>{user.email}</li>
+            </div>
             {user ? (
+
           <span>
-            <NavLink className="create-new-restaurant" to="/restaurants/new">
+            <NavLink className="create-new-restaurant menu-navLinks" to="/restaurants/new">
               Create a New Restaurant
             </NavLink>
           </span>
@@ -64,7 +67,7 @@ function ProfileButton({ user }) {
           ""
         )}
             <li>
-              <NavLink exact to="/account/current" className="manage-account">
+              <NavLink exact to="/account/current" className="manage-account menu-navLinks">
                 Manage Account
               </NavLink>
             </li>
@@ -72,7 +75,7 @@ function ProfileButton({ user }) {
               <NavLink
                 exact
                 to="/restaurants/current"
-                className="manage-restaurants-current"
+                className="manage-restaurants-current menu-navLinks"
               >
                 Manage Restaurants
               </NavLink>
@@ -81,26 +84,26 @@ function ProfileButton({ user }) {
               <NavLink
                 exact
                 to="/reviews/current"
-                className="manage-reviews-current"
+                className="manage-reviews-current menu-navLinks"
               >
                 Manage Reviews
               </NavLink>
             </li>
             <li className="logout-button-container">
-              <button className="logout-button" onClick={handleLogout}>
+              <button className="logout-button menu-button" onClick={handleLogout}>
                 Log Out
               </button>
             </li>
           </>
         ) : (
           <>
-            <OpenModalButton
+            <OpenModalButton className=" menu-button"
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
 
-            <OpenModalButton
+            <OpenModalButton className=" menu-button"
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
