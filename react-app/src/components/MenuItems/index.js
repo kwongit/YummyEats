@@ -19,13 +19,13 @@ export const MenuItems = ({restaurantId}) => {
 
   return (
     <>
-      <div id="main-body-container">
+      {/* <div id="main-body-container"> */}
         <div className="menu-item-grid-settings">
           {menuItems.map((menuItem) => (
             <MenuItemTile key={menuItem.id} menuItem={menuItem} />
           ))}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

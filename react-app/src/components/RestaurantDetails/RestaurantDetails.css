@@ -13,6 +13,8 @@
 
 .restaurant-non-image-content{
   padding: 12px 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .restaurant-info{
