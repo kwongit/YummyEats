@@ -23,10 +23,12 @@ export const UpdateAccount = () => {
       const data = await dispatch(
         updateAccount(username, email, password, sessionUser.id)
       );
-      if (data) {
-        setErrors(data);
+      // console.log("DATA ERRORS:", data.errors)
+      if (data && data.errors) {
+        setErrors(data.errors);
+      } else {
+        history.push("/");
       }
-      history.push("/");
     } else {
       setErrors([
         "Confirm Password field must be the same as the Password field",
@@ -40,11 +42,11 @@ export const UpdateAccount = () => {
     <>
       <h1>Update Account</h1>
       <form onSubmit={handleSubmit}>
-        {/* <ul>
+        <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
-        </ul> */}
+        </ul>
         <label>
           Email
           <input
