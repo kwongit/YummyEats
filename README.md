@@ -1,148 +1,26 @@
-# Flask React Project
+# YummyEats
 
-This is the starter for the Flask React project.
+YummyEats is a website clone of UberEats with the name, YummyEats, being inspired by one of the co-developers, Danny Yum. YummyEats allows users to browse a large database of various restaurants with each restaurant having their own menu items to order from as well as users being able to create a review for each restaurant. Users also have the option to create their restaurant on YummyEats and add menu items to each of their owned restaurants. YummyEats was developed by aspiring software developers, Kevin Won, Danny Yum, Ehab Zaki, and Kenny Doan during their time at App Academy. After learning Python for 2 weeks, the group was challenged with a project to create a website clone of their choosing while using Python, Flask, SQLAlchemy and previously learned languages/libraries like JavaScript and React. The group chose to clone UberEats due to UberEat's popularity and wanted to challenge themselves to create a popular website that is commonly used by many individuals and businesses. Implementing newly learned technologies mixed in with previously taught technology was equally challenging and rewarding to see all of their knowledge tested and brought to life. The group's website clone can be viewed at https://yummy-eats.onrender.com/.
 
-## Getting started
-1. Clone this repository (only this branch)
+## Wiki Link
 
-2. Install dependencies
+- [Database Schema]
+- [Features]
+- [Redux Store Shape]
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+## Frameworks, Languages, Libraries
+![image](https://github.com/kwongit/YummyEats/assets/131625868/1fba82d1-235c-43d6-882b-f491e041fdda)
+![image](https://github.com/kwongit/YummyEats/assets/131625868/5e024bcb-20b4-4a84-a67c-c45796f9b895)
+![image](https://github.com/kwongit/YummyEats/assets/131625868/62b87dca-8301-436e-80f6-71e87176280b)
+![image](https://github.com/kwongit/YummyEats/assets/131625868/5f563b5a-4d3e-48e6-a047-e6891700d1b8)
+![image](https://github.com/kwongit/YummyEats/assets/131625868/45b6b188-8dfb-44af-a285-c27ae792a499)
+![image](https://github.com/kwongit/YummyEats/assets/131625868/d08fd33d-b7f6-4842-b116-465cde9753d6)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+## Hosting
+![image](https://github.com/kwongit/YummyEats/assets/131625868/66f763c3-1b8d-46cb-9a83-f6a9884e3652)
 
 
-## Deployment through Render.com
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
-
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
-
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
-
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
-
-### Part A: Configure the Start and Build Commands
-
-Start by giving your application a name.
-
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
-
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
-
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
-
-For your Flask project, enter the following command into the Build field, all in
-one line:
-
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
-
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+[Database Schema]: https://github.com/kwongit/YummyEats/wiki/DB-Schema
+[Features]: https://github.com/kwongit/YummyEats/wiki/Feature-List
+[Redux Store Shape]: https://github.com/kwongit/YummyEats/wiki/React-Store-Shape
