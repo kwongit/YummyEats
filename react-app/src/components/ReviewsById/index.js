@@ -56,7 +56,6 @@ export const RestaurantReviews = ({restaurantId}) => {
 
     return (
         <div className="all-reviews-container">
-            <h1>Restaurant Reviews</h1>
             {!(reviewsList.find((review) => review.user_id === user.id )) && user.id !== restaurant.owner_id && user.id ?
                 <OpenModalButton
                     className="delete-button"

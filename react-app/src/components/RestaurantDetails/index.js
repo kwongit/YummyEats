@@ -99,7 +99,16 @@ export const RestaurantDetails = () => {
         <div className="restaurant-menu-items-grid">
           <MenuItems restaurantId={restaurantId} />
         </div>
-        <RestaurantReviews restaurantId={restaurantId} />
+
+        <div className="restaurant-details-reviews">
+          <div className="restaurant-reviews-headers">
+            <h1>Reviews</h1>
+            <p>Hear from people who love this spot</p>
+          </div>
+          <div className="restaurant-reviews-component">
+            <RestaurantReviews restaurantId={restaurantId} />
+          </div>
+        </div>
       </div>
     </div>
   );
