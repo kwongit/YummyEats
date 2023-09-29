@@ -1,0 +1,55 @@
+.view-menu-item-details{
+  display: flex;
+  font-family: 'Wix Madefor Display', sans-serif;
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+.menu-item-left-col{
+  width: 50%;
+  padding-right: 10px;
+}
+
+.menu-item-image{
+  width: 100%;
+  object-fit: contain;
+}
+
+.menu-item-right-col{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 2px 20px 2px 10px;
+}
+
+.menu-item-name{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.menu-item-price{
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.menu-item-description{
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.buy-menu-item-button{
+  font-family: 'Wix Madefor Display', sans-serif;
+  background-color: black;
+  color: white;
+  font-size: 13px;
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+  margin-top: 40px;
+}
+
+.buy-menu-item-button:hover{
+  opacity: 80%;
+}
