@@ -193,7 +193,7 @@ export const CreateRestaurant = ({ user }) => {
         </div>
 
         <div className="form-div-container">
-          <div className="store-open-hours-container">
+          <div className="store-open-hours-container label-container">
             <label>Restaurant Open Hours</label>
             <select onChange={(e) => setOpenHours(e.target.value)}>
               <option value="0">Select Open Hours</option>
@@ -226,7 +226,7 @@ export const CreateRestaurant = ({ user }) => {
               <p className="on-submit-errors">{errors.open_hours}</p>
             )}
           </div>
-          <div className="store-close-hours-container">
+          <div className="store-close-hours-container label-container">
             <label>Restaurant Close Hours</label>
             <select onChange={(e) => setCloseHours(e.target.value)}>
               <option value="0">Select Close Hours</option>
@@ -264,7 +264,7 @@ export const CreateRestaurant = ({ user }) => {
         <div className="images-container">
           <h3>Liven up your restaurant with photos</h3>
           <p>Submit a link to at least one photo to publish your restaurant.</p>
-          <div className="image-url-container">
+          <div className="image-url-container label-container">
             <input
               type="url"
               value={image_url}
