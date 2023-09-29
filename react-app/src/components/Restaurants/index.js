@@ -5,6 +5,8 @@ import RestaurantTile from "../RestaurantTile";
 import "./all-restaurants.css";
 import categories from "../Restaurants/categories";
 import offer from "../../assets/bogo.png";
+import offer2 from "../../assets/bogo2.png";
+import offer3 from "../../assets/bogo3.png";
 import overall from "../../assets/top_eats.png";
 
 export const Restaurants = () => {
@@ -31,9 +33,15 @@ export const Restaurants = () => {
       {categories}
       <hr id="cat-hr"></hr>
       <div id="middle-header-container">
-        <h1>RESTAURANTS TEST PAGE</h1>
-        <h1>..Crave it? Get it.</h1>
-        <img src={offer}></img>
+        <div style={{display: "flex", flexDirection:"column", width: "250px"}}>
+          <h1 style={{textAlign:'left', margin: "40px 0 0 0"}}>Crave it? Get it.</h1>
+          <p style={{fontSize:"10px", color: "rgb(100,100,100)", marginLeft: "3px"}}>Search for a favorite restaurant, cuisine, or dish.</p>
+        </div>
+        <div id="offers-container">
+        <img src={offer}onClick={showAlert}></img>
+        <img src={offer2} onClick={showAlert}></img>
+        <img src={offer3} onClick={showAlert}></img>
+        </div>
       </div>
       <div id="main-body-container">
         <div id="restaurants-sidebar">

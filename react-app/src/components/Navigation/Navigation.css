@@ -36,10 +36,70 @@ html, body {
 }
 
 #menu-drop-down{
-  background-color: lightgrey;
+  background-color: white;
   z-index: 1;
   height: 100%;
   width: 200px;
   margin-left: 0px;
   /* display: grid; */
+  list-style-type: none;
+  border: black 2px solid;
+  border-radius: 7px;
+}
+#menu-drop-down li{
+  padding-top: 20px;
+  padding-bottom: 20px;
+text-decoration: none;
+
+}
+
+
+#user-name-container{
+  border: black 1px solid;
+  color:white;
+  background-color: black;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  border-radius: 7px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.menu-button {
+  margin-top: 30px;
+  box-shadow: 2px 2px;
+  background-color: black;
+  border: none;
+  color: white;
+  /* margin-right: 0px; */
+  width: 150px;
+  border-radius: 7px;
+  height: 30px;
+  font-family: 'Wix Madefor Display', sans-serif;
+}
+
+.menu-navLinks{
+  text-decoration: none;
+}
+
+.create-new-restaurant{
+margin-top: 40px;
+
+}
+
+#sign-in-container{
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-around;
+  margin-right: 40px;
+
+}
+
+#sign-in-container button{
+  height: 40px;
 }

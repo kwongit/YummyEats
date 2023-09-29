@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetMenuItems } from "../../store/menuItems";
 import MenuItemTile from "../MenuItemTile";
+import "./MenuItems.css"
 
 export const MenuItems = ({restaurantId}) => {
   const dispatch = useDispatch();
@@ -18,13 +19,13 @@ export const MenuItems = ({restaurantId}) => {
 
   return (
     <>
-      <div id="main-body-container">
-        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", columnGap: "10px", rowGap: "10px"}}>
+      {/* <div id="main-body-container"> */}
+        <div className="menu-item-grid-settings">
           {menuItems.map((menuItem) => (
             <MenuItemTile key={menuItem.id} menuItem={menuItem} />
           ))}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

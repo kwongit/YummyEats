@@ -12,6 +12,7 @@ const RestaurantTile = ({ restaurant }) => {
     price,
     open_hours,
     close_hours,
+    avg_rating,
     image_url,
   } = restaurant;
 
@@ -29,10 +30,11 @@ const RestaurantTile = ({ restaurant }) => {
           src={image_url}
           alt={name}
           title={name}
+          style={{objectFit: "cover"}}
         ></img>
       </div>
       <div className="name-address-rating">
-        {name} ({address})
+      <p id="address-span">{name} ({address}) </p><span id="review-in-block">{avg_rating}</span>
       </div>
     </div>
   );

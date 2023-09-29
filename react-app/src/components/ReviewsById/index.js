@@ -48,20 +48,14 @@ export const RestaurantReviews = ({restaurantId}) => {
     useEffect(() => {
         dispatch(thunkGetRestaurantReviews(restaurantId));
         dispatch(thunkGetRestaurantInfo(restaurantId));
-
     }, [dispatch, reviewsList.length]);
 
     if (!user) user = 0;
     if (!reviews) return null;
     // if (!restaurants) return null;
 
-    const handleClick = () => {
-        // COMEBACK LATER
-    }
-
     return (
         <div className="all-reviews-container">
-            <h1>Restaurant Reviews</h1>
             {!(reviewsList.find((review) => review.user_id === user.id )) && user.id !== restaurant.owner_id && user.id ?
                 <OpenModalButton
                     className="delete-button"
