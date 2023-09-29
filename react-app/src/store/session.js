@@ -117,14 +117,10 @@ export const updateAccount =
     if (response.ok) {
       const data = await response.json();
       dispatch(updateUser(data));
-      return null;
-    } else if (response.status < 500) {
-      const data = await response.json();
-      if (data.errors) {
-        return data.errors;
-      }
+      return data;
     } else {
-      return ["An error occurred. Please try again."];
+      const errors = await response.json();
+      return errors;
     }
   };
 
@@ -134,6 +130,8 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload };
     case REMOVE_USER:
       return { user: null };
+    case UPDATE_ACCOUNT:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

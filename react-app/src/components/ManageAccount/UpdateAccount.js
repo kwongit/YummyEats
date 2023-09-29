@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { updateAccount } from "../../store/session";
 
 export const UpdateAccount = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState(sessionUser.email || "");
   const [username, setUsername] = useState(sessionUser.username || "");
@@ -12,7 +13,7 @@ export const UpdateAccount = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (!sessionUser) return <Redirect to="/login" />;
+  if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ export const UpdateAccount = () => {
       if (data) {
         setErrors(data);
       }
+      history.push("/");
     } else {
       setErrors([
         "Confirm Password field must be the same as the Password field",
@@ -30,15 +32,17 @@ export const UpdateAccount = () => {
     }
   };
 
+  // console.log("errors>>>>>>>>>>>>", errors);
+
   return (
     <>
       <h1>Update Account</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        {/* <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
-        </ul>
+        </ul> */}
         <label>
           Email
           <input
