@@ -48,7 +48,7 @@ export const RestaurantReviews = ({restaurantId}) => {
     useEffect(() => {
         dispatch(thunkGetRestaurantReviews(restaurantId));
         dispatch(thunkGetRestaurantInfo(restaurantId));
-    }, [dispatch]);
+    }, [dispatch, reviewsList.length]);
 
     if (!user) user = 0;
     if (!reviews) return null;

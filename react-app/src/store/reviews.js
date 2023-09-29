@@ -81,6 +81,7 @@ export const thunkCreateReview = (review, restaurantId) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review)
     })
+    // dispatch action creator: CREATE_REVIEW line 166
 
     if (res.ok) {
         const data = await res.json();

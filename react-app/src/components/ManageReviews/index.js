@@ -42,7 +42,7 @@ export const ManageReviews = () => {
     useEffect(() => {
         dispatch(thunkGetUserReviews());
         // dispatch(thunkGetRestaurants());
-    }, [dispatch]);
+    }, [dispatch, reviewsList.length]);
 
     if (!user) return null;
 

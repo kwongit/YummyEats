@@ -56,13 +56,15 @@ export const CreateReviewModal = ({ restaurant }) => {
 
         try {
             await dispatch(reviewActions.thunkCreateReview({ stars, review }, restaurant.id))
+            console.log("ReviewModal try block!!!!!!!!!!")
+            closeModal()
             .then(setSubmitted(true))
-            .then(closeModal)
-        } catch (error) {
-            if (error) {
-                const data = await error.json()
-                console.log("LOOK: ", data.errors)
-                setErrors(data.errors)
+            history.push(`/restaurant/${restaurant.id}`)
+        } catch (errors) {
+            if (errors) {
+                // const data = await errors.json()
+                // console.log("ReviewModal/index data.errors: ", data.errors)
+                setErrors(errors)
                 setSubmitted(true)
             }
         }
@@ -141,7 +143,7 @@ export const CreateReviewModal = ({ restaurant }) => {
                     {errors.review && submitted && <span className="error bottomError">Review needs to have at least one character or an emoji 😁</span>}
 
                 </div>
-                <div className="updateButtons">
+                <div className="createButtons">
                     <button className="b yesButton"> Yes (Create Review) </button>
                     <button className="b noButton" onClick={closeModal}> No (Cancel Review) </button>
                 </div>
