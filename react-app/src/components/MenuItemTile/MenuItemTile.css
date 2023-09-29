@@ -3,6 +3,7 @@
   height: 100%;
   padding: 2px;
   transition: box-shadow 0.3s;
+  background-color: lightcoral;
 }
 
 .menu-item-tile-container:hover{
@@ -37,5 +38,5 @@
 .menu-item-tile-delete-button{
   display: flex;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 7px;
 }
