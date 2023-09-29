@@ -17,7 +17,7 @@ export const CreateReviewModal = ({ restaurant }) => {
 
     const { closeModal } = useModal();
 
-    console.log("CreateReviewModal restaurant: ", restaurant)
+    // console.log("CreateReviewModal restaurant: ", restaurant)
 
     useEffect(() => {
         const errors = {};
@@ -26,28 +26,45 @@ export const CreateReviewModal = ({ restaurant }) => {
         setErrors(errors)
     }, [dispatch, review, stars])
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     // if (isSubmitting) return;
+    //     setIsSubmitting(true);
+    //     setSubmitted(true);
+
+    //     if (!Object.values(errors).length) {
+    //         const createReview = await dispatch(
+    //             reviewActions.thunkCreateReview({ stars, review }, restaurant.id)
+    //         )
+
+    //         const combinedErrors = { ...errors, Errors: createReview.errors };
+
+    //         if (createReview.errors) {
+    //             setErrors(combinedErrors)
+    //         } else {
+    //             history.push(`/restaurants/${restaurant.id}`)
+    //         }
+    //     }
+    //     setIsSubmitting(false)
+    //     closeModal()
+    //     // setIsSubmitting(false).then(closeModal)
+    // }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // if (isSubmitting) return;
-        setIsSubmitting(true);
-        setSubmitted(true);
+        setErrors({})
 
-        if (!Object.values(errors).length) {
-            const createReview = await dispatch(
-                reviewActions.thunkCreateReview({ stars, review }, restaurant.id)
-            )
-
-            const combinedErrors = { ...errors, Errors: createReview.errors };
-
-            if (createReview.errors) {
-                setErrors(combinedErrors)
-            } else {
-                history.push(`/restaurants/${restaurant.id}`)
+        try {
+            await dispatch(reviewActions.thunkCreateReview({ stars, review }, restaurant.id))
+            setSubmitted(true)
+        } catch (error) {
+            if (error) {
+                const data = await error.json()
+                console.log("LOOK: ", data.errors)
+                setErrors(data.errors)
+                setSubmitted(true)
             }
         }
-        setIsSubmitting(false)
-        closeModal()
-        // setIsSubmitting(false).then(closeModal)
     }
 
     return (

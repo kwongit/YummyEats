@@ -22,7 +22,7 @@ export const RestaurantReviews = ({restaurantId}) => {
     // const restaurantsList = Object.values(restaurants)
 
     // restaurantsList.map(restaurant => console.log("single restaurant: ", restaurant.name))
-    console.log("restaurant: ", restaurant)
+    // console.log("restaurant: ", restaurant)
     console.log("reviewList: ", reviewsList)
 
     function lowBudgetDateConverter(date) {
