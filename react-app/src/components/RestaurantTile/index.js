@@ -30,6 +30,7 @@ const RestaurantTile = ({ restaurant }) => {
           src={image_url}
           alt={name}
           title={name}
+          style={{objectFit: "cover"}}
         ></img>
       </div>
       <div className="name-address-rating">
