@@ -135,12 +135,20 @@ textarea {
     background-color: black;
     border: 2px solid black;
     color: white;
-    /* margin-right: 0px; */
     width: 250px;
-    border-radius: 3px;
+    border-radius: 7px;
     height: 30px;
+    font-family: 'Wix Madefor Display', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
 }
 
+.create-restaurant-button:hover {
+opacity: 80%;
+}
 .create-restaurant-button[disabled] {
     opacity: 0.6;
     cursor: not-allowed;
