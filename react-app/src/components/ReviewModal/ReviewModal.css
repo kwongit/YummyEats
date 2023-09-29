@@ -1,6 +1,17 @@
+#modal-content {
+    /* border: 1px solid red; */
+    border-radius: 7px;
+}
+
+.reviewModal h2 {
+    /* border: 1px solid red; */
+    text-align: center;
+    margin: 10px 5px 5px;
+}
+
 .reviewModal {
-    border: 5px solid black;
-    border-radius: 9px;
+    border: 3px solid black;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
@@ -10,10 +21,15 @@
     margin: 15px;
 }
 
+.textareaContainer {
+    /* border: 1px solid red; */
+    text-align: center;
+}
+
 .reviewInput {
     border: 2px solid black;
     width: 90%;
-    margin-left: 15px;
+    margin: 10px;
     height: 100px;
     box-sizing: border-box;
     font-family: 'Wix Madefor Display', sans-serif;
@@ -39,6 +55,7 @@
     margin: 15px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .starRatingContainer div {
@@ -47,7 +64,7 @@
 }
 
 .starsText {
-    margin-left: 5px;
+    margin: 0px 5px;
 }
 
 .submitReviewButton {
@@ -69,4 +86,35 @@
     color: gray;
     border: 2px solid gray;
     box-shadow: 3px 3px 1px gray;
+}
+
+.reviewButtons {
+    /* border: 1px solid red; */
+    text-align: center;
+    margin: 0px 5px 5px;
+}
+
+.reviewButtons button {
+    font-family: 'Wix Madefor Display', sans-serif;
+    font-weight: 500;
+    margin: 0px 2px 7px;
+    background-color: black;
+    color: white;
+    font-size: 11px;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 7px;
+    /* width: 45%; */
+}
+
+.reviewButtons button:disabled {
+    /* border: 2px solid red; */
+    background-color: gray;
+}
+
+.reviewForm .error {
+    /* border: 1px solid red; */
+    color: red;
+    margin: 0px 10px;
+    text-align: center;
 }

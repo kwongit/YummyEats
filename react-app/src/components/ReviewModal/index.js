@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from '../../store/reviews'
+import "./ReviewModal.css"
 
 export const CreateReviewModal = ({ restaurant }) => {
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export const CreateReviewModal = ({ restaurant }) => {
         if (!review) errors.review = "Review is required!";
         if (!stars) errors.stars = "Star rating is required!";
         setErrors(errors)
-    }, [dispatch, review, stars])
+    }, [dispatch])
 
     // const handleSubmit = async (e) => {
     //     e.preventDefault();
@@ -50,33 +51,47 @@ export const CreateReviewModal = ({ restaurant }) => {
     //     // setIsSubmitting(false).then(closeModal)
     // }
 
+    // const handleSubmit = async (e) => {
+    //         e.preventDefault();
+    //         const data = await dispatch(reviewActions.thunkCreateReview( { stars, review }, restaurant.id ))
+    //         if (data.errors) {
+    //             setErrors(data.errors)
+    //             setSubmitted(true)
+    //             console.log("errors!!!!!")
+    //         } else {
+    //             closeModal()
+    //             (setSubmitted(true))
+    //             history.push(`/restaurant/${restaurant.id}`)
+    //         }
+    //     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({})
+        // setSubmitted(true)
 
         try {
             await dispatch(reviewActions.thunkCreateReview({ stars, review }, restaurant.id))
-            console.log("ReviewModal try block!!!!!!!!!!")
             closeModal()
-            .then(setSubmitted(true))
-            history.push(`/restaurant/${restaurant.id}`)
+            setSubmitted(true)
+            history.push(`/restaurants/${restaurant.id}`)
         } catch (errors) {
             if (errors) {
                 // const data = await errors.json()
-                // console.log("ReviewModal/index data.errors: ", data.errors)
+                console.log("DATA: ", errors)
                 setErrors(errors)
-
                 setSubmitted(true)
+
             }
         }
     }
 
     return (
-        <div className="updateModal">
+        <div className="reviewModal">
             <h2>Create a Review</h2>
             <form onSubmit={handleSubmit}>
 
-                <div className="updateForm">
+                <div className="reviewForm">
 
                     <div className='starRatingContainer'>
                         <div className='starsText'>Stars</div>
@@ -130,23 +145,25 @@ export const CreateReviewModal = ({ restaurant }) => {
                             onMouseLeave={() => setTempRating(5)}
                         >
                         </div>
-                    {errors.stars && submitted && <span className="error bottomError">Star review is needed</span>}
                     </div>
-
-                    <textarea
-                        className="reviewInput"
-                        type='text'
-                        placeholder="Leave a review here!"
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                    >
-                    </textarea>
-                    {errors.review && submitted && <span className="error bottomError">Review needs to have at least one character or an emoji 😁</span>}
+                    {!stars && submitted && <div className="error bottomError">Star review is needed</div>}
+                    <div className="textareaContainer">
+                        <textarea
+                            className="reviewInput"
+                            type='text'
+                            placeholder="Leave a review here!"
+                            value={review}
+                            onChange={(e) => setReview(e.target.value)}
+                        >
+                        </textarea>
+                    </div>
+                    {/* {errors.review && <div className="error bottomError">Review needs to have at least one character or an emoji 😁</div>} */}
+                    {!review && submitted && <div className="error bottomError">Review needs to have at least one character or an emoji 😁</div>}
 
                 </div>
-                <div className="createButtons">
-                    <button className="b yesButton"> Yes (Create Review) </button>
-                    <button className="b noButton" onClick={closeModal}> No (Cancel Review) </button>
+                <div className="reviewButtons">
+                    <button className="b yesButton" disabled={!review || !stars}> Create Review </button>
+                    <button className="b noButton" disabled={!review || !stars} onClick={closeModal}> Cancel Review </button>
                 </div>
             </form>
         </div>
