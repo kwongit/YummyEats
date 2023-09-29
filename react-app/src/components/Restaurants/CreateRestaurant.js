@@ -93,8 +93,8 @@ export const CreateRestaurant = ({ user }) => {
 
   return (
     <div className="create-restaurant-form-container">
-      <h1>Create a New Restaurant</h1>
       <form onSubmit={handleSubmit} id='form-container'>
+      <h2>Create a New Restaurant</h2>
         <div className="location-container">
           <h3>Get Started</h3>
 

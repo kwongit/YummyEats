@@ -30,15 +30,7 @@ a,button {
     /* justify-content: center; */
   /* align-items: center; */
   border-radius: 10px 10px 10px 10px;
-  transition:  all 0.3s;
-
-/* &:hover{
-
-    background-color: red;
-    transition:  all 0.3s;
-    transform: scale(1.1);
-} */
-
+ 
 }
 
 #categories-bar-container {
@@ -93,6 +85,7 @@ cursor: pointer;
   }
 #middle-header-container{
     display: flex;
+    gap: 10px;
     margin-top: 30px;
 
 }
