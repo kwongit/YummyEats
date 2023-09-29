@@ -13,7 +13,7 @@ export const UpdateReviewModal = ({ updateReview }) => {
 
     const { closeModal } = useModal();
 
-    console.log("UpdateReviewModal review: ", updateReview)
+    // console.log("UpdateReviewModal review: ", updateReview)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

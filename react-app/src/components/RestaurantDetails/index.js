@@ -16,6 +16,11 @@ export const RestaurantDetails = () => {
   const { restaurantId } = useParams();
 
   const currentUser = useSelector((state) => state.session.user);
+  const reviews = useSelector((state) => state.reviews.allReviews)
+
+  const reviewsList = Object.values(reviews)
+
+  console.log("RestaurantDetails reviewsList: ", reviewsList)
 
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
@@ -29,7 +34,7 @@ export const RestaurantDetails = () => {
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
     dispatch(thunkGetRestaurantReviews(restaurantId));
-  }, [dispatch, restaurantId]);
+  }, [dispatch, restaurantId, reviewsList.length]);
 
   const handleClick = () => {
     // tbd

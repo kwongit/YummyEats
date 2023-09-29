@@ -58,7 +58,7 @@ export const CreateReviewModal = ({ restaurant }) => {
                 <div className="updateForm">
 
                     <div className='starRatingContainer'>
-                        <div className='starsText'>Stars</div>
+                        <div className='starsText'>SCRAP</div>
                         <div onClick={() => setStars(1)}
                             className=  {
                                 (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star")
