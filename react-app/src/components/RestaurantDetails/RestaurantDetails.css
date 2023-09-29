@@ -56,3 +56,27 @@
 .restaurant-menu-items-grid{
   margin: 10px 0;
 }
+
+.restaurant-details-reviews{
+  display: flex;
+}
+
+.restaurant-reviews-headers{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant-reviews-headers > h1{
+  margin-bottom: 0;
+}
+
+.restaurant-reviews-headers > p {
+  font-size: 12px;
+  margin-top: 10px;
+  color: rgb(100, 100, 100);
+}
+
+.restaurant-reviews-component{
+  width: 75%
+}
