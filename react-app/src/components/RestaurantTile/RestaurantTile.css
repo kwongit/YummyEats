@@ -5,10 +5,3 @@
   aspect-ratio: 1 / 1;
   cursor: pointer;
 }
-#address-span{
-  /* color: red; */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 10px;
-}
