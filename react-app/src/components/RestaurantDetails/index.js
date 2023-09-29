@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkGetRestaurantInfo } from "../../store/restaurants";
 import { thunkGetRestaurantReviews } from "../../store/reviews";
-import {  MenuItems  } from "../MenuItems";
+import { MenuItems } from "../MenuItems";
 import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
 // import { setUser, thunkGetUserInfo } from "../../store/session";
-import "./RestaurantDetails.css"
+import "./RestaurantDetails.css";
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,9 @@ export const RestaurantDetails = () => {
 
   const currentUser = useSelector((state) => state.session.user);
 
-  const oneRestaurant = useSelector((state) => state.restaurant.singleRestaurant);
+  const oneRestaurant = useSelector(
+    (state) => state.restaurant.singleRestaurant
+  );
   // const reviews = useSelector((state) => state.reviews.allReviews)
 
   // const reviewsList = Object.values(reviews)
@@ -65,8 +67,9 @@ export const RestaurantDetails = () => {
               {name} ({address})
             </p>
             <p className="restaurant-subheader">
-              <i className="fa-solid fa-star"></i> {avg_rating} ({num_reviews} ratings
-              ) · {type} · {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
+              <i className="fa-solid fa-star"></i> {avg_rating} ({num_reviews}{" "}
+              ratings ) · {type} ·{" "}
+              {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
             </p>
             <p className="restaurant-hours">
               Hours: {open_hours} - {close_hours}
@@ -74,19 +77,23 @@ export const RestaurantDetails = () => {
           </div>
           <div className="restaurant-info-right-col">
             <div>
-              {oneRestaurant.owner_id === currentUser.id && (
-                <button className="create-restaurant-button" onClick={handleClick}>Create New Menu Item</button>
+              {currentUser && oneRestaurant.owner_id === currentUser.id && (
+                <button
+                  className="create-restaurant-button"
+                  onClick={handleClick}
+                >
+                  Create New Menu Item
+                </button>
               )}
             </div>
           </div>
         </div>
 
         <div className="restaurant-menu-items-grid">
-          <MenuItems restaurantId={restaurantId}/>
+          <MenuItems restaurantId={restaurantId} />
         </div>
-        <RestaurantReviews restaurantId={restaurantId}/>
+        <RestaurantReviews restaurantId={restaurantId} />
       </div>
-
     </div>
   );
 };
