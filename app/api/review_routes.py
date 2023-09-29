@@ -58,7 +58,7 @@ def delete(reviewId):
 
     if review_to_delete:
         target_restaurant = Restaurant.query.get(review_to_delete.restaurant_id)
-        if target_restaurant.owner_id == current_user.id: #req.user.id
+        if review_to_delete.user_id == current_user.id: #req.user.id
             db.session.delete(review_to_delete)
             db.session.commit()
             return { "message": "Delete successful!" }

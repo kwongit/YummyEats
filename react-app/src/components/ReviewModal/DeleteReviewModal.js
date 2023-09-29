@@ -14,7 +14,7 @@ export const DeleteReviewModal = ({ review }) => {
         return dispatch(reviewActions.thunkDeleteReview(review.id)).then(closeModal)
     }
 
-    console.log("DeleteReviewModal review: ", review)
+    // console.log("DeleteReviewModal review: ", review)
 
     useEffect(() => {
         dispatch(reviewActions.thunkGetReviewInfo(review.id))

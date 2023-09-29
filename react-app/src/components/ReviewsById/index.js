@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink, useParams } from "react-router-dom";
 import { thunkGetRestaurantReviews } from "../../store/reviews";
-import { thunkGetRestaurants } from "../../store/restaurants";
+import { thunkGetRestaurantInfo } from "../../store/restaurants";
 import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal"
+import { CreateReviewModal } from "../ReviewModal";
 import OpenModalButton from "../OpenModalButton";
 import { UpdateReviewModal } from "../ReviewModal/UpdateReviewModal";
 import "../ManageReviews/ManageReviews.css"
@@ -15,13 +16,13 @@ export const RestaurantReviews = ({restaurantId}) => {
 
     const user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => state.reviews.allReviews);
-    const restaurants = useSelector((state) => state.restaurant.allRestaurants);
+    const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
 
     const reviewsList = Object.values(reviews);
-    const restaurantsList = Object.values(restaurants)
+    // const restaurantsList = Object.values(restaurants)
 
     // restaurantsList.map(restaurant => console.log("single restaurant: ", restaurant.name))
-    console.log("restaurantList: ", restaurantsList)
+    console.log("restaurant: ", restaurant)
     console.log("reviewList: ", reviewsList)
 
     function lowBudgetDateConverter(date) {
@@ -42,14 +43,17 @@ export const RestaurantReviews = ({restaurantId}) => {
     // }
     // console.log(getRestaurantName(1))
 
+    console.log("reviewsList.find", reviewsList.find((review) => review.user_id === user.id ))
 
     useEffect(() => {
         dispatch(thunkGetRestaurantReviews(restaurantId));
-        dispatch(thunkGetRestaurants());
+        dispatch(thunkGetRestaurantInfo(restaurantId));
 
     }, [dispatch, reviewsList.length]);
 
     if (!user) return null;
+    if (!reviews) return null;
+    // if (!restaurants) return null;
 
     const handleClick = () => {
         // COMEBACK LATER
@@ -58,11 +62,19 @@ export const RestaurantReviews = ({restaurantId}) => {
     return (
         <div className="all-reviews-container">
             <h1>Restaurant Reviews</h1>
+            {!(reviewsList.find((review) => review.user_id === user.id )) && user.id !== restaurant.owner_id ?
+                <OpenModalButton
+                    className="delete-button"
+                    buttonText='Create a Review'
+                    modalComponent={<CreateReviewModal restaurant={restaurant}/>}
+                />
+                    :
+                <></>
+            }
             {reviewsList.map((review) => (
                 <div className="review-container" key={review.id}>
                     <div className="review-stars">
                         <h4>Stars: </h4>
-                        {/* {review.stars} */}
                         <div className= {review.stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                         <div className= {review.stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                         <div className= {review.stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>

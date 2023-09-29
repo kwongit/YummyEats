@@ -13,11 +13,6 @@ export const UpdateReviewModal = ({ updateReview }) => {
 
     const { closeModal } = useModal();
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        return dispatch(reviewActions.thunkUpdateReview(updateReview.id)).then(closeModal)
-    }
-
     console.log("UpdateReviewModal review: ", updateReview)
 
     const handleSubmit = async (e) => {

@@ -75,8 +75,8 @@ export const thunkGetReviewInfo = (reviewId) => async (dispatch) => {
     }
 }
 
-export const thunkCreateReview = (review, user) => async (dispatch) => {
-    const res = await csrfFetch("/api/reviews/", {
+export const thunkCreateReview = (review, restaurantId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/restaurants/${restaurantId}/createreview`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review)

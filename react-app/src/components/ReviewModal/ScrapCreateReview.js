@@ -24,28 +24,30 @@ export const CreateReviewModal = ({ restaurant }) => {
         if (!review) errors.review = "Review is required!";
         if (!stars) errors.stars = "Star rating is required!";
         setErrors(errors)
-    }, [dispatch, review, stars])
+    }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isSubmitting) return;
         setIsSubmitting(true);
         setSubmitted(true);
+        setErrors({})
 
         if (!Object.values(errors).length) {
             const createReview = await dispatch(
                 reviewActions.thunkCreateReview({ stars, review }, restaurant.id)
-            )
+            ).then(closeModal)
 
             const combinedErrors = { ...errors, Errors: createReview.errors };
 
             if (createReview.errors) {
                 setErrors(combinedErrors)
             } else {
-                history.push(`/restaurants/${restaurant.id}`)
+                history.pushState(`/restaurants/${restaurant.id}`)
             }
         }
-        setIsSubmitting(false).then(closeModal)
+
+        setIsSubmitting(false)
     }
 
     return (
@@ -107,7 +109,7 @@ export const CreateReviewModal = ({ restaurant }) => {
                             onMouseLeave={() => setTempRating(5)}
                         >
                         </div>
-                    {errors.stars && submitted && <span className="error bottomError">Star review is needed</span>}
+                    {errors.stars && <span className="error bottomError">Star review is needed</span>}
                     </div>
 
                     <textarea
@@ -118,7 +120,7 @@ export const CreateReviewModal = ({ restaurant }) => {
                         onChange={(e) => setReview(e.target.value)}
                     >
                     </textarea>
-                    {errors.review && submitted && <span className="error bottomError">Review needs to have at least one character or an emoji 😁</span>}
+                    {errors.review && <span className="error bottomError">Review needs to have at least one character or an emoji 😁</span>}
 
                 </div>
                 <div className="updateButtons">

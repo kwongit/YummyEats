@@ -14,10 +14,8 @@ export const ManageReviews = () => {
 
     const user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => state.reviews.allReviews);
-    const restaurants = useSelector((state) => state.restaurant.allRestaurants);
 
     const reviewsList = Object.values(reviews);
-    const restaurantsList = Object.values(restaurants)
 
     function lowBudgetDateConverter(date) {
         let newDate = String(new Date(date))
@@ -43,15 +41,11 @@ export const ManageReviews = () => {
 
     useEffect(() => {
         dispatch(thunkGetUserReviews());
-        dispatch(thunkGetRestaurants());
+        // dispatch(thunkGetRestaurants());
     }, [dispatch, reviewsList.length]);
 
     if (!user) return null;
 
-    const handleClick = () => {
-        // COMEBACK LATER
-    }
-    // review.restaurant.name
     return (
         <div className="all-reviews-container">
             <h1>Manage Your Reviews</h1>
