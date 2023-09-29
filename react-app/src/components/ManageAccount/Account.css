@@ -1,0 +1,94 @@
+.update-account-form-container {
+  margin-left: 250px;
+  margin-right: 250px;
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+h1 {
+  text-align: center;
+  /* margin-bottom: 0px; */
+}
+
+label {
+  padding-bottom: 10px;
+}
+
+input {
+  border: 1px solid lightgray;
+  box-shadow: 1px 1px 5px;
+}
+
+.email-container, .username-container, .password-container, .confirmPassword-container  {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
+}
+
+.open-update-button {
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-weight: 500;
+  background-color: black;
+  color: white;
+  font-size: 11px;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 7px;
+}
+
+.update-button-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.errors-container {
+  color: red;
+  font-size: 14px;
+  padding-left: 20px;
+}
+
+.delete-account-modal-content {
+  border-radius: 20px;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 200px;
+  background-color: #ffffff;
+  border: 2px solid black;
+  margin-top: 20px;
+}
+
+.delete-account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.delete-yes-no-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.delete-yes-button,
+.delete-no-button {
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-weight: 500;
+  background-color: black;
+  color: white;
+  font-size: 11px;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 7px;
+}
