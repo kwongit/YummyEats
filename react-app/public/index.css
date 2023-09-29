@@ -1,0 +1,80 @@
+.footer{
+  font-family: 'Wix Madefor Display', sans-serif;
+}
+
+.footer-row-1{
+  display: flex;
+  padding: 35px 25px;
+}
+
+.footer-col1{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer-png{
+  display: flex;
+  align-items: center;
+}
+
+#app-store-png{
+  width: 91px;
+  object-fit: contain;
+  margin-bottom: -30px;
+}
+
+#google-play-png{
+  width: 100px;
+  object-fit: contain;
+  margin-left: 10px;
+  margin-bottom: -30px;
+}
+
+.footer-col2{
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+#google-translate-png{
+  width: 10px;
+  margin: 0 5px 0 2px;
+}
+
+.footer-col3{
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.row-1-link{
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+
+.footer-row-2{
+  display: flex;
+  padding: 35px 25px;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+#github-png{
+  width: 10px;
+  margin-left: 5px;
+}
+
+.footer-social-links{
+  text-decoration: none;
+  color: black;
+  margin: 0 5px;
+  padding: 5px;
+}
+
+.footer-social-links:hover{
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+}
