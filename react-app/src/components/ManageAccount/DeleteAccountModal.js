@@ -1,16 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteAccount } from "../../store/session";
+import { useHistory } from "react-router-dom";
 
 export const DeleteAccountModal = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
 
   const handleClick = (e) => {
     e.preventDefault();
 
-    return dispatch(deleteAccount(sessionUser.id)).then(closeModal);
+    dispatch(deleteAccount(sessionUser.id));
+    closeModal();
+    history.push("/");
   };
 
   return (
