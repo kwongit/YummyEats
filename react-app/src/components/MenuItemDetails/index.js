@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { thunkGetMenuItemInfo } from "../../store/menuItems";
-import "./MenuItemDetails.css"
+import "./MenuItemDetails.css";
 
 export const MenuItemDetails = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { menuItemId } = useParams();
 
   const oneMenuItem = useSelector((state) => state.menuItems.singleMenuItem);
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(thunkGetMenuItemInfo(menuItemId));
@@ -20,17 +22,33 @@ export const MenuItemDetails = () => {
   const { restaurantId, name, size, calories, price, description, imageUrl } =
     oneMenuItem;
 
+  const onClick = (e) => {
+    alert(`${name} has been purchased!`);
+    history.push(`/restaurants/${restaurantId}`);
+  };
+
   return (
     <div className="view-menu-item-details">
       <div className="menu-item-left-col">
         <img className="menu-item-image" src={imageUrl} alt="main" />
-      </div >
+      </div>
       <div className="menu-item-right-col">
         <p className="menu-item-name">{name}</p>
-        {calories && <p className="menu-item-description">{calories} calories</p>}
-        <p className="menu-item-price">${Number.parseFloat(price).toFixed(2)}</p>
+        {calories && (
+          <p className="menu-item-description">{calories} calories</p>
+        )}
+        <p className="menu-item-price">
+          ${Number.parseFloat(price).toFixed(2)}
+        </p>
         {description && <p className="menu-item-description">{description}</p>}
-        <button className="buy-menu-item-button">Buy Now <span style={{fontWeight: "bold"}}>&#183;</span> ${Number.parseFloat(price).toFixed(2)}</button>
+        <button
+          disabled={!sessionUser}
+          className="buy-menu-item-button"
+          onClick={onClick}
+        >
+          Buy Now <span style={{ fontWeight: "bold" }}>&#183;</span> $
+          {Number.parseFloat(price).toFixed(2)}
+        </button>
       </div>
     </div>
   );
