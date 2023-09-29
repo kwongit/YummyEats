@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { updateAccount } from "../../store/session";
+import OpenModalButton from "../OpenModalButton";
+import { DeleteAccountModal } from "./DeleteAccountModal";
 
 export const UpdateAccount = () => {
   const dispatch = useDispatch();
@@ -81,7 +83,12 @@ export const UpdateAccount = () => {
         </label>
         <button type="submit">Update</button>
       </form>
-      <button type="submit">Delete</button>
+
+      <OpenModalButton
+        className="delete-button"
+        buttonText="Delete"
+        modalComponent={<DeleteAccountModal />}
+      />
     </>
   );
 };

@@ -1,15 +1,16 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { thunkDeleteRestaurant } from "../../store/restaurants";
+import { deleteAccount } from "../../store/session";
 
-export const DeleteAccounttModal = ({ restaurantId }) => {
+export const DeleteAccountModal = () => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+  const sessionUser = useSelector((state) => state.session.user);
 
   const handleClick = (e) => {
     e.preventDefault();
 
-    return dispatch(thunkDeleteRestaurant(restaurantId)).then(closeModal);
+    return dispatch(deleteAccount(sessionUser.id)).then(closeModal);
   };
 
   return (
