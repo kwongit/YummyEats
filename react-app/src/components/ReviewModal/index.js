@@ -65,6 +65,7 @@ export const CreateReviewModal = ({ restaurant }) => {
                 // const data = await errors.json()
                 // console.log("ReviewModal/index data.errors: ", data.errors)
                 setErrors(errors)
+
                 setSubmitted(true)
             }
         }
