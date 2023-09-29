@@ -11,15 +11,15 @@
 }
 
 .menu-item-tile-image{
-  height: 75%;
+  height: 200px;
   width: 100%;
   object-fit: cover;
 }
 
 .menu-item-tile-info{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   margin: 0 2px;
 }
 
@@ -32,4 +32,10 @@
   font-size: 10px;
   font-weight: 400;
   margin: 1px 0;
+}
+
+.menu-item-tile-delete-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
 }
