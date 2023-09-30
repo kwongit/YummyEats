@@ -1,0 +1,25 @@
+.delete-modal-content{
+    border: black solid 4px;
+    /* border-radius: 10px; */
+}
+
+.yes-no-container{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+gap: 10px;
+margin-bottom: 20px;
+
+}
+
+
+.yes-no-container button {
+margin-left: 10px;
+margin-right: 10px;
+background-color:  black;
+  border: black solid 1px;
+  /* box-shadow: 3px 3px 2px black; */
+  color: white;
+  height: 30px;
+  border-radius: 7px;
+}
