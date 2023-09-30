@@ -82,6 +82,7 @@ cursor: pointer;
 
   #middle-header-container{
     height: 200px;
+    padding: 0 35px;
   }
 #middle-header-container{
     display: flex;
@@ -120,7 +121,7 @@ cursor: pointer;
     background-color: blueviolet;
 } */
 #offers-container{
-  
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;

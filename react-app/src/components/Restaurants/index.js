@@ -33,8 +33,10 @@ export const Restaurants = () => {
       {categories}
       <hr id="cat-hr"></hr>
       <div id="middle-header-container">
-
-        <h1>..Crave it? Get it.</h1>
+        <div style={{display: "flex", flexDirection:"column", width: "250px"}}>
+          <h1 style={{textAlign:'left', margin: "40px 0 0 0"}}>Crave it? Get it.</h1>
+          <p style={{fontSize:"10px", color: "rgb(100,100,100)", marginLeft: "3px"}}>Search for a favorite restaurant, cuisine, or dish.</p>
+        </div>
         <div id="offers-container">
         <img src={offer}onClick={showAlert}></img>
         <img src={offer2} onClick={showAlert}></img>

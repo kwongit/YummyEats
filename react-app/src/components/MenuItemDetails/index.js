@@ -23,8 +23,12 @@ export const MenuItemDetails = () => {
     oneMenuItem;
 
   const onClick = (e) => {
-    alert(`${name} has been purchased!`);
-    history.push(`/restaurants/${restaurantId}`);
+    if (sessionUser) {
+      alert(`${name} has been purchased!`);
+      history.push(`/restaurants/${restaurantId}`);
+    } else {
+      alert(`Please log in to make a purchase!`);
+    }
   };
 
   return (
@@ -42,7 +46,7 @@ export const MenuItemDetails = () => {
         </p>
         {description && <p className="menu-item-description">{description}</p>}
         <button
-          disabled={!sessionUser}
+          // disabled={!sessionUser}
           className="buy-menu-item-button"
           onClick={onClick}
         >
