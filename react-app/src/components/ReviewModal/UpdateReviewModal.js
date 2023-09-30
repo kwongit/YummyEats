@@ -19,7 +19,7 @@ export const UpdateReviewModal = ({ updateReview }) => {
         e.preventDefault();
         setErrors({})
         try {
-            const updatedReview = await dispatch(
+            await dispatch(
                 reviewActions.thunkUpdateReview({ stars, review }, updateReview.id)
             ).then(closeModal)
         } catch (error) {
@@ -33,14 +33,14 @@ export const UpdateReviewModal = ({ updateReview }) => {
 
     useEffect(() => {
         dispatch(reviewActions.thunkGetReviewInfo(updateReview.id))
-    }, [dispatch])
+    }, [dispatch, review, stars])
 
     return (
-        <div className="updateModal">
+        <div className="reviewModal">
             <h2>Update your Review</h2>
             <form onSubmit={handleSubmit}>
 
-                <div className="updateForm">
+                <div className="reviewForm">
 
                     <div className='starRatingContainer'>
                         <div className='starsText'>Stars</div>
@@ -107,9 +107,9 @@ export const UpdateReviewModal = ({ updateReview }) => {
                     {errors.review && <span className="error bottomError">Review needs to have at least one character or an emoji 😁</span>}
 
                 </div>
-                <div className="updateButtons">
-                    <button className="b yesButton"> Yes (Update Review) </button>
-                    <button className="b noButton" onClick={closeModal}> No (Cancel Update) </button>
+                <div className="reviewButtons">
+                    <button className="b yesButton"> Update Review </button>
+                    <button className="b noButton" onClick={closeModal}> Cancel Update </button>
                 </div>
             </form>
         </div>

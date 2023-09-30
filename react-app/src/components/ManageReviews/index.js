@@ -15,7 +15,7 @@ export const ManageReviews = () => {
     const user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => state.reviews.allReviews);
 
-    const reviewsList = Object.values(reviews);
+    const reviewsList = Object.values(reviews).reverse();
 
     function lowBudgetDateConverter(date) {
         let newDate = String(new Date(date))
