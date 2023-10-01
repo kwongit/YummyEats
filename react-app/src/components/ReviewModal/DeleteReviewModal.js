@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from '../../store/reviews'
 import { useEffect } from "react";
-
+import './Deletereview.css'
 export const DeleteReviewModal = ({ review }) => {
 
     const dispatch = useDispatch();
