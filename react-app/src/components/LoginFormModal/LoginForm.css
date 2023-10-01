@@ -27,7 +27,3 @@
   border: none;
   border-radius: 7px;
 }
-
-.login-modal-login-btn:hover, .demo-user-button:hover {
-  opacity: 80%;
-}
