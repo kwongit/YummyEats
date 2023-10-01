@@ -10,15 +10,11 @@ export const CreateReviewModal = ({ restaurant }) => {
   const history = useHistory();
 
   const [stars, setStars] = useState();
-  const [tempRating, setTempRating] = useState();
   const [review, setReview] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
   const { closeModal } = useModal();
-
-  // console.log("CreateReviewModal restaurant: ", restaurant)
 
   useEffect(() => {
     const errors = {};
@@ -27,48 +23,9 @@ export const CreateReviewModal = ({ restaurant }) => {
     setErrors(errors);
   }, [dispatch]);
 
-  // const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     // if (isSubmitting) return;
-  //     setIsSubmitting(true);
-  //     setSubmitted(true);
-
-  //     if (!Object.values(errors).length) {
-  //         const createReview = await dispatch(
-  //             reviewActions.thunkCreateReview({ stars, review }, restaurant.id)
-  //         )
-
-  //         const combinedErrors = { ...errors, Errors: createReview.errors };
-
-  //         if (createReview.errors) {
-  //             setErrors(combinedErrors)
-  //         } else {
-  //             history.push(`/restaurants/${restaurant.id}`)
-  //         }
-  //     }
-  //     setIsSubmitting(false)
-  //     closeModal()
-  //     // setIsSubmitting(false).then(closeModal)
-  // }
-
-  // const handleSubmit = async (e) => {
-  //         e.preventDefault();
-  //         const data = await dispatch(reviewActions.thunkCreateReview( { stars, review }, restaurant.id ))
-  //         if (data.errors) {
-  //             setErrors(data.errors)
-  //             setSubmitted(true)
-  //             console.log("errors!!!!!")
-  //         } else {
-  //             closeModal()
-  //             (setSubmitted(true))
-  //             history.push(`/restaurant/${restaurant.id}`)
-  //         }
-  //     }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
-    // setSubmitted(true)
 
     try {
       await dispatch(
@@ -79,8 +36,6 @@ export const CreateReviewModal = ({ restaurant }) => {
       history.push(`/restaurants/${restaurant.id}`);
     } catch (errors) {
       if (errors) {
-        // const data = await errors.json()
-        console.log("DATA: ", errors);
         setErrors(errors);
         setSubmitted(true);
       }
@@ -96,48 +51,23 @@ export const CreateReviewModal = ({ restaurant }) => {
             <div className="starsText">Stars</div>
             <div
               onClick={() => setStars(1)}
-              className={
-                (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star") &&
-                (tempRating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star")
-              }
-              onMouseEnter={() => setTempRating(1)}
-              onMouseLeave={() => setTempRating(1)}
+              className={ (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star") }
             ></div>
             <div
               onClick={() => setStars(2)}
-              className={
-                (stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star") &&
-                (tempRating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star")
-              }
-              onMouseEnter={() => setTempRating(2)}
-              onMouseLeave={() => setTempRating(2)}
+              className={ (stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star") }
             ></div>
             <div
               onClick={() => setStars(3)}
-              className={
-                (stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star") &&
-                (tempRating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star")
-              }
-              onMouseEnter={() => setTempRating(3)}
-              onMouseLeave={() => setTempRating(3)}
+              className={ (stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star") }
             ></div>
             <div
               onClick={() => setStars(4)}
-              className={
-                (stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star") &&
-                (tempRating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star")
-              }
-              onMouseEnter={() => setTempRating(4)}
-              onMouseLeave={() => setTempRating(4)}
+              className={ (stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star") }
             ></div>
             <div
               onClick={() => setStars(5)}
-              className={
-                (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star") &&
-                (tempRating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star")
-              }
-              onMouseEnter={() => setTempRating(5)}
-              onMouseLeave={() => setTempRating(5)}
+              className={ (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star") }
             ></div>
           </div>
           {!stars && submitted && (
@@ -152,10 +82,9 @@ export const CreateReviewModal = ({ restaurant }) => {
               onChange={(e) => setReview(e.target.value)}
             ></textarea>
           </div>
-          {/* {errors.review && <div className="error bottomError">Review needs to have at least one character or an emoji 😁</div>} */}
           {!review && submitted && (
             <div className="bottomError">
-              Review needs to have at least one character or an emoji 😁
+              Review needs to have at least one character 😁
             </div>
           )}
         </div>

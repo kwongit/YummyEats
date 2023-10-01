@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { thunkGetUserReviews } from "../../store/reviews";
-import { thunkGetRestaurants } from "../../store/restaurants";
 import OpenModalButton from "../OpenModalButton";
 import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal";
 import { UpdateReviewModal } from "../ReviewModal/UpdateReviewModal";
@@ -41,7 +40,6 @@ export const ManageReviews = () => {
 
     useEffect(() => {
         dispatch(thunkGetUserReviews());
-        // dispatch(thunkGetRestaurants());
     }, [dispatch, reviewsList.length]);
 
     if (!user) return null;
