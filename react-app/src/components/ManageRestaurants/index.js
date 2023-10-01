@@ -35,7 +35,12 @@ export const ManageRestaurants = () => {
       <div className="manage-container">
         <h1>Manage Restaurants</h1>
         {restaurantsList && restaurantsList.length <= 0 ? (
-          <button onClick={handleClick}>Create a New Restaurant</button>
+          <button
+            className="manage-restaurants-create-btn"
+            onClick={handleClick}
+          >
+            Create a New Restaurant
+          </button>
         ) : (
           ""
         )}
