@@ -146,7 +146,7 @@ export const CreateReviewModal = ({ restaurant }) => {
                         >
                         </div>
                     </div>
-                    {!stars && submitted && <div className="error bottomError">Star review is needed</div>}
+                    {!stars && submitted && <div className="error">Star review is needed</div>}
                     <div className="textareaContainer">
                         <textarea
                             className="reviewInput"
@@ -158,7 +158,7 @@ export const CreateReviewModal = ({ restaurant }) => {
                         </textarea>
                     </div>
                     {/* {errors.review && <div className="error bottomError">Review needs to have at least one character or an emoji 😁</div>} */}
-                    {!review && submitted && <div className="error bottomError">Review needs to have at least one character or an emoji 😁</div>}
+                    {!review && submitted && <div className="bottomError">Review needs to have at least one character or an emoji 😁</div>}
 
                 </div>
                 <div className="reviewButtons">
