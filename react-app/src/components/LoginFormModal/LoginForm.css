@@ -12,7 +12,22 @@
   margin-bottom: 20px;
 }
 
-.log-in-button {
+.log-in-button, .log-in-as-demo-user-button {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.login-modal-login-btn, .demo-user-button {
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-weight: 500;
+  background-color: black;
+  color: white;
+  font-size: 11px;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 7px;
+}
+
+.login-modal-login-btn:hover, .demo-user-button:hover {
+  opacity: 80%;
 }
