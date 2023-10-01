@@ -7,13 +7,10 @@ export const UpdateReviewModal = ({ updateReview }) => {
     const dispatch = useDispatch();
 
     const [stars, setStars] = useState(updateReview.stars)
-    const [tempRating, setTempRating] = useState(updateReview.stars)
     const [review, setReview] = useState(updateReview.review)
     const [errors, setErrors] = useState({})
 
     const { closeModal } = useModal();
-
-    // console.log("UpdateReviewModal review: ", updateReview)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,66 +42,37 @@ export const UpdateReviewModal = ({ updateReview }) => {
                     <div className='starRatingContainer'>
                         <div className='starsText'>Stars</div>
                         <div onClick={() => setStars(1)}
-                            className=  {
-                                (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star")
-                                &&
-                                (tempRating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star")
-                            }
-                            onMouseEnter={() => setTempRating(1)}
-                            onMouseLeave={() => setTempRating(1)}
+                            className=  { (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
                         </div>
                         <div onClick={() => setStars(2)}
-                            className=  {
-                                (stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star")
-                                &&
-                                (tempRating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star")
-                            }
-                            onMouseEnter={() => setTempRating(2)}
-                            onMouseLeave={() => setTempRating(2)}
+                            className=  { (stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
                         </div>
                         <div onClick={() => setStars(3)}
-                            className=  {
-                                (stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star")
-                                &&
-                                (tempRating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star")
-                            }
-                            onMouseEnter={() => setTempRating(3)}
-                            onMouseLeave={() => setTempRating(3)}
+                            className=  { (stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
                         </div>
                         <div onClick={() => setStars(4)}
-                            className=  {
-                                (stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star")
-                                &&
-                                (tempRating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star")
-                            }
-                            onMouseEnter={() => setTempRating(4)}
-                            onMouseLeave={() => setTempRating(4)}
+                            className=  { (stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
                         </div>
                         <div onClick={() => setStars(5)}
-                            className=  {
-                                (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star")
-                                &&
-                                (tempRating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star")
-                            }
-                            onMouseEnter={() => setTempRating(5)}
-                            onMouseLeave={() => setTempRating(5)}
+                            className=  { (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
                         </div>
                     </div>
-
-                    <textarea
-                        className="reviewInput"
-                        type='text'
-                        placeholder={`${updateReview.review}`}
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                    >
-                    </textarea>
-                    {errors.review && <span className="error bottomError">Review needs to have at least one character or an emoji 😁</span>}
+                    <div className="textareaContainer">
+                        <textarea
+                            className="reviewInput"
+                            type='text'
+                            placeholder={`${updateReview.review}`}
+                            value={review}
+                            onChange={(e) => setReview(e.target.value)}
+                        >
+                        </textarea>
+                    </div>
+                    {errors.review && <div className="bottomError">Review needs to have at least one character 😁</div>}
 
                 </div>
                 <div className="reviewButtons">

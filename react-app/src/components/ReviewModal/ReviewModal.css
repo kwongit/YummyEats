@@ -115,6 +115,13 @@
 .reviewForm .error {
     /* border: 1px solid red; */
     color: red;
-    margin: 0px 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.bottomError {
+    /* border: 1px solid red; */
+    color: red;
+    margin: 0px 10px 15px;
     text-align: center;
 }
