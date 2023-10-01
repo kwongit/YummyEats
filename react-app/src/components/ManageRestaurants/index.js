@@ -5,6 +5,7 @@ import { thunkGetUserRestaurants } from "../../store/restaurants";
 import RestaurantTile from "../RestaurantTile";
 import { DeleteRestaurantModal } from "./DeleteRestaurantModal";
 import OpenModalButton from "../OpenModalButton";
+import "./ManageRestaurants.css";
 
 export const ManageRestaurants = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,12 @@ export const ManageRestaurants = () => {
       <div className="manage-container">
         <h1>Manage Restaurants</h1>
         {restaurantsList && restaurantsList.length <= 0 ? (
-          <button onClick={handleClick}>Create a New Restaurant</button>
+          <button
+            className="manage-restaurants-create-btn"
+            onClick={handleClick}
+          >
+            Create a New Restaurant
+          </button>
         ) : (
           ""
         )}
@@ -45,7 +51,7 @@ export const ManageRestaurants = () => {
             <RestaurantTile manage={true} restaurant={restaurant} />
             <div className="buttons-container">
               <button
-                className="update-button"
+                className="manage-restaurants-update-button"
                 onClick={() => handleUpdateClick(restaurant.id)}
               >
                 Update

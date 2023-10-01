@@ -30,6 +30,7 @@ a,button {
     /* justify-content: center; */
   /* align-items: center; */
   border-radius: 10px 10px 10px 10px;
+  cursor: pointer;
 
 }
 
