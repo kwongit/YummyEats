@@ -59,7 +59,11 @@ function ProfileButton({ user }) {
             {user ? (
 
           <span>
-            <NavLink className="create-new-restaurant menu-navLinks" to="/restaurants/new">
+            <NavLink
+            className="create-new-restaurant menu-navLinks"
+            to="/restaurants/new"
+            onClick={closeMenu}
+            >
               Create a New Restaurant
             </NavLink>
           </span>
@@ -67,7 +71,8 @@ function ProfileButton({ user }) {
           ""
         )}
             <li>
-              <NavLink exact to="/account/current" className="manage-account menu-navLinks">
+              <NavLink exact to="/account/current" className="manage-account menu-navLinks"
+              onClick={closeMenu}>
                 Manage Account
               </NavLink>
             </li>
@@ -76,6 +81,7 @@ function ProfileButton({ user }) {
                 exact
                 to="/restaurants/current"
                 className="manage-restaurants-current menu-navLinks"
+                onClick={closeMenu}
               >
                 Manage Restaurants
               </NavLink>
@@ -85,6 +91,7 @@ function ProfileButton({ user }) {
                 exact
                 to="/reviews/current"
                 className="manage-reviews-current menu-navLinks"
+                onClick={closeMenu}
               >
                 Manage Reviews
               </NavLink>
