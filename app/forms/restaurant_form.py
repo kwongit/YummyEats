@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, SubmitField, FileField, IntegerField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms import SelectField, StringField, SubmitField, URLField, IntegerField
+from wtforms.validators import DataRequired, Length, URL, NumberRange, ValidationError
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 
 restaurant_types = [ "American", "Asian", "Breakfast and Brunch", "Cafe", "Mexican", "Pizza", "Wings", "Other" ]
@@ -23,6 +22,10 @@ hours = [
     "Open 24 hours"
     ]
 
+def my_url_validator(form, field):
+    if ".jpeg" not in field.data and ".jpg" not in field.data and ".png" not in field.data:
+        raise ValidationError("URL must contain .jpeg, .jpg, or .png")
+
 
 class RestaurantForm(FlaskForm):
     address = StringField("Address", validators=[DataRequired(), Length(min=5, message="Address must have at least 5 characters!")])
@@ -33,5 +36,5 @@ class RestaurantForm(FlaskForm):
     price = IntegerField("Price", validators=[DataRequired(), NumberRange(min=1, max=3, message="Price must be an integer between 1 and 3!")])
     open_hours = SelectField("Open Hours", choices=hours, validators=[DataRequired()])
     close_hours = SelectField("Closing Hour", choices=hours, validators=[DataRequired()])
-    image_url = FileField("Restaurant image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image_url = URLField("Restaurant image", validators=[DataRequired()])
     submit = SubmitField("Create Restaurant")

@@ -1,7 +1,11 @@
+import { csrfFetch } from "./csrf";
+
 // TYPE CONSTANTS
 
 const GET_MENU_ITEMS = "menuItems/getMenuItems";
 const GET_MENU_ITEM = "menuItems/getMenuItem";
+// const CREATE_MENU_ITEM = "menuItems/createMenuItem";
+// const UPDATE_MENU_ITEM = "menuItems/updateMenuItem";
 const DELETE_MENU_ITEM = "menuItems/deleteMenuItem";
 
 // ACTION CREATORS
@@ -20,6 +24,20 @@ const getMenuItem = (menuItem) => {
   };
 };
 
+// const createMenuItem = (menuItem) => {
+//   return {
+//     type: CREATE_MENU_ITEM,
+//     menuItem,
+//   };
+// };
+
+// const updateMenuItem = (menuItem) => {
+//   return {
+//     type: UPDATE_MENU_ITEM,
+//     menuItem,
+//   };
+// };
+
 const deleteMenuItem = (menuItemId) => {
   return {
     type: DELETE_MENU_ITEM,
@@ -30,10 +48,12 @@ const deleteMenuItem = (menuItemId) => {
 // THUNK ACTION CREATORS
 
 export const thunkGetMenuItems = (restaurantId) => async (dispatch) => {
-  const res = await fetch(`/api/restaurants/${restaurantId}/menuitems`);
+  // tbd
+  const res = await csrfFetch(`/api/restaurants/${restaurantId}/menuitems`);
   if (res.ok) {
     const menuItems = await res.json();
     dispatch(getMenuItems(menuItems));
+    console.log('res=====>' ,res)
     return res;
   } else {
     const errors = await res.json();
@@ -42,7 +62,8 @@ export const thunkGetMenuItems = (restaurantId) => async (dispatch) => {
 };
 
 export const thunkGetMenuItemInfo = (menuItemId) => async (dispatch) => {
-  const res = await fetch(`/api/menuitems/${menuItemId}`);
+  // tbd
+  const res = await csrfFetch(`/api/menuitems/${menuItemId}`);
 
   if (res.ok) {
     const menuItem = await res.json();
@@ -54,24 +75,24 @@ export const thunkGetMenuItemInfo = (menuItemId) => async (dispatch) => {
   }
 };
 
-export const thunkCreateMenuItem =
-  (menuItem, restaurantId) => async (dispatch) => {
-    const res = await fetch(`/api/restaurants/${restaurantId}/createmenuitem`, {
-      method: "POST",
-      body: menuItem,
-    });
+export const thunkCreateMenuItem = (menuItem, restaurantId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/restaurants/${restaurantId}/createmenuitem`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(menuItem),
+  });
 
-    if (res.ok) {
-      const data = await res.json();
-      return data;
-    } else {
-      const errors = await res.json();
-      return errors;
-    }
-  };
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
 
 export const thunkDeleteMenuItem = (menuItemId) => async (dispatch) => {
-  const res = await fetch(`/api/menuitems/${menuItemId}`, {
+  const res = await csrfFetch(`/api/menuitems/${menuItemId}`, {
     method: "DELETE",
   });
 
@@ -87,6 +108,7 @@ const menuItemsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case GET_MENU_ITEMS:
+      // console.log(action.menuItems)
       newState = { ...state, allMenuItems: {} };
       action.menuItems.forEach((menuItem) => {
         newState.allMenuItems[menuItem.id] = menuItem;
@@ -98,14 +120,14 @@ const menuItemsReducer = (state = initialState, action) => {
       newState.singleMenuItem = action.menuItem;
       return newState;
 
-    case DELETE_MENU_ITEM:
-      newState = {
-        ...state,
-        allMenuItems: { ...state.allMenuItems },
-        singleMenuItem: {},
-      };
-      delete newState.allMenuItems[action.menuItemId];
-      return newState;
+      case DELETE_MENU_ITEM:
+        newState = {
+          ...state,
+          allMenuItems: { ...state.allMenuItems },
+          singleMenuItem: {},
+        };
+        delete newState.allMenuItems[action.menuItemId];
+        return newState;
 
     default:
       return state;
