@@ -255,7 +255,7 @@ export const CreateRestaurant = ({ user }) => {
           </div>
         </div>
 
-        <div className="images-container">
+        <div id="image-url-con" >
           <h3>Liven up your restaurant with photos</h3>
           <p>Submit a link to at least one photo to publish your restaurant.</p>
           <div className="image-url-container label-container">
