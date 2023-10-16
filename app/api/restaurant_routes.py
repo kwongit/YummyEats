@@ -1,11 +1,12 @@
-from flask import Blueprint, jsonify, request, redirect
-from app.models import Restaurant, User, Review, MenuItem
+from flask import Blueprint, request
+from app.models import Restaurant, Review, MenuItem
 from ..forms.restaurant_form import RestaurantForm
 from ..forms.menu_item_form import MenuItemForm
 from ..forms.review_form import ReviewForm
 from datetime import date
 from ..models.db import db
 from flask_login import current_user, login_required
+from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
 
 
 restaurant_routes = Blueprint('restaurant', __name__)
@@ -25,7 +26,6 @@ def get_all_restaurants():
 
 
     for restaurant_obj in all_restaurant_list:
-        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", restaurant_obj.review)
         restaurant_reviews = [ review for review in all_review_list if review["restaurant_id"] == restaurant_obj["id"] ]
         sum_stars = 0
         for restaurant_review in restaurant_reviews:
@@ -99,11 +99,21 @@ def create_restaurant():
     """
 
     form = RestaurantForm()
-
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
+        image = form.data["image_url"]
+        image.filename = get_unique_filename(image.filename)
 
+        # Upload the image to S3
+        upload = upload_file_to_s3(image)
+        print(upload)
+
+        if 'url' not in upload:
+            return { "errors": "Error uploading image to S3" }, 400
+
+        # Use the S3 URL
+        image_url = upload['url']
         new_restaurant = Restaurant(
             owner_id=current_user.id,
             address=form.data["address"],
@@ -114,7 +124,8 @@ def create_restaurant():
             price=form.data["price"],
             open_hours=form.data["open_hours"],
             close_hours=form.data["close_hours"],
-            image_url=form.data["image_url"],
+            # Use the S3 URL
+            image_url=image_url,
             created_at = date.today(),
             updated_at = date.today()
         )
@@ -267,6 +278,3 @@ def create_review(restaurantId):
     else:
         print(form.errors)
         return { "errors": form.errors }, 400
-
-
-
