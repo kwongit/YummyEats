@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 // TYPE CONSTANTS
 
 const GET_RESTAURANTS = "restaurants/getRestaurants";
@@ -22,6 +24,13 @@ const getRestaurant = (restaurant) => {
   };
 };
 
+const createRestaurant = (restaurant) => {
+  return {
+    type: CREATE_RESTAURANT,
+    restaurant,
+  };
+};
+
 const updateRestaurant = (restaurant) => {
   return {
     type: UPDATE_RESTAURANT,
@@ -39,7 +48,7 @@ const deleteRestaurant = (restaurantId) => {
 // THUNK ACTION CREATORS
 
 export const thunkGetRestaurants = () => async (dispatch) => {
-  const res = await fetch("/api/restaurants");
+  const res = await csrfFetch("/api/restaurants");
 
   if (res.ok) {
     const restaurants = await res.json();
@@ -52,7 +61,7 @@ export const thunkGetRestaurants = () => async (dispatch) => {
 };
 
 export const thunkGetRestaurantInfo = (restaurantId) => async (dispatch) => {
-  const res = await fetch(`/api/restaurants/${restaurantId}`);
+  const res = await csrfFetch(`/api/restaurants/${restaurantId}`);
 
   if (res.ok) {
     const restaurant = await res.json();
@@ -65,9 +74,10 @@ export const thunkGetRestaurantInfo = (restaurantId) => async (dispatch) => {
 };
 
 export const thunkCreateRestaurant = (restaurant, user) => async (dispatch) => {
-  const res = await fetch("/api/restaurants/", {
+  const res = await csrfFetch("/api/restaurants/", {
     method: "POST",
-    body: restaurant,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(restaurant),
   });
 
   if (res.ok) {
@@ -80,7 +90,7 @@ export const thunkCreateRestaurant = (restaurant, user) => async (dispatch) => {
 };
 
 export const thunkGetUserRestaurants = () => async (dispatch) => {
-  const res = await fetch("/api/restaurants/current");
+  const res = await csrfFetch("/api/restaurants/current");
 
   if (res.ok) {
     const restaurants = await res.json();
@@ -94,9 +104,10 @@ export const thunkGetUserRestaurants = () => async (dispatch) => {
 
 export const thunkUpdateRestaurant =
   (restaurant, restaurantId) => async (dispatch) => {
-    const res = await fetch(`/api/restaurants/${restaurantId}`, {
+    const res = await csrfFetch(`/api/restaurants/${restaurantId}`, {
       method: "PUT",
-      body: restaurant,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(restaurant),
     });
 
     if (res.ok) {
@@ -110,7 +121,7 @@ export const thunkUpdateRestaurant =
   };
 
 export const thunkDeleteRestaurant = (restaurantId) => async (dispatch) => {
-  const res = await fetch(`/api/restaurants/${restaurantId}`, {
+  const res = await csrfFetch(`/api/restaurants/${restaurantId}`, {
     method: "DELETE",
   });
 

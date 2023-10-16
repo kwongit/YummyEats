@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkCreateRestaurant } from "../../store/restaurants";
-import "./CreateRestaurant.css";
+import './CreateRestaurant.css'
 
 export const CreateRestaurant = ({ user }) => {
   const [address, setAddress] = useState("");
@@ -36,6 +36,13 @@ export const CreateRestaurant = ({ user }) => {
     if (!open_hours) errors.open_hours = "Open hours is required";
     if (!close_hours) errors.close_hours = "Close hours is required";
     if (!image_url) errors.image_url = "Preview image is required";
+    if (
+      image_url &&
+      !image_url.endsWith("jpg") &&
+      !image_url.endsWith("jpeg") &&
+      !image_url.endsWith("png")
+    )
+      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
     setErrors(errors);
   }, [
@@ -56,20 +63,21 @@ export const CreateRestaurant = ({ user }) => {
     setIsSubmitting(true);
     setSubmitted(true);
 
-    const formData = new FormData();
-    formData.append("address", address);
-    formData.append("city", city);
-    formData.append("state", state);
-    formData.append("name", name);
-    formData.append("type", type);
-    formData.append("price", price);
-    formData.append("open_hours", open_hours);
-    formData.append("close_hours", close_hours);
-    formData.append("image_url", image_url);
+    const newRestaurant = {
+      address,
+      city,
+      state,
+      name,
+      type,
+      price,
+      open_hours,
+      close_hours,
+      image_url,
+    };
 
     if (!Object.values(errors).length) {
       const addRestaurant = await dispatch(
-        thunkCreateRestaurant(formData, user)
+        thunkCreateRestaurant(newRestaurant, user)
       );
 
       const combinedErrors = { ...errors, Errors: addRestaurant.errors };
@@ -85,12 +93,8 @@ export const CreateRestaurant = ({ user }) => {
 
   return (
     <div className="create-restaurant-form-container">
-      <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        id="form-container"
-      >
-        <h2>Create a New Restaurant</h2>
+      <form onSubmit={handleSubmit} id='form-container'>
+      <h2>Create a New Restaurant</h2>
         <div className="location-container">
           <h3>Get Started</h3>
 
@@ -109,31 +113,33 @@ export const CreateRestaurant = ({ user }) => {
             </div>
           </div>
 
-          <div className="city-container label-container">
-            <label>City</label>
-            <input
-              type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              placeholder="City"
-            />
-            {errors.city && submitted && (
-              <p className="on-submit-errors">{errors.city}</p>
-            )}
-          </div>
+          {/* <div className="form-div-container"> */}
+            <div className="city-container label-container" >
+              <label>City</label>
+              <input
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="City"
+              />
+              {errors.city && submitted && (
+                <p className="on-submit-errors">{errors.city}</p>
+              )}
+            </div>
 
-          <div className="state-container label-container">
-            <label>State</label>
-            <input
-              type="text"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              placeholder="State"
-            />
-            {errors.state && submitted && (
-              <p className="on-submit-errors">{errors.state}</p>
-            )}
-          </div>
+            <div className="state-container label-container">
+              <label>State</label>
+              <input
+                type="text"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                placeholder="State"
+              />
+              {errors.state && submitted && (
+                <p className="on-submit-errors">{errors.state}</p>
+              )}
+            </div>
+          {/* </div> */}
         </div>
 
         <div className="form-div-container">
@@ -260,9 +266,9 @@ export const CreateRestaurant = ({ user }) => {
           <p>Submit a link to at least one photo to publish your restaurant.</p>
           <div className="image-url-container label-container">
             <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImageUrl(e.target.files[0])}
+              type="url"
+              value={image_url}
+              onChange={(e) => setImageUrl(e.target.value)}
               placeholder="Preview Image URL"
             />
             {errors.image_url && submitted && (
