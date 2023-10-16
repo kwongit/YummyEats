@@ -12,7 +12,7 @@ import retail from "../../assets/retail.png"
 import overall from "../../assets/top_eats.png"
 
 const showAlert = () => {
-    window.alert("Coming Soon");
+    // window.alert("Coming Soon");
   };
 let categories = (
     <div >

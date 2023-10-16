@@ -25,7 +25,7 @@ export const Restaurants = () => {
   if (!restaurants.length) return null;
 
   const showAlert = () => {
-    window.alert("Coming Soon");
+    // window.alert("Coming Soon");
   };
 
   return (
