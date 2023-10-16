@@ -82,10 +82,10 @@ export const CreateMenuItem = ({ user }) => {
   return (
     <div className="create-menu-item-form-container">
       <h1>Create a New Menu Item</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="create-form-container">
 
         <div className="name-container">
-          <div className="name-container">
+          <div className="name-container create-label-container">
             <label>Item Name</label>
             <input
               type="text"
@@ -101,7 +101,7 @@ export const CreateMenuItem = ({ user }) => {
         </div>
 
         <div className="size-container">
-          <div className="size-container">
+          <div className="size-container create-label-container" >
             <label>Size</label>
             <input
               type="text"
@@ -116,7 +116,7 @@ export const CreateMenuItem = ({ user }) => {
         </div>
 
         <div className="calories-container">
-          <div className="calories-container">
+          <div className="calories-container create-label-container">
             <label>Calories</label>
             <input
               type="number"
@@ -131,7 +131,7 @@ export const CreateMenuItem = ({ user }) => {
         </div>
 
         <div className="price-container">
-          <div className="price-container">
+          <div className="price-container create-label-container">
             <label>Item Price</label>
             <input
               type="number"
@@ -147,7 +147,7 @@ export const CreateMenuItem = ({ user }) => {
         </div>
 
         <div className="description-container">
-          <div className="description-container">
+          <div className="description-container create-label-container">
             <label>Item Description</label>
             <textarea
               value={description}
@@ -160,7 +160,7 @@ export const CreateMenuItem = ({ user }) => {
           </div>
         </div>
 
-        <div className="images-container">
+        <div className="images-container ">
           <p>Submit a link to one photo to create your menu item.</p>
           <div className="image-url-container">
             <input
@@ -176,7 +176,7 @@ export const CreateMenuItem = ({ user }) => {
           </div>
         </div>
 
-        <div className="button-container">
+        <div className="item-button-container">
           <button
             className="create-menu-item-button"
             type="submit"
