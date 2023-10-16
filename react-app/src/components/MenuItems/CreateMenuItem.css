@@ -1,0 +1,49 @@
+.create-menu-item-page{
+  /* background-color: pink; */
+  display: flex;
+  justify-content: center;
+}
+
+.create-menu-item-form-container{
+  /* background-color: aqua; */
+  max-width: 600px;
+}
+
+.create-menu-item-container{
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.create-menu-item-container > label{
+  padding: 2px 3px;
+  margin-top: 10px;
+}
+
+.create-menu-item-container > input{
+  font-family: 'Wix Madefor Display', sans-serif;
+  padding: 2px 3px;
+}
+
+.create-menu-item-container > textarea{
+  font-family: 'Wix Madefor Display', sans-serif;
+  padding: 2px 3px;
+}
+
+.create-menu-item-button{
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-weight: 500;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 7px;
+  margin: 50px 0 40px;
+}
+
+.create-menu-item-button:disabled{
+  background-color: white;
+  border: 1px solid grey;
+  color: grey;
+}
