@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { thunkCreateMenuItem } from "../../store/menuItems"
+import { thunkCreateMenuItem } from "../../store/menuItems";
 import './CreateMenuItem.css'
 
 export const CreateMenuItem = ({ user }) => {
@@ -31,23 +31,9 @@ export const CreateMenuItem = ({ user }) => {
     if (calories < 0) errors.calories = "Calories must be zero or greater";
     if (!price || price < 0) errors.price = "Valid price is required";
     if (!image_url) errors.image_url = "Preview image is required";
-    if (
-      image_url &&
-      !image_url.endsWith("jpg") &&
-      !image_url.endsWith("jpeg") &&
-      !image_url.endsWith("png")
-    )
-      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
     setErrors(errors);
-  }, [
-    name,
-    size,
-    calories,
-    price,
-    description,
-    image_url,
-  ]);
+  }, [name, size, calories, price, description, image_url]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,21 +41,20 @@ export const CreateMenuItem = ({ user }) => {
     setIsSubmitting(true);
     setSubmitted(true);
 
-    const newMenuItem = {
-      name,
-      size,
-      calories,
-      description,
-      price,
-      image_url,
-    };
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("size", size);
+    formData.append("calories", calories);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("imageUrl", image_url);
 
     if (!Object.values(errors).length) {
       const addMenuItem = await dispatch(
-        thunkCreateMenuItem(newMenuItem, restaurantId)
+        thunkCreateMenuItem(formData, restaurantId)
       );
 
-      const combinedErrors = { ...errors, Errors: addMenuItem.errors};
+      const combinedErrors = { ...errors, Errors: addMenuItem.errors };
 
       if (addMenuItem.errors) {
         setErrors(combinedErrors);
@@ -84,7 +69,7 @@ export const CreateMenuItem = ({ user }) => {
     <div className='create-menu-item-page'>
       <div className="create-menu-item-form-container">
         <h1>Create a New Menu Item</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
 
           <div className="name-container">
             <div className="create-menu-item-container">
@@ -167,9 +152,9 @@ export const CreateMenuItem = ({ user }) => {
             <div className="create-menu-item-container">
               <label>Submit a link to one photo to create your menu item.</label>
               <input
-                type="url"
-                value={image_url}
-                onChange={(e) => setImageUrl(e.target.value)}
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageUrl(e.target.files[0])}
                 placeholder="Preview Image URL"
                 required={true}
               />
