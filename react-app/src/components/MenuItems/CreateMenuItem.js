@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { thunkCreateMenuItem } from "../../store/menuItems"
+import './CreateMenuItem.css'
 
 export const CreateMenuItem = ({ user }) => {
   const [name, setName] = useState("");
