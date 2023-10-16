@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkUpdateRestaurant } from "../../store/restaurants";
-import './CreateRestaurant.css'
+import "./CreateRestaurant.css";
+
 export const UpdateRestaurant = ({ restaurant }) => {
   const [address, setAddress] = useState(restaurant?.address);
   const [city, setCity] = useState(restaurant?.city);
@@ -24,7 +25,6 @@ export const UpdateRestaurant = ({ restaurant }) => {
   }
 
   useEffect(() => {
-    // Pre-populate the form fields with restaurant data
     setAddress(restaurant.address);
     setCity(restaurant.city);
     setState(restaurant.state);
@@ -51,13 +51,6 @@ export const UpdateRestaurant = ({ restaurant }) => {
     if (open_hours === "0") errors.open_hours = "Open hours is required";
     if (close_hours === "0") errors.close_hours = "Close hours is required";
     if (!image_url) errors.image_url = "Preview image is required";
-    if (
-      image_url &&
-      !image_url.endsWith("jpg") &&
-      !image_url.endsWith("jpeg") &&
-      !image_url.endsWith("png")
-    )
-      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
 
     setErrors(errors);
   }, [
@@ -76,21 +69,20 @@ export const UpdateRestaurant = ({ restaurant }) => {
     e.preventDefault();
     setSubmitted(true);
 
-    const updatedRestaurant = {
-      address,
-      city,
-      state,
-      name,
-      type,
-      price,
-      open_hours,
-      close_hours,
-      image_url,
-    };
+    const formData = new FormData();
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("name", name);
+    formData.append("type", type);
+    formData.append("price", price);
+    formData.append("open_hours", open_hours);
+    formData.append("close_hours", close_hours);
+    formData.append("image_url", image_url);
 
     if (!Object.values(errors).length) {
       const updateRestaurant = await dispatch(
-        thunkUpdateRestaurant(updatedRestaurant, restaurant.id)
+        thunkUpdateRestaurant(formData, restaurant.id)
       );
 
       const combinedErrors = { ...errors, Errors: updateRestaurant.errors };
@@ -105,8 +97,12 @@ export const UpdateRestaurant = ({ restaurant }) => {
 
   return (
     <div className="create-restaurant-form-container">
-      <form onSubmit={handleSubmit} id='form-container' >
-      <h2>Update Your Restaurant</h2>
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        id="form-container"
+      >
+        <h2>Update Your Restaurant</h2>
         <div className="location-container">
           <div className="address-container">
             <div className="address-container label-container">
@@ -123,32 +119,30 @@ export const UpdateRestaurant = ({ restaurant }) => {
             </div>
           </div>
 
-          {/* <div className="city-and-state-container"> */}
-            <div className="city-container label-container" >
-              <label>City</label>
-              <input
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="City"
-              />
-              {errors.city && submitted && (
-                <p className="on-submit-errors">{errors.city}</p>
-              )}
-            </div>
-            <div className="state-container label-container">
-              <label>State</label>
-              <input
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                placeholder="State"
-              />
-              {errors.state && submitted && (
-                <p className="on-submit-errors">{errors.state}</p>
-              )}
-            </div>
-          {/* </div> */}
+          <div className="city-container label-container">
+            <label>City</label>
+            <input
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="City"
+            />
+            {errors.city && submitted && (
+              <p className="on-submit-errors">{errors.city}</p>
+            )}
+          </div>
+          <div className="state-container label-container">
+            <label>State</label>
+            <input
+              type="text"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              placeholder="State"
+            />
+            {errors.state && submitted && (
+              <p className="on-submit-errors">{errors.state}</p>
+            )}
+          </div>
         </div>
 
         <div className="form-div-container">
@@ -280,9 +274,9 @@ export const UpdateRestaurant = ({ restaurant }) => {
           <label>Preview image</label>
           <div className="image-url-container label-container">
             <input
-              type="url"
-              value={image_url}
-              onChange={(e) => setImageUrl(e.target.value)}
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageUrl(e.target.files[0])}
               placeholder="Preview Image URL"
             />
             {errors.image_url && submitted && (

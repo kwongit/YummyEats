@@ -96,8 +96,7 @@ export const thunkUpdateRestaurant =
   (restaurant, restaurantId) => async (dispatch) => {
     const res = await fetch(`/api/restaurants/${restaurantId}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(restaurant),
+      body: restaurant,
     });
 
     if (res.ok) {

@@ -6,7 +6,7 @@ from ..forms.review_form import ReviewForm
 from datetime import date
 from ..models.db import db
 from flask_login import current_user, login_required
-from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
+from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 
 restaurant_routes = Blueprint('restaurant', __name__)
@@ -97,7 +97,6 @@ def create_restaurant():
     """
     Route to post a new restaurant
     """
-
     form = RestaurantForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
@@ -114,6 +113,7 @@ def create_restaurant():
 
         # Use the S3 URL
         image_url = upload['url']
+
         new_restaurant = Restaurant(
             owner_id=current_user.id,
             address=form.data["address"],
@@ -129,10 +129,10 @@ def create_restaurant():
             created_at = date.today(),
             updated_at = date.today()
         )
+
         db.session.add(new_restaurant)
         db.session.commit()
         return new_restaurant.to_dict(), 201
-
     else:
         print(form.errors)
         return { "errors": form.errors }, 400
@@ -145,12 +145,25 @@ def update_restaurant(restaurantId):
     Update a current restaurant
     """
     form = RestaurantForm()
-
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     restaurant_to_update = Restaurant.query.get(restaurantId)
+
     if restaurant_to_update.owner_id == current_user.id:
         if form.validate_on_submit():
+            image = form.data["image_url"]
+            image.filename = get_unique_filename(image.filename)
+
+            # Upload the image to S3
+            upload = upload_file_to_s3(image)
+            print(upload)
+
+            if 'url' not in upload:
+                return { "errors": "Error uploading image to S3" }, 400
+
+            # Use the S3 URL
+            image_url = upload['url']
+
             restaurant_to_update.address = form.data["address"]
             restaurant_to_update.city = form.data["city"]
             restaurant_to_update.state = form.data["state"]
@@ -159,27 +172,31 @@ def update_restaurant(restaurantId):
             restaurant_to_update.price = form.data["price"]
             restaurant_to_update.open_hours = form.data["open_hours"]
             restaurant_to_update.close_hours = form.data["close_hours"]
-            restaurant_to_update.image_url = form.data["image_url"]
+            restaurant_to_update.image_url = image_url
+
             db.session.commit()
             return restaurant_to_update.to_dict()
-
         else:
+            print(form.errors)
             return { "errors": form.errors }, 400
-
     else:
         return { "message": "FORBIDDEN" }, 403
 
 
 @restaurant_routes.route("/<int:restaurantId>", methods=["DELETE"])
 @login_required
-def delete(restaurantId):
+def delete_restaurant(restaurantId):
     """
-    Delete a restaurant
+    Delete a restaurant and associated S3 files
     """
     restaurant_to_delete = Restaurant.query.get(restaurantId)
 
     if restaurant_to_delete:
         if restaurant_to_delete.owner_id == current_user.id:
+            # Delete associated S3 files
+            remove_file_from_s3(restaurant_to_delete.image_url)
+
+            # Delete the restaurant from the database
             db.session.delete(restaurant_to_delete)
             db.session.commit()
             return { "message": "Delete successful!" }
@@ -210,12 +227,22 @@ def create_menu_item(restaurantId):
     """
     Route to post a new menu item
     """
-
     form = MenuItemForm()
-
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
+        image = form.data["imageUrl"]
+        image.filename = get_unique_filename(image.filename)
+
+        # Upload the image to S3
+        upload = upload_file_to_s3(image)
+        print(upload)
+
+        if 'url' not in upload:
+            return { "errors": "Error uploading image to S3" }, 400
+
+        # Use the S3 URL
+        image_url = upload['url']
 
         new_menu_item = MenuItem(
             restaurantId=restaurantId,
@@ -224,14 +251,15 @@ def create_menu_item(restaurantId):
             calories=form.data["calories"],
             price=form.data["price"],
             description=form.data["description"],
-            imageUrl=form.data["image_url"],
+            # Use the S3 URL
+            imageUrl=image_url,
             created_at = date.today(),
             updated_at = date.today()
         )
+
         db.session.add(new_menu_item)
         db.session.commit()
         return new_menu_item.to_dict(), 201
-
     else:
         print(form.errors)
         return { "errors": form.errors }, 400

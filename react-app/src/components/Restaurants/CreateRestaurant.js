@@ -109,7 +109,6 @@ export const CreateRestaurant = ({ user }) => {
             </div>
           </div>
 
-          {/* <div className="form-div-container"> */}
           <div className="city-container label-container">
             <label>City</label>
             <input
@@ -135,7 +134,6 @@ export const CreateRestaurant = ({ user }) => {
               <p className="on-submit-errors">{errors.state}</p>
             )}
           </div>
-          {/* </div> */}
         </div>
 
         <div className="form-div-container">

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, StringField, SubmitField, FileField, IntegerField
-from wtforms.validators import DataRequired, Length, NumberRange, ValidationError
+from wtforms.validators import DataRequired, Length, NumberRange
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
@@ -33,5 +33,5 @@ class RestaurantForm(FlaskForm):
     price = IntegerField("Price", validators=[DataRequired(), NumberRange(min=1, max=3, message="Price must be an integer between 1 and 3!")])
     open_hours = SelectField("Open Hours", choices=hours, validators=[DataRequired()])
     close_hours = SelectField("Closing Hour", choices=hours, validators=[DataRequired()])
-    image_url = FileField("Business Main Image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image_url = FileField("Restaurant image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     submit = SubmitField("Create Restaurant")
