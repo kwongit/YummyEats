@@ -1,73 +1,46 @@
 import React, {useState} from 'react'
+import './SearchBar.css'
+import { useHistory } from 'react-router-dom';
 
+const SearchBar = ({ placeholder, data}) => {
+const history = useHistory();
+const [filteredData, setFilteredData] = useState([]);
 
-const searchBar = () => {
-
- const [searchInput, setSearchInput] = useState("");
-
- const countries = [
-
-  { name: "Belgium", continent: "Europe" },
-  { name: "India", continent: "Asia" },
-  { name: "Bolivia", continent: "South America" },
-  { name: "Ghana", continent: "Africa" },
-  { name: "Japan", continent: "Asia" },
-  { name: "Canada", continent: "North America" },
-  { name: "New Zealand", continent: "Australasia" },
-  { name: "Italy", continent: "Europe" },
-  { name: "South Africa", continent: "Africa" },
-  { name: "China", continent: "Asia" },
-  { name: "Paraguay", continent: "South America" },
-  { name: "Usa", continent: "North America" },
-  { name: "France", continent: "Europe" },
-  { name: "Botswana", continent: "Africa" },
-  { name: "Spain", continent: "Europe" },
-  { name: "Senegal", continent: "Africa" },
-  { name: "Brazil", continent: "South America" },
-  { name: "Denmark", continent: "Europe" },
-  { name: "Mexico", continent: "South America" },
-  { name: "Australia", continent: "Australasia" },
-  { name: "Tanzania", continent: "Africa" },
-  { name: "Bangladesh", continent: "Asia" },
-  { name: "Portugal", continent: "Europe" },
-  { name: "Pakistan", continent"Asia" },
-
-];
-
-const handleChange = (e) => {
-  e.preventDefault();
-  setSearchInput(e.target.value);
+const handleClick = (id) => {
+  history.push(`/restaurants/${id}`);
 };
 
-if (searchInput.length > 0) {
-    countries.filter((country) => {
-    return country.name.match(searchInput);
-});
+const handleFilter = (e) => {
+  const searchWord = e.target.value.toLowerCase();
+  const newData = data.filter((value) => {
+    return value.name.toLowerCase().includes(searchWord);
+  })
+  setFilteredData(newData);
 }
 
 return (
-  <div>
-    <input
-      type="search"
-      placeholder="Search here"
-      onChange={handleChange}
-      value={searchInput} />
-
-    <table>
-      <tr>
-        <th>Country</th>
-        <th>Continent</th>
-      </tr>
-      {countries.map((country) => {
-        <div>
-          <tr>
-            <td>{country.name}</td>
-            <td>{country.continent}</td>
-          </tr>
-        </div>
-      })}
-    </table>
+  <div className='search'>
+    <div className='searchInputs'>
+      <input
+        type='text'
+        placeholder={placeholder}
+        onChange={handleFilter}
+        >
+      </input>
+      <div className='searchIcon'>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    {filteredData.length !== 0 &&
+      <div className='dataResult'>
+        {filteredData.map((restaurant, key) => {
+          return <div className='dataItem' onClick={() => handleClick(restaurant.id)}>
+            <div>{restaurant.name}</div>
+          </div>
+        })}
+      </div>
+    }
   </div>
 )};
 
-export default searchBar;
+export default SearchBar;
