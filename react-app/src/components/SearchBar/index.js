@@ -83,7 +83,7 @@ return (
                   </div>
                   <div className='search-bar-result-info-container'>
                     <div>
-                      {data.name} (${data.price})
+                      {data.name} (${Number.parseFloat(data.price).toFixed(2)})
                     </div>
                   </div>
                 </div>
