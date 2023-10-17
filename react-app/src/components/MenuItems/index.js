@@ -8,9 +8,8 @@ export const MenuItems = ({restaurantId}) => {
   const dispatch = useDispatch();
 
   const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
-// console.log("get menu items =====>",getMenuItems)
   const menuItems = Object.values(getMenuItems);
-// console.log("menu items=====>>>>>>", menuItems)
+
   useEffect(() => {
     dispatch(thunkGetMenuItems(restaurantId));
   }, [dispatch]);

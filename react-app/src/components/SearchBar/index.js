@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './SearchBar.css'
 import { useHistory } from 'react-router';
 
-const SearchBar = ({ placeholder, data}) => {
+const SearchBar = ({ placeholder, data, searchType}) => {
 const history = useHistory();
 const [filteredData, setFilteredData] = useState([]);
 const [wordEntered, setWordEntered] = useState("");
@@ -51,23 +51,41 @@ return (
     </div>
     {filteredData.length !== 0 &&
       <div className='search-bar-results'>
-        {filteredData.map((restaurant) => {
-          let price = restaurant.price;
+        {filteredData.map((data) => {
+          let price = data.price;
           let templatePrice = [];
           for (let i = 0; i < price; i++){
             templatePrice.push('$');
           }
-          return <div className='search-bar-result' onClick={() => handleClick(restaurant.id)}>
-            <div className='search-bar-result-img-container'>
-              <img className='search-bar-result-img' src={restaurant.image_url}></img>
+          return (
+            <div>
+              {searchType === 'restaurants' && (
+                <div className='search-bar-result' onClick={() => handleClick(data.id)}>
+                  <div className='search-bar-result-img-container'>
+                    <img className='search-bar-result-img' src={data.image_url}></img>
+                  </div>
+                  <div className='search-bar-result-info-container'>
+                    <div>
+                      {data.name} ({data.address})
+                    </div>
+                    <div>{templatePrice.join("")} &#183; {data.type}</div>
+                  </div>
+                </div>
+              )}
+              {searchType === 'menu-items' && (
+                <div className='search-bar-result' onClick={() => handleClick(data.id)}>
+                  <div className='search-bar-result-img-container'>
+                    <img className='search-bar-result-img' src={data.imageUrl}></img>
+                  </div>
+                  <div className='search-bar-result-info-container'>
+                    <div>
+                      {data.name} (${data.price})
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            <div className='search-bar-result-info-container'>
-              <div>
-                {restaurant.name} ({restaurant.address})
-              </div>
-              <div>{templatePrice.join("")} &#183; {restaurant.type}</div>
-            </div>
-          </div>
+          )
         })}
       </div>
     }
