@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetRestaurants } from "../../store/restaurants";
 import RestaurantTile from "../RestaurantTile";
-import "./all-restaurants.css";
 import categories from "../Restaurants/categories";
 import offer from "../../assets/bogo.png";
 import offer2 from "../../assets/bogo2.png";
 import offer3 from "../../assets/bogo3.png";
-import overall from "../../assets/top_eats.png";
+import "./all-restaurants.css";
 
 export const Restaurants = () => {
   const dispatch = useDispatch();
@@ -23,10 +22,6 @@ export const Restaurants = () => {
   }, [dispatch]);
 
   if (!restaurants.length) return null;
-
-  const showAlert = () => {
-    window.alert("Coming Soon");
-  };
 
   return (
     <>
@@ -50,19 +45,19 @@ export const Restaurants = () => {
           </p>
         </div>
         <div id="offers-container">
-          <img src={offer}></img>
-          <img src={offer2}></img>
-          <img src={offer3}></img>
+          <img src={offer} alt="img"></img>
+          <img src={offer2} alt="img"></img>
+          <img src={offer3} alt="img"></img>
         </div>
       </div>
       <div id="main-body-container">
         <div id="restaurants-sidebar">
           <h1>All Stores</h1>
-          <a onClick={showAlert}>Sort</a>
-          <a onClick={showAlert}>From Uber Eats</a>
-          <a onClick={showAlert}>Price Range</a>
-          <a onClick={showAlert}>Max Delivery Fee</a>
-          <a onClick={showAlert}>Dietary</a>
+          <a>Sort</a>
+          <a>From Uber Eats</a>
+          <a>Price Range</a>
+          <a>Max Delivery Fee</a>
+          <a>Dietary</a>
         </div>
 
         <div className="restaurant-details-container" id="restaurants-main">
