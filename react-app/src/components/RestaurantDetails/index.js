@@ -7,7 +7,6 @@ import { MenuItems } from "../MenuItems";
 import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
 import { Map } from "../Maps"
-// import { setUser, thunkGetUserInfo } from "../../store/session";
 import "./RestaurantDetails.css";
 import OpenModalButton from "../OpenModalButton";
 
@@ -18,20 +17,13 @@ export const RestaurantDetails = () => {
   const { restaurantId } = useParams();
 
   const currentUser = useSelector((state) => state.session.user);
-  const reviews = useSelector((state) => state.reviews.allReviews)
+  const reviews = useSelector((state) => state.reviews.allReviews);
 
-  const reviewsList = Object.values(reviews)
-
-  console.log("RestaurantDetails reviewsList: ", reviewsList)
+  const reviewsList = Object.values(reviews);
 
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
   );
-  // const reviews = useSelector((state) => state.reviews.allReviews)
-
-  // const reviewsList = Object.values(reviews)
-
-  console.log("oneRestaurant: ", oneRestaurant)
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
@@ -39,7 +31,6 @@ export const RestaurantDetails = () => {
   }, [dispatch, restaurantId, reviewsList.length]);
 
   const handleClick = () => {
-    // tbd
     history.push(`/restaurants/${restaurantId}/createmenuitem`);
   };
 

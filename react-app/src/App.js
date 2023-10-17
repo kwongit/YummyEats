@@ -29,36 +29,46 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/login">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <LoginFormPage />
           </Route>
           <Route path="/signup">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <SignupFormPage />
           </Route>
           <Route exact path="/">
+            {/* <Navigation isLoaded={isLoaded} searchType={'restaurants'}/> */}
             <Restaurants />
           </Route>
           <Route exact path="/map">
             <Map />
           </Route>
           <Route exact path="/restaurants/new">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <CreateRestaurant />
           </Route>
           <Route exact path="/account/current">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <UpdateAccount />
           </Route>
           <Route exact path="/restaurants/current">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <ManageRestaurants />
           </Route>
           <Route exact path="/reviews/current">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <ManageReviews />
           </Route>
           <Route exact path="/restaurants/:restaurantId/edit">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <GetRestaurantToUpdate />
           </Route>
           <Route exact path="/restaurants/:restaurantId/createmenuitem">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <CreateMenuItem />
           </Route>
           <Route exact path="/restaurants/:restaurantId">
+            {/* <Navigation isLoaded={isLoaded} searchType={'menu-items'}/> */}
             <RestaurantDetails />
           </Route>
           <Route exact path="/menuitems/:menuItemId">
