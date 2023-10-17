@@ -12,7 +12,7 @@
   box-shadow: none;
   background-color: inherit;
   height: 15px;
-  width: 500px;
+  width: 300px;
   padding: 15px;
   font-size: 15px;
   font-family: 'Wix Madefor Display', sans-serif;
@@ -42,7 +42,7 @@
   background-color: white;
   margin-top: 5px;
   /* border: 2px solid red; */
-  width: 525px;
+  width: 425px;
   height: 300px;
   overflow: hidden;
   overflow-y: auto;
@@ -70,7 +70,7 @@
   display: grid;
   place-items: center;
   width: 8%;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
 .search-bar-result-img{
