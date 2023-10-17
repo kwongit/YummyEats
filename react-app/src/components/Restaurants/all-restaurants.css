@@ -122,10 +122,13 @@ cursor: pointer;
     background-color: blueviolet;
 } */
 #offers-container{
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 80%;
   margin-left: 30px;
+}
+
+#offers-container > img {
+  cursor: pointer
 }
