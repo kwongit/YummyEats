@@ -9,21 +9,21 @@ import { thunkGetRestaurants } from '../../store/restaurants';
 import { useParams } from 'react-router-dom';
 import { thunkGetMenuItems } from '../../store/menuItems';
 
-function Navigation({ isLoaded, searchType }){
+function Navigation({ isLoaded }){
 	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
-	const { restaurantId } = useParams();
+	// const { restaurantId } = useParams();
   const getRestaurants = useSelector((state) => state.restaurant.allRestaurants);
-	const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
-	const menuItems = Object.values(getMenuItems);
+	// const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
+	// const menuItems = Object.values(getMenuItems);
   const restaurants = Object.values(getRestaurants);
 
   useEffect(() => {
-		if(window.location.pathname==='/')
+		// if(window.location.pathname==='/')
     dispatch(thunkGetRestaurants());
-		if(restaurantId){
-			dispatch(thunkGetMenuItems(restaurantId));
-		}
+		// if(restaurantId){
+		// 	dispatch(thunkGetMenuItems(restaurantId));
+		// }
   }, [dispatch]);
 
   if (!restaurants.length) return null;
@@ -41,7 +41,11 @@ function Navigation({ isLoaded, searchType }){
 				</NavLink>
 			</li>
 			<li className='nav-bar-search-bar'>
-				{ searchType==='restaurants' && (
+					<SearchBar
+						placeholder={'Search for your favorite restaurant by name'}
+						data={restaurants}
+						/>
+				{/* { searchType==='restaurants' && (
 					<SearchBar
 						placeholder={'Search for your favorite restaurant by name'}
 						data={restaurants}
@@ -52,7 +56,7 @@ function Navigation({ isLoaded, searchType }){
 						placeholder={'Search for a menu item by name'}
 						data={menuItems}
 						searchType={searchType}/>
-				)}
+				)} */}
 			</li>
 		</ul>
 	);
