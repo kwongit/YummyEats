@@ -1,7 +1,8 @@
 
-a,button {
+button {
     cursor: pointer;
 }
+
 .restaurant-details-container img {
 
     width: 100%;
@@ -42,8 +43,7 @@ justify-content: space-between;
 /* margin-right: 16px; */
 padding-right: 45px;
 gap: 10px;
-cursor: pointer;
-
+/* cursor: pointer; */
 }
 
 #categories-bar-container img {
@@ -58,7 +58,7 @@ cursor: pointer;
     width: 60px;
   }
 
-  .image-container::before {
+  /* .image-container::before {
     content: "";
     position: absolute;
     top: 0;
@@ -70,7 +70,7 @@ cursor: pointer;
     opacity: 0;
 
     transition: opacity 0.5s;
-  }
+  } */
 
   .image-container:hover::before {
     opacity: 1;
@@ -94,7 +94,7 @@ cursor: pointer;
 #middle-header-container img{
     height: 150px;
     width: 300px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 
@@ -122,7 +122,6 @@ cursor: pointer;
     background-color: blueviolet;
 } */
 #offers-container{
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
