@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './SearchBar.css'
 import { useHistory } from 'react-router';
 
-const SearchBar = ({ placeholder, data, searchType}) => {
+const SearchBar = ({ placeholder, data }) => {
 const history = useHistory();
 const [filteredData, setFilteredData] = useState([]);
 const [wordEntered, setWordEntered] = useState("");
@@ -17,10 +17,10 @@ const toRestaurants = (id) => {
   clearInput();
 };
 
-const toMenuItems = (id) => {
-  history.push(`/menuitems/${id}`);
-  clearInput();
-};
+// const toMenuItems = (id) => {
+//   history.push(`/menuitems/${id}`);
+//   clearInput();
+// };
 
 const handleResults = (e) => {
   const searchWord = e.target.value.toLowerCase();
@@ -63,7 +63,18 @@ return (
           }
           return (
             <div>
-              {searchType === 'restaurants' && (
+                <div className='search-bar-result' onClick={() => toRestaurants(data.id)}>
+                  <div className='search-bar-result-img-container'>
+                    <img className='search-bar-result-img' src={data.image_url}></img>
+                  </div>
+                  <div className='search-bar-result-info-container'>
+                    <div>
+                      {data.name} ({data.address})
+                    </div>
+                    <div>{templatePrice.join("")} &#183; {data.type}</div>
+                  </div>
+                </div>
+              {/* {searchType === 'restaurants' && (
                 <div className='search-bar-result' onClick={() => toRestaurants(data.id)}>
                   <div className='search-bar-result-img-container'>
                     <img className='search-bar-result-img' src={data.image_url}></img>
@@ -87,7 +98,7 @@ return (
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           )
         })}
