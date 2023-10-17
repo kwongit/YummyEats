@@ -53,11 +53,6 @@ export const Restaurants = () => {
       <div id="main-body-container">
         <div id="restaurants-sidebar">
           <h1>All Stores</h1>
-          <a>Sort</a>
-          <a>From Uber Eats</a>
-          <a>Price Range</a>
-          <a>Max Delivery Fee</a>
-          <a>Dietary</a>
         </div>
 
         <div className="restaurant-details-container" id="restaurants-main">
