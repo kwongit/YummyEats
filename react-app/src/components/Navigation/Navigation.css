@@ -5,6 +5,7 @@
 .hidden {
   display: none;
 }
+
 html, body {
   height: 100%;
   margin: 0;
@@ -23,11 +24,16 @@ html, body {
   height: 70px;
   }
 
-  #logo-image{
-    width: 200px;
-    height: 70px;
+#logo-image{
+  width: 200px;
+  height: 70px;
+}
 
-    }
+.nav-bar-search-bar{
+  margin: 0 auto;
+  /* background-color: red; */
+}
+
 .user-nav button{
   /* background-color: blue; */
   border: none;
@@ -46,13 +52,12 @@ html, body {
   border: black 2px solid;
   border-radius: 7px;
 }
+
 #menu-drop-down li{
   padding-top: 20px;
   padding-bottom: 20px;
-text-decoration: none;
-
+  text-decoration: none;
 }
-
 
 #user-name-container{
   border: black 1px solid;
@@ -68,6 +73,7 @@ text-decoration: none;
   margin-top: 20px;
   margin-bottom: 50px;
 }
+
 .menu-button {
   margin-top: 30px;
   box-shadow: 2px 2px;
@@ -86,8 +92,7 @@ text-decoration: none;
 }
 
 .create-new-restaurant{
-margin-top: 40px;
-
+  margin-top: 40px;
 }
 
 #sign-in-container{
@@ -97,7 +102,6 @@ margin-top: 40px;
   height: 150px;
   justify-content: space-around;
   margin-right: 40px;
-
 }
 
 #sign-in-container button{

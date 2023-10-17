@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './SearchBar.css'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 const SearchBar = ({ placeholder, data}) => {
 const history = useHistory();
@@ -46,9 +46,9 @@ return (
     </div>
     {filteredData.length !== 0 &&
       <div className='search-bar-results'>
-        {filteredData.map((restaurant, key) => {
+        {filteredData.map((restaurant) => {
           return <div className='search-bar-result' onClick={() => handleClick(restaurant.id)}>
-            <div>{restaurant.name}</div>
+            <div>{restaurant.name} ({restaurant.address})</div>
           </div>
         })}
       </div>

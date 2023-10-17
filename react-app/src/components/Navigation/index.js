@@ -31,12 +31,12 @@ function Navigation({ isLoaded }){
 			)}
 			<li>
 				<NavLink exact to="/">
-				<img id="logo-image" src= {logo}alt="Logo"/>
-					</NavLink>
+					<img id="logo-image" src= {logo}alt="Logo"/>
+				</NavLink>
 			</li>
-			<li>
+			<li className='nav-bar-search-bar'>
 				<SearchBar
-					placeholder={'Search for your favorite restaurant'}
+					placeholder={'Search for your favorite restaurant by name'}
 					data={restaurants}/>
 			</li>
 		</ul>
