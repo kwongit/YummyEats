@@ -19,8 +19,11 @@ function Navigation({ isLoaded, searchType }){
   const restaurants = Object.values(getRestaurants);
 
   useEffect(() => {
+		if(window.location.pathname==='/')
     dispatch(thunkGetRestaurants());
-		dispatch(thunkGetMenuItems(restaurantId));
+		if(restaurantId){
+			dispatch(thunkGetMenuItems(restaurantId));
+		}
   }, [dispatch]);
 
   if (!restaurants.length) return null;
