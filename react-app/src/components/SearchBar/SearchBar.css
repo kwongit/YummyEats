@@ -1,20 +1,25 @@
-.searchInputs{
+.search-bar-container{
   display: flex;
-  background-color: lightcoral;
-  margin-top: 1400px;
+  align-items: center;
+  /* background-color: #f08080; */
+  position: relative;
 }
 
-.search input{
-  background-color: pink;
+.search-bar{
+  /* background-color: pink; */
   border: 0;
   border-radius: 30px;
-  height: 30px;
-  width: 300px;
+  height: 20px;
+  width: 500px;
   padding: 15px;
   font-size: 18px;
 }
 
-.searchIcon{
+.search-bar:focus{
+  outline: none;
+}
+
+.search-bar-icon{
   height: 60px;
   width: 50px;
   /* background-color: lightcyan; */
@@ -22,40 +27,37 @@
   place-items: center;
 }
 
-.dataResult::we
-
-input:focus{
-  outline: none;
-}
-
-.searchIcon i{
+.search-bar-icon > i{
   font-size: 20px;
 }
 
-.dataResult{
+.search-bar-results{
+  background-color: white;
   margin-top: 5px;
-  border: 2px solid red;
-  width: 300px;
-  height: 200px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
+  /* border: 2px solid red; */
+  width: 525px;
+  height: 300px;
   overflow: hidden;
   overflow-y: auto;
+  position: absolute;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
 }
 
-.dataResult .dataItem{
+.search-bar-result{
   width: 100%;
   height: 50px;
   display: flex;
-  margin-left: 10px;
   align-items: center;
+  padding-left: 15px;
   /* background-color: aqua; */
 }
 
-.dataItem:hover{
+.search-bar-result:hover{
   background-color: lightgrey;
   cursor: pointer;
 }
 
-#clearButton{
+#search-clear-button{
   cursor: pointer;
 }
