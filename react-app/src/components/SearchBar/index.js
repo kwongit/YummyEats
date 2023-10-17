@@ -7,10 +7,19 @@ const history = useHistory();
 const [filteredData, setFilteredData] = useState([]);
 const [wordEntered, setWordEntered] = useState("");
 
-const handleClick = (id) => {
-  history.push(`/restaurants/${id}`);
+const clearInput = () => {
   setFilteredData([]);
   setWordEntered("");
+}
+
+const toRestaurants = (id) => {
+  history.push(`/restaurants/${id}`);
+  clearInput();
+};
+
+const toMenuItems = (id) => {
+  history.push(`/menuitems/${id}`);
+  clearInput();
 };
 
 const handleResults = (e) => {
@@ -24,11 +33,6 @@ const handleResults = (e) => {
   } else {
     setFilteredData(newData);
   }
-}
-
-const clearInput = () => {
-  setFilteredData([]);
-  setWordEntered("");
 }
 
 return (
@@ -60,7 +64,7 @@ return (
           return (
             <div>
               {searchType === 'restaurants' && (
-                <div className='search-bar-result' onClick={() => handleClick(data.id)}>
+                <div className='search-bar-result' onClick={() => toRestaurants(data.id)}>
                   <div className='search-bar-result-img-container'>
                     <img className='search-bar-result-img' src={data.image_url}></img>
                   </div>
@@ -73,7 +77,7 @@ return (
                 </div>
               )}
               {searchType === 'menu-items' && (
-                <div className='search-bar-result' onClick={() => handleClick(data.id)}>
+                <div className='search-bar-result' onClick={() => toMenuItems(data.id)}>
                   <div className='search-bar-result-img-container'>
                     <img className='search-bar-result-img' src={data.imageUrl}></img>
                   </div>
