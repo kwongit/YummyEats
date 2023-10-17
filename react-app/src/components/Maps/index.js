@@ -15,7 +15,7 @@ export const Map = () => {
     const { isLoaded } = useLoadScript({
         // Loads Google Maps script into component
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-        libraries: ["places"]
+        // libraries: ["places"]
     })
 
     if (!isLoaded) return <h2>Loading Google Maps...</h2>
