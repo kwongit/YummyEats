@@ -11,9 +11,6 @@ import flowers from "../../assets/flowers.png";
 import retail from "../../assets/retail.png";
 import overall from "../../assets/top_eats.png";
 
-const showAlert = () => {
-  window.alert("Coming Soon");
-};
 let categories = (
   <div>
     <ul id="categories-bar-container">
