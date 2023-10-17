@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetRestaurants } from "../../store/restaurants";
 import RestaurantTile from "../RestaurantTile";
@@ -11,6 +12,7 @@ import overall from "../../assets/top_eats.png";
 
 export const Restaurants = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const getRestaurants = useSelector(
     (state) => state.restaurant.allRestaurants
@@ -27,6 +29,10 @@ export const Restaurants = () => {
   const showAlert = () => {
     // window.alert("Coming Soon");
   };
+
+  const goToMaps = () => {
+    history.push('/map')
+  }
 
   return (
     <>
@@ -46,6 +52,7 @@ export const Restaurants = () => {
       <div id="main-body-container">
         <div id="restaurants-sidebar">
           <h1>All Stores</h1>
+          <a onClick={goToMaps}>Map</a>
           <a onClick={showAlert}>Sort</a>
           <a onClick={showAlert}>From Uber Eats</a>
           <a onClick={showAlert}>Price Range</a>
