@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import "./Maps.css"
-import { useEffect, useState } from 'react';
 
 export const Map = ({ restaurant }) => {
     const { isLoaded } = useJsApiLoader({
@@ -14,7 +14,7 @@ export const Map = ({ restaurant }) => {
         try {
             const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${
                 encodeURIComponent(restaurant.address + restaurant.city)}&key=AIzaSyA9q0mwj3_OD5eQngrpPd3jxRaPCcXF5ZA`;
-                // encodeURIComponent(restaurant.address + restaurant.city)}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+                // encodeURIComponent(restaurant.address + restaurant.city)}&key=API_KEY`;
             const geocodeResponse = await fetch(geocodeUrl);
             const geocodeData = await geocodeResponse.json();
 
@@ -41,7 +41,7 @@ export const Map = ({ restaurant }) => {
         <div className='map-container'>
             <div
                 className='map-box'
-                style={{ width: "500px", height: "200px" }}
+                style={{ width: "100%", height: "200px" }}
                 id="map">
                 <GoogleMap
                     center={mapCenter}
