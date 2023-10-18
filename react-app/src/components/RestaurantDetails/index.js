@@ -6,7 +6,9 @@ import { thunkGetRestaurantReviews } from "../../store/reviews";
 import { MenuItems } from "../MenuItems";
 import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
+import { Map } from "../Maps"
 import "./RestaurantDetails.css";
+import OpenModalButton from "../OpenModalButton";
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -57,7 +59,6 @@ export const RestaurantDetails = () => {
         alt={name}
         title={name}
       ></img>
-
       <div className="restaurant-non-image-content">
         <div className="restaurant-info">
           <div className="restaurant-info-left-col">
@@ -69,6 +70,10 @@ export const RestaurantDetails = () => {
               ratings ) · {type} ·{" "}
               {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
             </p>
+            <OpenModalButton
+              buttonText={"More Info"}
+              modalComponent={<Map restaurant={oneRestaurant} />}
+              />
             <p className="restaurant-hours">
               Hours: {open_hours} - {close_hours}
             </p>

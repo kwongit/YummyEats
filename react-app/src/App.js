@@ -14,6 +14,7 @@ import { MenuItemDetails } from "./components/MenuItemDetails";
 import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem";
 import { ManageReviews } from "./components/ManageReviews";
 import { UpdateAccount } from "./components/ManageAccount/UpdateAccount";
+import { Map } from "./components/Maps";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
           <Route exact path="/">
             {/* <Navigation isLoaded={isLoaded} searchType={'restaurants'}/> */}
             <Restaurants />
+          </Route>
+          <Route exact path="/map">
+            <Map />
           </Route>
           <Route exact path="/restaurants/new">
             {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}

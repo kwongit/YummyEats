@@ -5,3 +5,6 @@ __pycache__/
 .DS_Store
 .vscode/
 dev.db
+flask_db.md
+lazy.js
+

@@ -1,0 +1,42 @@
+.map-container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 500px; */
+}
+
+.map-container p {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.map-container i {
+    margin-left: 20px;
+}
+
+.map-title {
+    border-bottom: 2px solid lightgray;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.map-title h1 {
+    margin: 20px 20px 10px 20px;
+}
+
+.map-title h4 {
+    margin: 0px 20px 20px;
+    color: gray;
+    font-weight: 600;
+}
+
+.map-body {
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}

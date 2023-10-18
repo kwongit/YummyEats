@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetRestaurants } from "../../store/restaurants";
 import RestaurantTile from "../RestaurantTile";
@@ -12,6 +13,7 @@ import "./all-restaurants.css";
 
 export const Restaurants = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const getRestaurants = useSelector(
     (state) => state.restaurant.allRestaurants
@@ -24,6 +26,10 @@ export const Restaurants = () => {
   }, [dispatch]);
 
   if (!restaurants.length) return null;
+
+  const goToMaps = () => {
+    history.push('/map')
+  }
 
   return (
     <>
