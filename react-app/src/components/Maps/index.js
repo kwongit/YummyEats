@@ -14,6 +14,7 @@ export const Map = ({ restaurant }) => {
         try {
             const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${
                 encodeURIComponent(restaurant.address + restaurant.city)}&key=AIzaSyA9q0mwj3_OD5eQngrpPd3jxRaPCcXF5ZA`;
+                // encodeURIComponent(restaurant.address + restaurant.city)}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
             const geocodeResponse = await fetch(geocodeUrl);
             const geocodeData = await geocodeResponse.json();
 
@@ -32,7 +33,7 @@ export const Map = ({ restaurant }) => {
         if (isLoaded) {
             getLatLonForCity(restaurant);
         }
-    }, [isLoaded, restaurant]);
+    }, [isLoaded, restaurant, mapCenter]);
 
     if (!isLoaded) return <h2>Loading Google Maps...</h2>;
 
