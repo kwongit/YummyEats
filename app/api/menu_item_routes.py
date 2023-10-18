@@ -1,9 +1,8 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint
 from app.models import MenuItem, Restaurant
-from ..forms.menu_item_form import MenuItemForm
-from datetime import date
 from ..models.db import db
 from flask_login import current_user, login_required
+from app.api.aws_helpers import remove_file_from_s3
 
 menu_item_routes = Blueprint('menu_item', __name__)
 
@@ -14,7 +13,6 @@ def get_menu_item_by_id(id):
     """
     Query for menu item by menu_item.id
     """
-
     one_menu_item = MenuItem.query.get(id)
 
     if not one_menu_item:
@@ -25,15 +23,19 @@ def get_menu_item_by_id(id):
 
 @menu_item_routes.route("/<int:menuItemId>", methods=["DELETE"])
 @login_required
-def delete(menuItemId):
+def delete_menu_item(menuItemId):
     """
-    Delete a menu item
+    Delete a menu item and associated S3 files
     """
     menu_item_to_delete = MenuItem.query.get(menuItemId)
 
     if menu_item_to_delete:
         target_restaurant = Restaurant.query.get(menu_item_to_delete.restaurantId)
         if target_restaurant.owner_id == current_user.id: #req.user.id
+            # Delete associated S3 files
+            remove_file_from_s3(menu_item_to_delete.imageUrl)
+
+            # Delete the menu item from the database
             db.session.delete(menu_item_to_delete)
             db.session.commit()
             return { "message": "Delete successful!" }

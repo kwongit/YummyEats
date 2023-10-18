@@ -6,8 +6,9 @@ import { thunkGetRestaurantReviews } from "../../store/reviews";
 import { MenuItems } from "../MenuItems";
 import { RestaurantReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
-// import { setUser, thunkGetUserInfo } from "../../store/session";
+import { Map } from "../Maps"
 import "./RestaurantDetails.css";
+import OpenModalButton from "../OpenModalButton";
 
 export const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -16,20 +17,13 @@ export const RestaurantDetails = () => {
   const { restaurantId } = useParams();
 
   const currentUser = useSelector((state) => state.session.user);
-  const reviews = useSelector((state) => state.reviews.allReviews)
+  const reviews = useSelector((state) => state.reviews.allReviews);
 
-  const reviewsList = Object.values(reviews)
-
-  console.log("RestaurantDetails reviewsList: ", reviewsList)
+  const reviewsList = Object.values(reviews);
 
   const oneRestaurant = useSelector(
     (state) => state.restaurant.singleRestaurant
   );
-  // const reviews = useSelector((state) => state.reviews.allReviews)
-
-  // const reviewsList = Object.values(reviews)
-
-  console.log("oneRestaurant: ", oneRestaurant)
 
   useEffect(() => {
     dispatch(thunkGetRestaurantInfo(restaurantId));
@@ -37,7 +31,6 @@ export const RestaurantDetails = () => {
   }, [dispatch, restaurantId, reviewsList.length]);
 
   const handleClick = () => {
-    // tbd
     history.push(`/restaurants/${restaurantId}/createmenuitem`);
   };
 
@@ -66,7 +59,6 @@ export const RestaurantDetails = () => {
         alt={name}
         title={name}
       ></img>
-
       <div className="restaurant-non-image-content">
         <div className="restaurant-info">
           <div className="restaurant-info-left-col">
@@ -78,6 +70,10 @@ export const RestaurantDetails = () => {
               ratings ) · {type} ·{" "}
               {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}
             </p>
+            <OpenModalButton
+              buttonText={"More Info"}
+              modalComponent={<Map restaurant={oneRestaurant} />}
+              />
             <p className="restaurant-hours">
               Hours: {open_hours} - {close_hours}
             </p>

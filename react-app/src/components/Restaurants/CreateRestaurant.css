@@ -64,9 +64,7 @@ font-size: .5 rem;
     width: calc(100% - 20px);
     justify-content: start;
     font-size: .75rem;
-    /* background-color: violet; */
-    /* margin-left: 10px; */
-    /* margin-right: 10px; */
+
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -163,5 +161,10 @@ textarea {
 
 .images-container P{
     font-size: .75rem;
+    margin-left: 10px;
+}
+
+#image-url-con p{
+    font-size: 12px;
     margin-left: 10px;
 }

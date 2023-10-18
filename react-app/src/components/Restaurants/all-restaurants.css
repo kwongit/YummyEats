@@ -1,90 +1,62 @@
-
-a,button {
+button {
     cursor: pointer;
 }
-.restaurant-details-container img {
 
+.restaurant-details-container img {
     width: 100%;
     height: 120px;
     border-radius: 10px 10px 10px 10px;
 }
 
 .restaurant-details-container{
-
-    /* background-color: aqua; */
     list-style-type: none;
     display:flex;
     flex-wrap: wrap;
     gap: 20px;
-     justify-content: center;
-     padding: 0px;
-     /* margin-left: 25%; */
+    justify-content: center;
+    padding: 0px;
 }
 
 .all-restaurants-container{
     display: flex;
     flex-direction: column;
     flex-basis: 20%;
-    /* border: 1px solid black; */
-    /* background-color: blueviolet; */
-    /* justify-content: center; */
-  /* align-items: center; */
-  border-radius: 10px 10px 10px 10px;
-  cursor: pointer;
-
+    border-radius: 10px 10px 10px 10px;
+    cursor: pointer;
 }
 
 #categories-bar-container {
-display: flex;
-flex-direction: row;
-list-style-type: none;
-justify-content: space-between;
-/* margin-right: 16px; */
-padding-right: 45px;
-gap: 10px;
-cursor: pointer;
-
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-between;
+    padding-right: 45px;
+    gap: 10px;
 }
 
 #categories-bar-container img {
-
     height: 60px;
-
 }
 
-
 .image-container {
-    position: relative;
-    width: 60px;
-  }
+  position: relative;
+  width: 60px;
+}
 
-  .image-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(200, 200, 200, 0.5);
-    border-radius: 100%;
-    opacity: 0;
+.image-container:hover::before {
+  opacity: 1;
+}
 
-    transition: opacity 0.5s;
-  }
+#cat-hr{
+  width:95%;
+  border:  .5px solid lightgrey;
+}
 
-  .image-container:hover::before {
-    opacity: 1;
-  }
+#middle-header-container{
+  height: 200px;
+  padding: 0 35px;
+}
 
-  #cat-hr{
-    width:95%;
-    border:  .5px solid lightgrey;
-  }
-
-  #middle-header-container{
-    height: 200px;
-    padding: 0 35px;
-  }
 #middle-header-container{
     display: flex;
     gap: 10px;
@@ -94,20 +66,16 @@ cursor: pointer;
 #middle-header-container img{
     height: 150px;
     width: 300px;
-    cursor: pointer;
 }
 
 
 #main-body-container{
-   /* background-color: chartreuse; */
    display: flex;
    min-height: 100vh;
    align-items: flex-start;
 }
 
-
 #restaurants-sidebar{
-    /* background-color: aqua; */
     position: sticky;
     width: 90%;
     top: 30px;
@@ -118,11 +86,7 @@ cursor: pointer;
     gap: 10px;
 }
 
-/* #restaurants-main{
-    background-color: blueviolet;
-} */
 #offers-container{
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
