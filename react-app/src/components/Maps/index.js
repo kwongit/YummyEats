@@ -10,13 +10,10 @@ export const Map = ({ restaurant }) => {
 
     const [mapCenter, setMapCenter] = useState({ lat: 37.8029, lng: -122.4484 });
 
-    console.log("Restaurant: ", restaurant)
-
     const getLatLonForCity = async (restaurant) => {
         try {
             const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${
                 encodeURIComponent(restaurant.address + restaurant.city)}&key=AIzaSyA9q0mwj3_OD5eQngrpPd3jxRaPCcXF5ZA`;
-                console.log("LOOK: ", geocodeUrl)
             const geocodeResponse = await fetch(geocodeUrl);
             const geocodeData = await geocodeResponse.json();
 
