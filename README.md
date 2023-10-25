@@ -72,6 +72,6 @@ The group's website clone can be viewed at https://yummy-eats.onrender.com/.
 ## Get in Touch:
 
 - Kevin Won: https://www.linkedin.com/in/kevinwon30/
-- Zak AlAshqar: https://www.linkedin.com/in/zak-alashqar/
 - Danny Yum: https://www.linkedin.com/in/danny-yum/
 - Kenny Doan: https://www.linkedin.com/in/kdoan93/
+- Zak AlAshqar: https://www.linkedin.com/in/zak-alashqar/
