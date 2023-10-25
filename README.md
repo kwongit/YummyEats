@@ -37,7 +37,7 @@ The group's website clone can be viewed at https://yummy-eats.onrender.com/.
 
 ### Hosting
 
-<img width="119" alt="Render Banner" src="https://github.com/kwongit/YummyEats/assets/116237655/12fe1091-cc83-428e-9da5-cc19039b7968">
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
 
 ## Screenshots
 
