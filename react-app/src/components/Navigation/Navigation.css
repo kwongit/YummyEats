@@ -54,7 +54,7 @@ html, body {
 }
 
 #menu-drop-down li{
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
   text-decoration: none;
 }
@@ -106,4 +106,8 @@ html, body {
 
 #sign-in-container button{
   height: 40px;
+}
+.manage-account{
+  /* background-color: red; */
+  margin-top: 50px;
 }
