@@ -47,3 +47,33 @@
   border: 1px solid grey;
   color: grey;
 }
+
+
+
+.create-form2-container input, select{
+
+  border: 2px solid rgb(236, 234, 234);
+  background-color: rgb(236, 234, 234);
+  /* background-color: blue; */
+  height: 30px;
+  font-size: .75rem;
+
+}
+
+
+.create-form2-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.image-url-container input{
+
+  background-color: white;
+  box-shadow: none;
+  border: none;
+}
