@@ -72,7 +72,9 @@ export const RestaurantDetails = () => {
             </p>
             <OpenModalButton
               buttonText={"More Info"}
-              modalComponent={<Map restaurant={oneRestaurant} />}
+              modalComponent={<Map
+                restaurant={oneRestaurant}
+              />}
               />
             <p className="restaurant-hours">
               Hours: {open_hours} - {close_hours}
