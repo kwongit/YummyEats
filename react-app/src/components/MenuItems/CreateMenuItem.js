@@ -68,7 +68,7 @@ export const CreateMenuItem = ({ user }) => {
   return (
     <div className="create-menu-item-form-container">
       <h1>Create a New Menu Item</h1>
-      <form onSubmit={handleSubmit} id="create-form-container">
+      <form onSubmit={handleSubmit} className="create-form2-container">
 
         <div className="name-container">
           <div className="name-container create-label-container">
@@ -77,7 +77,7 @@ export const CreateMenuItem = ({ user }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Item Name"
+              // placeholder="Item Name"
               required={true}
             />
             {errors.name && submitted && (
@@ -93,7 +93,7 @@ export const CreateMenuItem = ({ user }) => {
               type="text"
               value={size}
               onChange={(e) => setSize(e.target.value)}
-              placeholder="Size"
+              // placeholder="Size"
             />
             {errors.size && submitted && (
               <p className="on-submit-errors">{errors.size}</p>
@@ -108,7 +108,7 @@ export const CreateMenuItem = ({ user }) => {
               type="number"
               value={calories}
               onChange={(e) => setCalories(e.target.value)}
-              placeholder="Calories"
+              // placeholder="Calories"
             />
             {errors.calories && submitted && (
               <p className="on-submit-errors">{errors.calories}</p>
@@ -123,7 +123,7 @@ export const CreateMenuItem = ({ user }) => {
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              placeholder="Item Price"
+              // placeholder="Item Price"
               required={true}
             />
             {errors.price && submitted && (
@@ -149,7 +149,7 @@ export const CreateMenuItem = ({ user }) => {
         <div className="images-container ">
           <p>Submit a link to one photo to create your menu item.</p>
           <div className="image-url-container">
-            <input
+            <input id="image-input"
               type="file"
                 accept="image/*"
                 onChange={(e) => setImageUrl(e.target.files[0])}
