@@ -58,7 +58,7 @@ function ProfileButton({ user }) {
             </div>
             {user ? (
 
-          <span>
+          <li>
             <NavLink
             className="create-new-restaurant menu-navLinks"
             to="/restaurants/new"
@@ -66,7 +66,7 @@ function ProfileButton({ user }) {
             >
               Create a New Restaurant
             </NavLink>
-          </span>
+          </li>
         ) : (
           ""
         )}

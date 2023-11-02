@@ -91,36 +91,7 @@ select {
 }
 
 
-/* #p-in-textarea {
-    font-size: 12px;
 
-}
-
-textarea {
-    height: 100px;
-    border: 2px solid black;
-    background-color: rgb(207, 219, 252);
-    width: 100%;
-    resize: none;
-
-}
-
-#text-area-footer {
-    border-bottom: solid black 2px;
-    margin-top: 20px;
-}
-
-#price-div {
-    display: flex;
-
-    height: 20px;
-    align-items: center;
-    gap: 5px;
-}
-
-#price-div input {
-    width: 100%;
-} */
 
 .button-container {
     display: flex;
@@ -167,4 +138,15 @@ textarea {
 #image-url-con p{
     font-size: 12px;
     margin-left: 10px;
+}
+
+.image-url-container input {
+    /* background-color: red; */
+    border: none;
+    box-shadow: none;
+}
+.image-url-container{
+    display: flex;
+    justify-content: center;
+    
 }

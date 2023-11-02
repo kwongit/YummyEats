@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -99,3 +99,12 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+@app.route('/api/get_api_key', methods=['GET'])
+def get_api_key():
+    """
+    Route to serve the API key to the frontend
+    """
+    api_key = os.environ.get('REACT_APP_GOOGLE_MAPS_API')
+    return jsonify({'api_key': api_key})
