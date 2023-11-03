@@ -38,11 +38,13 @@ export const RestaurantReviews = ({ restaurantId }) => {
       {!reviewsList.find((review) => review.user_id === user.id) &&
       user.id !== restaurant.owner_id &&
       user.id ? (
-        <OpenModalButton
-          className="delete-button"
-          buttonText="Create a Review"
-          modalComponent={<CreateReviewModal restaurant={restaurant} />}
-        />
+        <div className='create-review-button-container'>
+          <OpenModalButton
+            className="delete-button"
+            buttonText="Create a Review"
+            modalComponent={<CreateReviewModal restaurant={restaurant} />}
+          />
+        </div>
       ) : (
         <></>
       )}

@@ -2,9 +2,11 @@
   display: flex;
   align-items: center;
   /* background-color: #f08080; */
+  max-width: 435px;
   position: relative;
   background-color: #EEEEEE;
   border-radius: 30px;
+  margin: auto;
 }
 
 .search-bar{
@@ -84,6 +86,15 @@
   /* background-color: lightgoldenrodyellow; */
   /* border-bottom: 1px solid lightgrey; */
   width: 92%;
+}
+
+.search-bar-result-name-address{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 90%;
+  /* background-color: aquamarine; */
 }
 
 #search-clear-button{
