@@ -2,9 +2,11 @@
   display: flex;
   align-items: center;
   /* background-color: #f08080; */
+  max-width: 435px;
   position: relative;
   background-color: #EEEEEE;
   border-radius: 30px;
+  margin: auto;
 }
 
 .search-bar{
