@@ -1,3 +1,10 @@
+.manage-container{
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .manage-restaurants-update-button, .manage-restaurants-create-btn {
   font-family: 'Wix Madefor Display', sans-serif;
   font-weight: 500;

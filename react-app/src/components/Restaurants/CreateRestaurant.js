@@ -96,7 +96,7 @@ export const CreateRestaurant = ({ user }) => {
 
           <div className="form-div-container">
             <div className="address-container label-container">
-              <label>Store Address</label>
+              <label className='restaurant-form-label'>Store Address</label>
               <input
                 type="text"
                 value={address}
@@ -110,7 +110,7 @@ export const CreateRestaurant = ({ user }) => {
           </div>
 
           <div className="city-container label-container">
-            <label>City</label>
+            <label className='restaurant-form-label'>City</label>
             <input
               type="text"
               value={city}
@@ -123,7 +123,7 @@ export const CreateRestaurant = ({ user }) => {
           </div>
 
           <div className="state-container label-container">
-            <label>State</label>
+            <label className='restaurant-form-label'>State</label>
             <input
               type="text"
               value={state}
@@ -138,7 +138,7 @@ export const CreateRestaurant = ({ user }) => {
 
         <div className="form-div-container">
           <div className="name-container label-container">
-            <label>Restaurant Name</label>
+            <label className='restaurant-form-label'>Restaurant Name</label>
             <input
               type="text"
               value={name}
@@ -153,7 +153,7 @@ export const CreateRestaurant = ({ user }) => {
 
         <div className="form-div-container">
           <div className="type-container label-container">
-            <label>Restaurant Type</label>
+            <label className='restaurant-form-label'>Restaurant Type</label>
             <select onChange={(e) => setType(e.target.value)}>
               <option value="0">Select Type</option>
               <option value="American">American</option>
@@ -173,7 +173,7 @@ export const CreateRestaurant = ({ user }) => {
 
         <div className="form-div-container">
           <div className="price-container label-container">
-            <label>Restaurant Price</label>
+            <label className='restaurant-form-label'>Restaurant Price</label>
             <select onChange={(e) => setPrice(e.target.value)}>
               <option value="0">Select Expensiveness</option>
               <option value="1">$</option>
@@ -188,7 +188,7 @@ export const CreateRestaurant = ({ user }) => {
 
         <div className="form-div-container">
           <div className="store-open-hours-container label-container">
-            <label>Restaurant Open Hours</label>
+            <label className='restaurant-form-label'>Restaurant Open Hours</label>
             <select onChange={(e) => setOpenHours(e.target.value)}>
               <option value="0">Select Open Hours</option>
               <option value="1:00">1:00</option>
@@ -221,7 +221,7 @@ export const CreateRestaurant = ({ user }) => {
             )}
           </div>
           <div className="store-close-hours-container label-container">
-            <label>Restaurant Close Hours</label>
+            <label className='restaurant-form-label'>Restaurant Close Hours</label>
             <select onChange={(e) => setCloseHours(e.target.value)}>
               <option value="0">Select Close Hours</option>
               <option value="1:00">1:00</option>
