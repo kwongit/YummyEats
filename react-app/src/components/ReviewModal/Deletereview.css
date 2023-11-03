@@ -1,25 +1,41 @@
 .deleteModal{
     border: black solid 4px;
     /* border-radius: 10px; */
+    padding: 0 20px;
+}
+
+.deleteTitle{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.confirmDeleteTitle{
+  margin: 20px 0 0 0;
+}
+
+.deleteParagraph{
+  margin: 20px;
 }
 
 .deleteButtons{
     /* background-color: blue; */
     display: flex;
     flex-direction: column;
-gap: 10px;
-margin-bottom: 20px;
-
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-
 .deleteButtons button {
-margin-left: 10px;
-margin-right: 10px;
-background-color:  black;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color:  black;
   border: black solid 1px;
   /* box-shadow: 3px 3px 2px black; */
   color: white;
   height: 30px;
   border-radius: 7px;
+  width: 100%;
 }

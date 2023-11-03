@@ -19,7 +19,7 @@ label {
 
 input {
   border: 1px solid lightgray;
-  box-shadow: 1px 1px 5px;
+  /* box-shadow: 1px 1px 5px; */
 }
 
 .email-container, .username-container, .password-container, .confirmPassword-container  {

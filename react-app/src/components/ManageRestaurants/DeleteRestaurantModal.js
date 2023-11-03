@@ -15,19 +15,17 @@ export const DeleteRestaurantModal = ({ restaurantId }) => {
   return (
     <div className="delete-modal-content">
       <div className="delete-restaurant-container">
-        <h3>Confirm Delete</h3>
-        <p>
+        <h3 className="delete-restaurant-modal-heading">Confirm Delete</h3>
+        <p className="delete-restaurant-modal-subheading">
           Are you sure you want to remove this restaurant from the listings?
         </p>
         <div className="yes-no-container">
-
           <button className="yes-button" type="button" onClick={handleClick}>
             Yes (Delete restaurant)
           </button>
           <button className="no-button" type="button" onClick={closeModal}>
             No (Keep restaurant)
           </button>
-
         </div>
       </div>
     </div>

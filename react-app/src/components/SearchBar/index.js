@@ -68,7 +68,7 @@ return (
                     <img className='search-bar-result-img' src={data.image_url}></img>
                   </div>
                   <div className='search-bar-result-info-container'>
-                    <div>
+                    <div className='search-bar-result-name-address'>
                       {data.name} ({data.address})
                     </div>
                     <div>{templatePrice.join("")} &#183; {data.type}</div>

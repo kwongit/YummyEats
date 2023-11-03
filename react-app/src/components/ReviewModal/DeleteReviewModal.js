@@ -22,7 +22,7 @@ export const DeleteReviewModal = ({ review }) => {
   return (
     <div className="deleteModal">
       <div className="deleteTitle">
-        <h2 className="confirmDeleteTitle">Confirm Delete</h2>
+        <h3 className="confirmDeleteTitle">Confirm Delete</h3>
         <p className="deleteParagraph">
           Are you sure you want to delete this review?
         </p>

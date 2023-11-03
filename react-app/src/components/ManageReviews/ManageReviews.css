@@ -2,9 +2,15 @@ body {
     font-family: 'Wix Madefor Display', sans-serif;
 }
 
-/* .all-reviews-container {
-    border: 1px solid red;
-} */
+.all-reviews-container {
+    /* border: 1px solid red;
+    display: flex;
+    flex-direction: column; */
+}
+
+.create-review-button-container{
+    margin-left: 22px;
+}
 
 .review-container h4 {
     /* border: 1px solid red; */
