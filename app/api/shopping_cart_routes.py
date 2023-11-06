@@ -49,20 +49,21 @@ def get_cart_items():
 
     return jsonify({"cart_items": cart_items_list})
 
+# # We can actually remove this route and restrict it to only logged in users
+# # It returns the same as above
+# @shopping_cart_routes.route('/all_carts')
+# def get_all_carts():
+#     """
+#     Route to retrieve all shopping carts
+#     """
+#     shopping_carts = ShoppingCart.query.all()
+#     shopping_carts_list = []
 
-@shopping_cart_routes.route('/all_carts')
-def get_all_carts():
-    """
-    Route to retrieve all shopping carts
-    """
-    shopping_carts = ShoppingCart.query.all()
-    shopping_carts_list = []
+#     for cart in shopping_carts:
+#         cart_dict = cart.to_dict()
+#         shopping_carts_list.append(cart_dict)
 
-    for cart in shopping_carts:
-        cart_dict = cart.to_dict()
-        shopping_carts_list.append(cart_dict)
-
-    return jsonify({"shopping_carts": shopping_carts_list})
+#     return jsonify({"shopping_carts": shopping_carts_list})
 
 
 @shopping_cart_routes.route('/add/<int:item_id>', methods=['POST'])
@@ -81,10 +82,7 @@ def add_item_to_cart(item_id):
         item = MenuItem.query.get(item_id)
 
         if not item:
-            return jsonify({"message": "Item not found"}), 404
-
-        # if quantity > item.available_quantity:
-        #     return jsonify({"message": "Exceeds available quantity"}), 400
+            return jsonify({"message": "Item not found!"}), 404
 
         cart_item = ShoppingCart.query.filter_by(user_id=current_user.id, menu_item_id=item_id).first()
 
@@ -96,7 +94,22 @@ def add_item_to_cart(item_id):
             db.session.add(cart_item)
         db.session.commit()
 
-        return jsonify({"message": "Item added to cart successfully"})
+        return jsonify({"message": "Item added to cart successfully!"})
 
     else:
         return jsonify({"errors": form.errors}), 400
+
+
+@shopping_cart_routes.route('/clear', methods=['DELETE'])
+@login_required
+def clear_cart():
+    """
+    Route to clear all items from the shopping cart
+    """
+    cart_items = ShoppingCart.query.filter_by(user_id=current_user.id).all()
+
+    for item in cart_items:
+        db.session.delete(item)
+
+    db.session.commit()
+    return jsonify({"message": "Cart has been cleared!"})
