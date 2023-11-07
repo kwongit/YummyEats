@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from app.models import MenuItem, ShoppingCart
 from datetime import date
 from ..models.db import db
@@ -15,6 +15,7 @@ def get_cart_contents():
     Route to retrieve the contents of the user's cart
     """
     shopping_cart = ShoppingCart.query.filter_by(user_id=current_user.id).all()
+
     shopping_cart_items = []
     shopping_cart_subtotal = 0
 
@@ -30,12 +31,11 @@ def get_cart_contents():
             "price": menu_item.price,
             "subtotal": subtotal
         })
-
         shopping_cart_subtotal += subtotal
 
     shopping_cart_subtotal = round(shopping_cart_subtotal, 2)
 
-    return jsonify({"shopping_cart_items": shopping_cart_items, "shopping_cart_subtotal": shopping_cart_subtotal})
+    return {"shopping_cart_items": shopping_cart_items, "shopping_cart_subtotal": shopping_cart_subtotal}
 
 
 @shopping_cart_routes.route('/cart_items')
@@ -45,30 +45,15 @@ def get_cart_items():
     Route to retrieve the user's cart items
     """
     shopping_cart = ShoppingCart.query.filter_by(user_id=current_user.id).all()
+
     cart_items_list = [cart_item.to_dict() for cart_item in shopping_cart]
 
-    return jsonify({"cart_items": cart_items_list})
-
-# # We can actually remove this route and restrict it to only logged in users
-# # It returns the same as above
-# @shopping_cart_routes.route('/all_carts')
-# def get_all_carts():
-#     """
-#     Route to retrieve all shopping carts
-#     """
-#     shopping_carts = ShoppingCart.query.all()
-#     shopping_carts_list = []
-
-#     for cart in shopping_carts:
-#         cart_dict = cart.to_dict()
-#         shopping_carts_list.append(cart_dict)
-
-#     return jsonify({"shopping_carts": shopping_carts_list})
+    return {"cart_items": cart_items_list}
 
 
-@shopping_cart_routes.route('/add/<int:item_id>', methods=['POST'])
+@shopping_cart_routes.route('/add', methods=['POST'])
 @login_required
-def add_item_to_cart(item_id):
+def add_item_to_cart():
     """
     Route to add item to user's cart
     """
@@ -78,26 +63,52 @@ def add_item_to_cart(item_id):
     if form.validate_on_submit():
         data = form.data
         quantity = data['quantity']
+        menu_item_id = data['menu_item_id']
 
-        item = MenuItem.query.get(item_id)
+        item = MenuItem.query.get(menu_item_id)
 
         if not item:
-            return jsonify({"message": "Item not found!"}), 404
+            return {"message": "Item not found!"}, 404
 
-        cart_item = ShoppingCart.query.filter_by(user_id=current_user.id, menu_item_id=item_id).first()
+        cart_item = ShoppingCart.query.filter_by(user_id=current_user.id, menu_item_id=menu_item_id).first()
 
         if cart_item:
             cart_item.quantity += quantity
         else:
-            cart_item = ShoppingCart(user_id=current_user.id, menu_item_id=item_id, quantity=quantity)
+            cart_item = ShoppingCart(user_id=current_user.id, menu_item_id=menu_item_id, quantity=quantity)
 
             db.session.add(cart_item)
+
+        db.session.commit()
+        return {"message": "Item added to cart successfully!"}
+    else:
+        return {"errors": form.errors}, 400
+
+
+@shopping_cart_routes.route('/remove/<int:cart_id>', methods=['DELETE'])
+@login_required
+def remove_item_from_cart(cart_id):
+    """
+    Route to remove item from the shopping cart
+    """
+    form = ShoppingCartForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        data = form.data
+        menu_item_id = data['menu_item_id']
+
+        cart_item = ShoppingCart.query.get(cart_id)
+
+        if not cart_item:
+            return {"message": "Item not found in cart!"}, 404
+
+        db.session.delete(cart_item.menu_item_id)
         db.session.commit()
 
-        return jsonify({"message": "Item added to cart successfully!"})
-
+        return {"message": "Item removed from cart successfully!"}
     else:
-        return jsonify({"errors": form.errors}), 400
+        return {"errors": form.errors}, 400
 
 
 @shopping_cart_routes.route('/clear', methods=['DELETE'])
@@ -112,4 +123,4 @@ def clear_cart():
         db.session.delete(item)
 
     db.session.commit()
-    return jsonify({"message": "Cart has been cleared!"})
+    return {"message": "Cart has been cleared!"}

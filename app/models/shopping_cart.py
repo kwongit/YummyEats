@@ -23,7 +23,7 @@ class ShoppingCart(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            "item_id": self.menu_item_id,
+            "menu_item_id": self.menu_item_id,
             "quantity": self.quantity,
             'created_at': self.created_at,
             'updated_at': self.updated_at
