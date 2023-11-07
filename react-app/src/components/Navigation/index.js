@@ -9,55 +9,45 @@ import { thunkGetRestaurants } from '../../store/restaurants';
 import { useParams } from 'react-router-dom';
 import { thunkGetMenuItems } from '../../store/menuItems';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
 	// const { restaurantId } = useParams();
 	// const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
 	// const menuItems = Object.values(getMenuItems);
-  // const getRestaurants = useSelector((state) => state.restaurant.allRestaurants);
-  // const restaurants = Object.values(getRestaurants);
+	// const getRestaurants = useSelector((state) => state.restaurant.allRestaurants);
+	// const restaurants = Object.values(getRestaurants);
 
-  // useEffect(() => {
+	// useEffect(() => {
 	// 	if(window.location.pathname==='/')
-  //   dispatch(thunkGetRestaurants());
+	//   dispatch(thunkGetRestaurants());
 	// 	if(restaurantId){
 	// 		dispatch(thunkGetMenuItems(restaurantId));
 	// 	}
-  // }, [dispatch]);
+	// }, [dispatch]);
 
-  // if (!restaurants.length) return null;
+	// if (!restaurants.length) return null;
 
 	return (
-		<ul id ="header">
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
-			)}
-			<li>
-				<NavLink exact to="/">
-					<img id="logo-image" src= {logo}alt="Logo"/>
-				</NavLink>
-			</li>
-			{/* <li className='nav-bar-search-bar'> */}
-					{/* <SearchBar
-						placeholder={'Search for your favorite restaurant by name'}
-						data={restaurants}
-						/> */}
-				{/* { searchType==='restaurants' && (
-					<SearchBar
-						placeholder={'Search for your favorite restaurant by name'}
-						data={restaurants}
-						searchType={searchType}/>
+
+		<ul id="header">
+			<div id="sub-header-container">
+				{isLoaded && (
+
+					<li>
+						<ProfileButton user={sessionUser} />
+					</li>
 				)}
-				{ searchType==='menu-items' && (
-					<SearchBar
-						placeholder={'Search for a menu item by name'}
-						data={menuItems}
-						searchType={searchType}/>
-				)} */}
-			{/* </li> */}
+				<li>
+					<NavLink exact to="/">
+						<img id="logo-image" src={logo} alt="Logo" />
+					</NavLink>
+				</li>
+			</div>
+			<div>
+				<i className="fa-solid fa-cart-shopping shop-cart-icon"></i>
+			</div>
+
 		</ul>
 	);
 }

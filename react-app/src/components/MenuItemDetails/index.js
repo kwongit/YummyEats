@@ -23,9 +23,10 @@ export const MenuItemDetails = () => {
     oneMenuItem;
 
   const onClick = (e) => {
+
     if (sessionUser) {
-      alert(`${name} has been purchased!`);
-      history.push(`/restaurants/${restaurantId}`);
+      alert(`${name} has been added to cart`);
+      // history.push(`/restaurants/${restaurantId}`);
     } else {
       alert(`Please log in to make a purchase!`);
     }
@@ -50,8 +51,10 @@ export const MenuItemDetails = () => {
           className="buy-menu-item-button"
           onClick={onClick}
         >
-          Buy Now <span style={{ fontWeight: "bold" }}>&#183;</span> $
-          {Number.parseFloat(price).toFixed(2)}
+          {/* Buy Now <span style={{ fontWeight: "bold" }}>&#183;</span> $
+          {Number.parseFloat(price).toFixed(2)} */}
+          Add to Cart
+
         </button>
       </div>
     </div>
