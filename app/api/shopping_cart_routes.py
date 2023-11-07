@@ -25,10 +25,10 @@ def get_cart_contents():
         subtotal = round(subtotal, 2)
 
         shopping_cart_items.append({
-            "item_id": menu_item.id,
-            "item_name": menu_item.name,
+            "menu_item_id": menu_item.id,
+            "menu_item_name": menu_item.name,
             "quantity": shopping_cart_item.quantity,
-            "price": menu_item.price,
+            "menu_item_price": menu_item.price,
             "subtotal": subtotal
         })
         shopping_cart_subtotal += subtotal
@@ -61,14 +61,13 @@ def add_item_to_cart():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        data = form.data
-        quantity = data['quantity']
-        menu_item_id = data['menu_item_id']
+        menu_item_id = form.data['menu_item_id']
+        quantity = form.data['quantity']
 
-        item = MenuItem.query.get(menu_item_id)
+        menu_item = MenuItem.query.get(menu_item_id)
 
-        if not item:
-            return {"message": "Item not found!"}, 404
+        if not menu_item:
+            return {"message": "Menu item not found."}, 404
 
         cart_item = ShoppingCart.query.filter_by(user_id=current_user.id, menu_item_id=menu_item_id).first()
 
@@ -76,39 +75,52 @@ def add_item_to_cart():
             cart_item.quantity += quantity
         else:
             cart_item = ShoppingCart(user_id=current_user.id, menu_item_id=menu_item_id, quantity=quantity)
-
             db.session.add(cart_item)
 
         db.session.commit()
-        return {"message": "Item added to cart successfully!"}
+        return {"message": "Menu item added to cart successfully!"}
     else:
         return {"errors": form.errors}, 400
 
 
-@shopping_cart_routes.route('/remove/<int:cart_id>', methods=['DELETE'])
+@shopping_cart_routes.route('/update/<int:menu_item_id>', methods=['PUT'])
 @login_required
-def remove_item_from_cart(cart_id):
+def update_item_in_cart(menu_item_id):
     """
-    Route to remove item from the shopping cart
+    Route to update item in the shopping cart by menu_item_id
     """
-    form = ShoppingCartForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    item_to_update = ShoppingCart.query.filter_by(user_id=current_user.id,menu_item_id=menu_item_id).first()
 
-    if form.validate_on_submit():
-        data = form.data
-        menu_item_id = data['menu_item_id']
+    if not item_to_update:
+        return {"message": "Menu item not found in cart."}, 404
 
-        cart_item = ShoppingCart.query.get(cart_id)
-
-        if not cart_item:
-            return {"message": "Item not found in cart!"}, 404
-
-        db.session.delete(cart_item.menu_item_id)
-        db.session.commit()
-
-        return {"message": "Item removed from cart successfully!"}
+    if item_to_update.quantity >= 1:
+        item_to_update.quantity += 1
     else:
-        return {"errors": form.errors}, 400
+      db.session.add(item_to_update)
+
+    db.session.commit()
+    return {"message": "Menu item updated successfully!"}
+
+
+@shopping_cart_routes.route('/remove/<int:menu_item_id>', methods=['DELETE'])
+@login_required
+def remove_item_from_cart(menu_item_id):
+    """
+    Route to remove item from the shopping cart by menu_item_id
+    """
+    item_to_remove = ShoppingCart.query.filter_by(user_id=current_user.id,menu_item_id=menu_item_id).first()
+
+    if not item_to_remove:
+        return {"message": "Menu item not found in cart."}, 404
+
+    if item_to_remove.quantity > 1:
+        item_to_remove.quantity -= 1
+    else:
+      db.session.delete(item_to_remove)
+
+    db.session.commit()
+    return {"message": "Menu item removed successfully!"}
 
 
 @shopping_cart_routes.route('/clear', methods=['DELETE'])
