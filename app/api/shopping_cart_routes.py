@@ -123,6 +123,23 @@ def remove_item_from_cart(menu_item_id):
     return {"message": "Menu item removed successfully!"}
 
 
+@shopping_cart_routes.route('/empty/<int:menu_item_id>', methods=['DELETE'])
+@login_required
+def remove_entire_item_from_cart(menu_item_id):
+    """
+    Route to remove the entire item from the shopping cart by menu_item_id
+    """
+    item_to_remove = ShoppingCart.query.filter_by(user_id=current_user.id,menu_item_id=menu_item_id).first()
+
+    if not item_to_remove:
+        return {"message": "Menu item not found in cart."}, 404
+
+    db.session.delete(item_to_remove)
+
+    db.session.commit()
+    return {"message": "Entire menu item removed successfully!"}
+
+
 @shopping_cart_routes.route('/clear', methods=['DELETE'])
 @login_required
 def clear_cart():
