@@ -15,6 +15,7 @@ import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem";
 import { ManageReviews } from "./components/ManageReviews";
 import { UpdateAccount } from "./components/ManageAccount/UpdateAccount";
 import { Map } from "./components/Maps";
+import { Cart } from "./components/Cart"
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +74,9 @@ function App() {
           </Route>
           <Route exact path="/menuitems/:menuItemId">
             <MenuItemDetails />
+          </Route>
+          <Route exact path="/cart">
+            <Cart/>
           </Route>
         </Switch>
       )}

@@ -1,13 +1,18 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { thunkGetMenuItemInfo } from "../../store/menuItems";
 import "./MenuItemDetails.css";
-
+//!
+import { RestaurantContext } from "../../context/Restaurant-context";
+//!
 export const MenuItemDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  //!
+  const{addToCart, cartItems}= useContext(RestaurantContext)
+//!
   const { menuItemId } = useParams();
 
   const oneMenuItem = useSelector((state) => state.menuItems.singleMenuItem);
@@ -27,11 +32,15 @@ export const MenuItemDetails = () => {
     if (sessionUser) {
       alert(`${name} has been added to cart`);
       // history.push(`/restaurants/${restaurantId}`);
+      addToCart(menuItemId)
     } else {
       alert(`Please log in to make a purchase!`);
     }
   };
 
+  //!
+
+  const cartItemAmount = cartItems[menuItemId]
   return (
     <div className="view-menu-item-details">
       <div className="menu-item-left-col">
@@ -53,7 +62,7 @@ export const MenuItemDetails = () => {
         >
           {/* Buy Now <span style={{ fontWeight: "bold" }}>&#183;</span> $
           {Number.parseFloat(price).toFixed(2)} */}
-          Add to Cart
+          Add to Cart {cartItemAmount > 0 && <>({cartItemAmount}) </>}
 
         </button>
       </div>

@@ -9,6 +9,7 @@ import * as sessionActions from "./store/session";
 import App from "./App";
 
 import "./index.css";
+import { RestaurantContextProvider } from "./context/Restaurant-context";
 
 const store = configureStore();
 
@@ -24,10 +25,12 @@ function Root() {
 	return (
 		<ModalProvider>
 			<Provider store={store}>
+			<RestaurantContextProvider>
 				<BrowserRouter>
 					<App />
 					<Modal />
 				</BrowserRouter>
+		</RestaurantContextProvider>
 			</Provider>
 		</ModalProvider>
 	);
