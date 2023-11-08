@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { RestaurantContext } from '../../context/Restaurant-context'
 import { useSelector } from "react-redux";
 import { CartItem } from './CartItem';
@@ -11,9 +11,33 @@ export const Cart = () => {
     const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
     const menuItems = Object.values(getMenuItems);
     const { cartItems, totalAmount,setCartItems } = useContext(RestaurantContext)
-    // const totalAmount = getTotalCartAmount()
+    const [pageReloaded, setPageReloaded] =useState(false)
 
-    // console.log("cart subtotal cart cart cart" , totalAmount)
+
+
+  //! ///////////////////////////////////////////
+
+  if (totalAmount === 0 ) {
+
+            window.location.reload();
+        history.push(`/`)
+
+    }
+
+
+//  if (totalAmount === 0 && !pageReloaded) {
+//         setPageReloaded(true);
+//         window.location.reload();
+//     }
+// useEffect(() => {
+//     const isPageReloaded = localStorage.getItem('pageReloaded');
+
+//     if (totalAmount === 0 && !isPageReloaded) {
+//         localStorage.setItem('pageReloaded', 'true');
+//         window.location.reload();
+//     }
+// }, [totalAmount]);
+//! ///////////////////////////////////////////////////////////
     const onClick = (e) => {
 
 
@@ -53,6 +77,7 @@ export const Cart = () => {
             ) : (
             <div id='empty-cart'>
                 <h3 > Your cart is Empty </h3>
+                {/* {window.location.reload()} */}
             </div>)}
 
 
