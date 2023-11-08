@@ -30,6 +30,11 @@ export const MenuItemDetails = () => {
   const onClick = (e) => {
 
     if (sessionUser) {
+
+// if cartItems.length === 0 tne ok we ca add the first item
+//if cartItems.length > 0 && if cartItems[menuItem.id] !== undefined
+//then there is a restaurant selected and item from outside restaurant can't be added
+
       alert(`${name} has been added to cart`);
       // history.push(`/restaurants/${restaurantId}`);
       addToCart(menuItemId)

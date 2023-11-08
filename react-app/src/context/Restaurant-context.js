@@ -1,4 +1,4 @@
-import React, { createContext, useState,useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 // we need
 import { useSelector } from "react-redux";
 
@@ -60,44 +60,73 @@ export const RestaurantContext = createContext(null);
 // }
 //! //////////////////////////////////////////////////////////////
 export function RestaurantContextProvider(props) {
-  const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
-  const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
-  const menuItems = Object.values(getMenuItems);
-console.log("menuItems %%%%%%%%======" , menuItems)
-  const [cartItems, setCartItems] = useState({}); // Initialize as an empty object
+    const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
+    const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
+    const menuItems = Object.values(getMenuItems);
+    console.log("menuItems %%%%%%%%======", menuItems)
+    const [cartItems, setCartItems] = useState({}); // Initialize as an empty object
+    const [totalAmount, setTotalAmount] = useState(0)
 
+    useEffect(() => {
 
-  useEffect(() => {
+        // console.log("menuitems.length ====3333333", menuItems.length)
+        // console.log("menuitems ====*********", menuItems)
 
-console.log("menuitems.length ====3333333", menuItems.length)
-console.log("menuitems.length ====*********", menuItems)
-    if (menuItems.length > 0) {
-      const defaultCart = {};
-      for (let i = 0; i < menuItems.length ; i++) { //! check the +1 if needed
-        const itemId = menuItems[i].id;
-        defaultCart[itemId] = 0;
-      }
-      setCartItems(defaultCart);
+        if (menuItems.length > 0) {
+            const defaultCart = {};
+            for (let i = 0; i < menuItems.length; i++) { //! check the +1 if needed
+                const itemId = menuItems[i].id;
+                defaultCart[itemId] = 0;
+            }
+            setCartItems(defaultCart);
+        }
+    }, [menuItems.length,]);
+    //! ///////////////////////////////////////
+    useEffect(() => {
+
+        let amount = 0
+        for (let item in cartItems) {
+            console.log('this is the item ====99999999', item)
+            console.log('cartItems[item]====88888888', cartItems[item])
+            if (cartItems[item] > 0) {
+
+                let itemInfo = menuItems.find((oneItem) => oneItem.id === Number(item))
+                console.log('this is the itemInfo @@@@@@@', itemInfo)
+                amount += cartItems[item] * itemInfo.price
+            }
+            setTotalAmount(amount)
+        }
+
+    }, [cartItems]);
+    //! /////////////////////////////////////////////////////
+
+    const addToCart = (itemId) => {
+        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
-  }, [menuItems.length]);
 
-  const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-  }
+    const removeFromCart = (itemId) => {
+        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    }
+    const updateCartItemCount = (newAmount, itemId) => {
+        setCartItems((prev) => ({ ...prev, [itemId]: newAmount }))
+    }
 
-  const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-  }
+    useEffect(() => {
+        console.log("cartItems =======+++++=>>>>>", cartItems);
+    }, [cartItems, menuItems]);
 
-  const contextValue = { cartItems, addToCart, removeFromCart };
+    const contextValue = {
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateCartItemCount,
+        totalAmount,
+        setCartItems
+    };
 
-  useEffect(() => {
-    console.log("cartItems =======+++++=>>>>>", cartItems);
-  }, [cartItems, menuItems]);
-
-  return (
-    <RestaurantContext.Provider value={contextValue}>
-      {props.children}
-    </RestaurantContext.Provider>
-  );
+    return (
+        <RestaurantContext.Provider value={contextValue}>
+            {props.children}
+        </RestaurantContext.Provider>
+    );
 }

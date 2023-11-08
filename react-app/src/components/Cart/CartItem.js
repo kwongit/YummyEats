@@ -1,14 +1,25 @@
 import React from 'react'
+import { useContext } from 'react'
+import { RestaurantContext } from '../../context/Restaurant-context'
+import { useSelector } from "react-redux";
 import "./CartItem.css"
 
 export const CartItem = (props) => {
+    
+    // const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
+    // const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
+    // const menuItems = Object.values(getMenuItems);
+    const { id, name, price, imageUrl } = props.data // 73
+    const { cartItems, addToCart, removeFromCart, updateCartItemCount} = useContext(RestaurantContext) // {73:0}xx this is showing as undefined
+console.log( 'cart  item in context ====>+>=>=>=>' , cartItems)
 
-    const { id, name, price, imageUrl } = props.data
     return (
 
         <div>
 
-            <div className="cart-item-tile-container" key={id} >
+            <div className="cart-item-tile-container"
+            // key={id}
+             >
                 <img
                     className="cart-item-tile-image"
                     src={imageUrl}
@@ -20,6 +31,17 @@ export const CartItem = (props) => {
                     <div className="cart-item-small-info">
                         ${price}
 
+                    </div>
+                    <div className='count-handler'>
+                        <button onClick={() => removeFromCart(id)}> - </button>
+                        {/* <input
+                        value={CartItems[id] ? parseInt(CartItems[id], 10) : 0}
+                        /> */}
+                        {cartItems[id] && (
+                            <input value={cartItems[id] ? parseInt(cartItems[id], 10) : 0} onChange={(e) => updateCartItemCount(Number(e.target.value), id)} />
+                        )}
+                        {/* <p>{CartItems} </p> */}
+                        <button onClick={() => addToCart(id)}> + </button>
                     </div>
                 </div>
             </div>

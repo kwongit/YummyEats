@@ -23,3 +23,31 @@ color: red;
     border-radius: 25px;
     margin: 10px;
 }
+.count-handler{
+    display: flex;
+    justify-content: center;
+}
+
+.count-handler input{
+    width: 50px;
+    background-color: lightblue;
+    text-align: center;
+
+}
+
+.checkout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.checkout-buttons{
+    display: flex;
+    justify-content: center;
+}
+#empty-cart{
+    display: flex;
+    justify-content: center;
+}
