@@ -43,7 +43,7 @@ export const MenuItemDetails = () => {
         // history.push(`/restaurants/${restaurantId}`);
         addToCart(menuItemId)
       } else {
-        alert(`There is an ongoing order Please complete or cancel before ordering from another restaurant`);
+        alert(`There is an ongoing order. Please complete or cancel before ordering from another restaurant`);
       }
 
     } else {
@@ -66,6 +66,7 @@ export const MenuItemDetails = () => {
         )}
         <p className="menu-item-price">
           ${Number.parseFloat(price).toFixed(2)}
+          {/* ${(Math.round(price * 100) / 100).toFixed(3)} */}
         </p>
         {description && <p className="menu-item-description">{description}</p>}
         <button
@@ -73,7 +74,7 @@ export const MenuItemDetails = () => {
           className="buy-menu-item-button"
           onClick={onClick}
         >
-          
+
           Add to Cart {cartItemAmount > 0 && <>({cartItemAmount}) </>}
 
         </button>

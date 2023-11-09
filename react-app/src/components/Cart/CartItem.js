@@ -10,7 +10,7 @@ export const CartItem = (props) => {
     // const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
     // const menuItems = Object.values(getMenuItems);
     const { id, name, price, imageUrl } = props.data
-    const { cartItems, addToCart, removeFromCart, updateCartItemCount} = useContext(RestaurantContext) 
+    const { cartItems, addToCart, removeFromCart, updateCartItemCount} = useContext(RestaurantContext)
 console.log( 'cart  item in context ====>+>=>=>=>' , cartItems)
 
     return (
@@ -29,7 +29,7 @@ console.log( 'cart  item in context ====>+>=>=>=>' , cartItems)
                 <div className="cart-item-tile-info">
                     <div className="cart-item-small-name">{name}</div>
                     <div className="cart-item-small-info">
-                        ${price}
+                        ${price.toFixed(2)}
 
                     </div>
                     <div className='count-handler'>

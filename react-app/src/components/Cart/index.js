@@ -21,7 +21,7 @@ export const Cart = () => {
   if (totalAmount === 0 ) {
 
             window.location.reload();
-        history.push(`/`)
+        history.push(`/emptyCart`)
 
     }
 
