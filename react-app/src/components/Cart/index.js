@@ -24,19 +24,6 @@ export const Cart = () => {
 
     }
 
-
-//  if (totalAmount === 0 && !pageReloaded) {
-//         setPageReloaded(true);
-//         window.location.reload();
-//     }
-// useEffect(() => {
-//     const isPageReloaded = localStorage.getItem('pageReloaded');
-
-//     if (totalAmount === 0 && !isPageReloaded) {
-//         localStorage.setItem('pageReloaded', 'true');
-//         window.location.reload();
-//     }
-// }, [totalAmount]);
 //! ///////////////////////////////////////////////////////////
     const onClick = (e) => {
 
@@ -55,7 +42,7 @@ export const Cart = () => {
             </div>
             <div className='cart-items-container'>
                 {menuItems.map((menuItem) => {
-                    if (cartItems[menuItem.id] !== 0) {
+                    if (cartItems[menuItem.id] > 0) {
                         return < CartItem key={menuItem.id} data={menuItem} />
                     }
                 })}
@@ -77,7 +64,7 @@ export const Cart = () => {
             ) : (
             <div id='empty-cart'>
                 <h3 > Your cart is Empty </h3>
-                {/* {window.location.reload()} */}
+
             </div>)}
 
 

@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import "./CartItem.css"
 
 export const CartItem = (props) => {
-    
+
     // const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
     // const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
     // const menuItems = Object.values(getMenuItems);
-    const { id, name, price, imageUrl } = props.data // 73
+    const { id, name, price, imageUrl } = props.data 
     const { cartItems, addToCart, removeFromCart, updateCartItemCount} = useContext(RestaurantContext) // {73:0}xx this is showing as undefined
 console.log( 'cart  item in context ====>+>=>=>=>' , cartItems)
 

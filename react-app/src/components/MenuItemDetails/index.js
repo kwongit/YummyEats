@@ -6,13 +6,16 @@ import "./MenuItemDetails.css";
 //!
 import { RestaurantContext } from "../../context/Restaurant-context";
 //!
+
+
 export const MenuItemDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const getRestaurants = useSelector((state) => state.restaurant.allRestaurants);
 
   //!
-  const{addToCart, cartItems}= useContext(RestaurantContext)
-//!
+  const { addToCart, cartItems } = useContext(RestaurantContext)
+  //!
   const { menuItemId } = useParams();
 
   const oneMenuItem = useSelector((state) => state.menuItems.singleMenuItem);
@@ -27,17 +30,25 @@ export const MenuItemDetails = () => {
   const { restaurantId, name, size, calories, price, description, imageUrl } =
     oneMenuItem;
 
+  const restaurant = Object.values(getRestaurants).find((restaurant) => restaurantId === restaurant.id)
+
   const onClick = (e) => {
 
     if (sessionUser) {
-// if cartItems has the key then it should add the item otherwise it should show an alert 'There is an order ongoing please complete or cancel current order '
-// if cartItems.length === 0 then ok we can add the first item // it is not zero when we chose the detail page the cartItems is already there
-//if cartItems.length > 0 && if cartItems[menuItem.id] !== undefined
-//then there is a restaurant selected and item from outside restaurant can't be added
+      // if cartItems has the key then it should add the item otherwise it should show an alert 'There is an order ongoing please complete or cancel current order '
+      // if cartItems.length === 0 then ok we can add the first item // it is not zero when we chose the detail page the cartItems is already there
+      //if cartItems.length > 0 && if cartItems[menuItem.id] !== undefined
+      //then there is a restaurant selected and item from outside restaurant can't be added
 
-      alert(`${name} has been added to cart`);
-      // history.push(`/restaurants/${restaurantId}`);
-      addToCart(menuItemId)
+      if (menuItemId in cartItems) {
+
+        alert(`${name} has been added to cart`);
+        // history.push(`/restaurants/${restaurantId}`);
+        addToCart(menuItemId)
+      } else {
+        alert(`There is an ongoing order Please complete or cancel before ordering from another restaurant`);
+      }
+
     } else {
       alert(`Please log in to make a purchase!`);
     }
