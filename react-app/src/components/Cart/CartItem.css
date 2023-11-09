@@ -23,14 +23,23 @@ color: red;
     border-radius: 25px;
     margin: 10px;
 }
+
+.cart-item-tile-info{
+    width: 100%;
+}
+.cart-item-tile-info > *{
+margin-left: 10px;
+}
+
 .count-handler{
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .count-handler input{
     width: 50px;
-    background-color: lightblue;
+    background-color: rgb(236, 233, 233);
     text-align: center;
 
 }
@@ -46,7 +55,22 @@ color: red;
 .checkout-buttons{
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
+.checkout-buttons button{
+    font-family: 'Wix Madefor Display', sans-serif;
+    background-color: black;
+    color: white;
+    font-size: 13px;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    margin-top: 40px;
+    width: 200px;
+    height: 40px;
+}
+
+
 #empty-cart{
     display: flex;
     justify-content: center;
