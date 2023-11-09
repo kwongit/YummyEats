@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetMenuItems } from "../../store/menuItems";
+import { thunkGetMenuItems, thunkGetAllMenuItems } from "../../store/menuItems";
 import MenuItemTile from "../MenuItemTile";
 import "./MenuItems.css";
 
@@ -12,6 +12,7 @@ export const MenuItems = ({ restaurantId }) => {
 
   useEffect(() => {
     dispatch(thunkGetMenuItems(restaurantId));
+    dispatch(thunkGetAllMenuItems())
   }, [dispatch]);
 
   if (!menuItems.length) return null;

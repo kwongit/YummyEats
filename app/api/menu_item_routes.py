@@ -43,3 +43,16 @@ def delete_menu_item(menuItemId):
             return { "message": "FORBIDDEN" }, 403
     else:
         return { "message": "Menu Item not found!" }, 404
+
+@menu_item_routes.route('/')
+#/api/menuitems
+def get_restaurant_menu_items():
+    """
+    Query for all menu items
+    """
+
+    all_menu_items = MenuItem.query.all()
+
+    restaurant_menu_items = [menu_item.to_dict() for menu_item in all_menu_items]
+
+    return restaurant_menu_items

@@ -35,10 +35,7 @@ export const MenuItemDetails = () => {
   const onClick = (e) => {
 
     if (sessionUser) {
-      // if cartItems has the key then it should add the item otherwise it should show an alert 'There is an order ongoing please complete or cancel current order '
-      // if cartItems.length === 0 then ok we can add the first item // it is not zero when we chose the detail page the cartItems is already there
-      //if cartItems.length > 0 && if cartItems[menuItem.id] !== undefined
-      //then there is a restaurant selected and item from outside restaurant can't be added
+
 
       if (menuItemId in cartItems) {
 
@@ -76,8 +73,7 @@ export const MenuItemDetails = () => {
           className="buy-menu-item-button"
           onClick={onClick}
         >
-          {/* Buy Now <span style={{ fontWeight: "bold" }}>&#183;</span> $
-          {Number.parseFloat(price).toFixed(2)} */}
+          
           Add to Cart {cartItemAmount > 0 && <>({cartItemAmount}) </>}
 
         </button>

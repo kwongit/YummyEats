@@ -7,8 +7,9 @@ import { useHistory, useNavigate } from "react-router-dom";
 export const Cart = () => {
     const history = useHistory();
     // const navigate = useNavigate()
-    const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
-    const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
+    const getMenuItems = useSelector((state) => state.menuItems.allRestaurantsMenuItems);
+    const getCurrentMenuItems = useSelector((state) => state.menuItems.allMenuItems);
+    const currentMenuItems = Object.values(getCurrentMenuItems);
     const menuItems = Object.values(getMenuItems);
     const { cartItems, totalAmount,setCartItems } = useContext(RestaurantContext)
     const [pageReloaded, setPageReloaded] =useState(false)
@@ -25,6 +26,11 @@ export const Cart = () => {
     }
 
 //! ///////////////////////////////////////////////////////////
+
+
+
+
+//! ////////////////////////////////////////////////////////
     const onClick = (e) => {
 
 
@@ -56,7 +62,7 @@ export const Cart = () => {
                         onClick={onClick}
                         >Checkout</button>
                         <button
-                            onClick={() => history.push(`/restaurants/${menuItems[0].restaurantId}`)}
+                            onClick={() => history.push(`/restaurants/${currentMenuItems[0].restaurantId}`)}
                         >Continue Shopping</button>
                     </div>
                 </div>

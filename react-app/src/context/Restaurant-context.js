@@ -63,7 +63,7 @@ export function RestaurantContextProvider(props) {
     const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
     const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
     const menuItems = Object.values(getMenuItems);
-    // get all menu items for all restaurant 
+    // get all menu items for all restaurant
     console.log("menuItems %%%%%%%%======", menuItems)
     const [cartItems, setCartItems] = useState({}); // Initialize as an empty object
     const [totalAmount, setTotalAmount] = useState(0)

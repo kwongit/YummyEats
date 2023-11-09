@@ -16,6 +16,7 @@ import { ManageReviews } from "./components/ManageReviews";
 import { UpdateAccount } from "./components/ManageAccount/UpdateAccount";
 import { Map } from "./components/Maps";
 import { Cart } from "./components/Cart"
+import { EmptyCart } from "./components/EmptyCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,6 +78,9 @@ function App() {
           </Route>
           <Route exact path="/cart">
             <Cart/>
+          </Route>
+          <Route exact path="/emptyCart">
+            <EmptyCart/>
           </Route>
         </Switch>
       )}

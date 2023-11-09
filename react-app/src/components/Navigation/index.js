@@ -8,10 +8,14 @@ import logo from '../../assets/yummy-logo.png'
 import { thunkGetRestaurants } from '../../store/restaurants';
 import { useParams } from 'react-router-dom';
 import { thunkGetMenuItems } from '../../store/menuItems';
+import { useContext } from 'react'
+import { RestaurantContext } from '../../context/Restaurant-context'
 
 function Navigation({ isLoaded }) {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
+	const { cartItems } = useContext(RestaurantContext)
+	const cartItemsValues = Object.values(cartItems);
 	// const { restaurantId } = useParams();
 	// const getMenuItems = useSelector((state) => state.menuItems.allMenuItems);
 	// const menuItems = Object.values(getMenuItems);
@@ -27,7 +31,7 @@ function Navigation({ isLoaded }) {
 	// }, [dispatch]);
 
 	// if (!restaurants.length) return null;
-
+	console.log('cartItemsValues ====77777>>>>>', cartItemsValues)
 	return (
 
 		<ul id="header">
@@ -45,9 +49,29 @@ function Navigation({ isLoaded }) {
 				</li>
 			</div>
 			<div>
-				<NavLink exact to="/cart">
+				
+
+				{/* <NavLink exact to="/emptyCart">
+								<i className="fa-solid fa-cart-shopping shop-cart-icon"></i>
+							</NavLink> */}
+
+				{/* <NavLink exact to="/cart">
 				<i className="fa-solid fa-cart-shopping shop-cart-icon"></i>
-				</NavLink>
+				</NavLink> */}
+
+				{cartItemsValues.length === 0 ?
+
+					<NavLink exact to="/emptyCart">
+						<i className="fa-solid fa-cart-shopping shop-cart-icon"></i>
+					</NavLink>
+					:
+
+					<NavLink exact to="/cart">
+						<i className="fa-solid fa-cart-shopping shop-cart-icon"></i>
+					</NavLink>
+				}
+
+
 			</div>
 
 		</ul>
