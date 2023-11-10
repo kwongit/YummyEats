@@ -1,22 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { RestaurantContext } from '../../context/Restaurant-context'
+import React, { useContext, useEffect, useState } from "react";
+import { RestaurantContext } from "../../context/Restaurant-context";
 import { useSelector } from "react-redux";
-import { CartItem } from './CartItem';
+import { CartItem } from "./CartItem";
 import { useHistory, useNavigate } from "react-router-dom";
 
 export const Cart = () => {
-    const history = useHistory();
-    // const navigate = useNavigate()
-    const getMenuItems = useSelector((state) => state.menuItems.allRestaurantsMenuItems);
-    const getCurrentMenuItems = useSelector((state) => state.menuItems.allMenuItems);
-    const currentMenuItems = Object.values(getCurrentMenuItems);
-    const menuItems = Object.values(getMenuItems);
-    const { cartItems, totalAmount,setCartItems } = useContext(RestaurantContext)
-    const [pageReloaded, setPageReloaded] =useState(false)
-
-
+  const history = useHistory();
+  // const navigate = useNavigate()
+  const getMenuItems = useSelector(
+    (state) => state.menuItems.allRestaurantsMenuItems
+  );
+  const getCurrentMenuItems = useSelector(
+    (state) => state.menuItems.allMenuItems
+  );
+  const currentMenuItems = Object.values(getCurrentMenuItems);
+  const menuItems = Object.values(getMenuItems);
+  const { cartItems, totalAmount, setCartItems } =
+    useContext(RestaurantContext);
+  const [pageReloaded, setPageReloaded] = useState(false);
 
   //! ///////////////////////////////////////////
+
 
 //   if (totalAmount === 0 ) {
 
@@ -77,6 +81,7 @@ export const Cart = () => {
             </div>)}
 
 
-        </div>
-    )
-}
+
+    </div>
+  );
+};

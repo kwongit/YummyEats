@@ -31,7 +31,7 @@ function Navigation({ isLoaded }) {
 	// }, [dispatch]);
 
 	// if (!restaurants.length) return null;
-	console.log('cartItemsValues ====77777>>>>>', cartItemsValues)
+	// console.log('cartItemsValues ====77777>>>>>', cartItemsValues)
 	return (
 
 		<ul id="header">
@@ -49,7 +49,7 @@ function Navigation({ isLoaded }) {
 				</li>
 			</div>
 			<div>
-				
+
 
 				{/* <NavLink exact to="/emptyCart">
 								<i className="fa-solid fa-cart-shopping shop-cart-icon"></i>
