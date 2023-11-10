@@ -94,11 +94,11 @@ export const thunkGetAllMenuItems = () => async (dispatch) => {
   if (res.ok) {
     const menuItems = await res.json();
     dispatch(getAllMenuItems(menuItems));
-    console.log('menu items in thunk ===>>>>>+++' ,menuItems)
+    // console.log('menu items in thunk ===>>>>>+++' ,menuItems)
     return res;
   } else {
     const errors = await res.json();
-    console.log('errors in thunk =====>>>' ,errors)
+    // console.log('errors in thunk =====>>>' ,errors)
     return errors;
   }
 };

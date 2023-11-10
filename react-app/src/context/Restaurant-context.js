@@ -64,7 +64,7 @@ export function RestaurantContextProvider(props) {
     const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
     const menuItems = Object.values(getMenuItems);
     // get all menu items for all restaurant
-    console.log("menuItems %%%%%%%%======", menuItems)
+    // console.log("menuItems %%%%%%%%======", menuItems)
     const [cartItems, setCartItems] = useState({}); // Initialize as an empty object
     const [totalAmount, setTotalAmount] = useState(0)
 
@@ -87,12 +87,12 @@ export function RestaurantContextProvider(props) {
 
         let amount = 0
         for (let item in cartItems) {
-            console.log('this is the item ====99999999', item)
-            console.log('cartItems[item]====88888888', cartItems[item])
+            // console.log('this is the item ====99999999', item)
+            // console.log('cartItems[item]====88888888', cartItems[item])
             if (cartItems[item] > 0) {
 
                 let itemInfo = menuItems.find((oneItem) => oneItem.id === Number(item))
-                console.log('this is the itemInfo @@@@@@@', itemInfo)
+                // console.log('this is the itemInfo @@@@@@@', itemInfo)
                 amount += cartItems[item] * itemInfo.price
             }
             setTotalAmount(amount)
@@ -113,7 +113,7 @@ export function RestaurantContextProvider(props) {
     }
 
     useEffect(() => {
-        console.log("cartItems =======+++++=>>>>>", cartItems);
+        // console.log("cartItems =======+++++=>>>>>", cartItems);
     }, [cartItems, menuItems]);
 
     const contextValue = {
