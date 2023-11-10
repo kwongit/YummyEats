@@ -70,7 +70,7 @@ export const Cart = () => {
                 {
             <>
               {window.location.reload()}
-              {history.push(`/emptyCart`)}
+              {history.push(`/`)}
             </>
           }
 
