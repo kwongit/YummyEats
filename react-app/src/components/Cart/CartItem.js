@@ -11,7 +11,7 @@ export const CartItem = (props) => {
   const { id, name, price, imageUrl } = props.data;
   const { cartItems, addToCart, removeFromCart, updateCartItemCount } =
     useContext(RestaurantContext);
-  console.log("cart  item in context ====>+>=>=>=>", cartItems);
+  // console.log("cart  item in context ====>+>=>=>=>", cartItems);
 
   return (
     <div>
