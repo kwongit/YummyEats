@@ -21,51 +21,67 @@ export const Cart = () => {
 
   //! ///////////////////////////////////////////
 
-  if (totalAmount === 0) {
-    window.location.reload();
-    history.push(`/emptyCart`);
-  }
 
-  //! ///////////////////////////////////////////////////////////
+//   if (totalAmount === 0 ) {
 
-  //! ////////////////////////////////////////////////////////
-  const onClick = (e) => {
-    alert(` Items have been purchased!`);
-    //   setCartItems({})
-    history.push(`/`);
-    window.location.reload();
-  };
-  return (
-    <div>
-      <div className="cart-container">
-        <h1>Your Cart Items</h1>
-      </div>
-      <div className="cart-items-container">
-        {menuItems.map((menuItem) => {
-          if (cartItems[menuItem.id] > 0) {
-            return <CartItem key={menuItem.id} data={menuItem} />;
+//             window.location.reload();
+//         history.push(`/emptyCart`)
+
+//     }
+
+//! ///////////////////////////////////////////////////////////
+
+
+    const onClick = (e) => {
+
+
+          alert(` Items have been purchased`);
+        //   setCartItems({})
+        history.push(`/`);
+        window.location.reload()
+
+
+      };
+    return (
+        <div>
+            <div className='cart-container'>
+                <h1>Your Cart Items</h1>
+            </div>
+            <div className='cart-items-container'>
+                {menuItems.map((menuItem) => {
+                    if (cartItems[menuItem.id] > 0) {
+                        return < CartItem key={menuItem.id} data={menuItem} />
+                    }
+                })}
+            </div>
+            {totalAmount > 0 ? (
+
+                <div className='checkout'>
+                    <p > subtotal: $ {totalAmount.toFixed(2)}</p>
+                    <div className='checkout-buttons'>
+                        <button
+                        onClick={onClick}
+                        >Checkout</button>
+                        <button
+                            onClick={() => history.push(`/restaurants/${currentMenuItems[0].restaurantId}`)}
+                        >Continue Shopping</button>
+                    </div>
+                </div>
+
+            ) : (
+            <div id='empty-cart'>
+                <h3 > Your cart is Empty.. </h3>
+                {
+            <>
+              {window.location.reload()}
+              {history.push(`/emptyCart`)}
+            </>
           }
-        })}
-      </div>
-      {totalAmount > 0 ? (
-        <div className="checkout">
-          <p> Subtotal: $ {totalAmount.toFixed(2)}</p>
-          <div className="checkout-buttons">
-            <button onClick={onClick}>Checkout</button>
-            <button
-              onClick={() =>
-                history.push(`/restaurants/${currentMenuItems[0].restaurantId}`)
-              }
-            >
-              Continue Shopping
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div id="empty-cart">
-          <h1> Your Cart Is Empty </h1>
-        </div>
-      )}
+
+            </div>)}
+
+
+
     </div>
   );
 };
