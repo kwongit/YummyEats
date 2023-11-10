@@ -31,6 +31,17 @@ export const Cart = () => {
 
 //! ///////////////////////////////////////////////////////////
 
+// useEffect(() => {
+//     if (totalAmount === 0) {
+
+//       window.location.reload();
+//       history.push(`/`);
+//     }
+//   }, [totalAmount]);
+
+
+//! ///////////////////////////////////
+
 
     const onClick = (e) => {
 
@@ -73,8 +84,8 @@ export const Cart = () => {
                 <h3 > Your cart is Empty.. </h3>
                 {
             <>
-              {window.location.reload()}
-              {history.push(`/`)}
+              {/* {window.location.reload()} */}
+              {history.push(`/emptyCart`)}
             </>
           }
 
