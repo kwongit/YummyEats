@@ -16,13 +16,32 @@ html, body {
   display: flex;
   /* border-bottom: solid 2px lightgrey; */
   list-style-type: none;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   margin: 0;
   padding-left: 20px ;
   padding-right: 20px;
   height: 70px;
   }
+
+  #sub-header-container{
+    display: flex;
+    /* border-bottom: solid 2px lightgrey; */
+    list-style-type: none;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin: 0;
+    padding-left: 20px ;
+    padding-right: 20px;
+    height: 70px;
+  }
+
+.shop-cart-icon{
+font-size: 23px;
+color: black;
+padding: 0px 25px;
+}
+
 
 #logo-image{
   width: 200px;

@@ -28,7 +28,7 @@ const MenuItemTile = ({ menuItem, restaurantId }) => {
         <div className="menu-item-tile-info">
           <div className="menu-item-small-name">{name}</div>
           <div className="menu-item-small-info">
-            ${price}
+            ${price.toFixed(2)}
             {calories && (
               <>
                 <span style={{ fontWeight: "bold" }}> &#183;</span>{" "}
