@@ -3,6 +3,7 @@
 const GET_MENU_ITEMS = "menuItems/getMenuItems";
 const GET_MENU_ITEM = "menuItems/getMenuItem";
 const DELETE_MENU_ITEM = "menuItems/deleteMenuItem";
+const GET_ALL_MENU_ITEMS = "menuItems/getAllMenuItems";
 
 // ACTION CREATORS
 
@@ -27,7 +28,15 @@ const deleteMenuItem = (menuItemId) => {
   };
 };
 
-// THUNK ACTION CREATORS
+const getAllMenuItems = (menuItems)=> {
+  return {
+    type: GET_ALL_MENU_ITEMS,
+    menuItems,
+  };
+
+}
+
+//! THUNK ACTION CREATORS
 
 export const thunkGetMenuItems = (restaurantId) => async (dispatch) => {
   const res = await fetch(`/api/restaurants/${restaurantId}/menuitems`);
@@ -79,8 +88,25 @@ export const thunkDeleteMenuItem = (menuItemId) => async (dispatch) => {
   return res;
 };
 
+//!
+export const thunkGetAllMenuItems = () => async (dispatch) => {
+  const res = await fetch(`/api/menuitems`);
+  if (res.ok) {
+    const menuItems = await res.json();
+    dispatch(getAllMenuItems(menuItems));
+    console.log('menu items in thunk ===>>>>>+++' ,menuItems)
+    return res;
+  } else {
+    const errors = await res.json();
+    console.log('errors in thunk =====>>>' ,errors)
+    return errors;
+  }
+};
+//!
+
+
 // REDUCERS
-const initialState = { allMenuItems: {}, singleMenuItem: {} };
+const initialState = { allMenuItems: {}, singleMenuItem: {}, allRestaurantsMenuItems:{} };
 
 const menuItemsReducer = (state = initialState, action) => {
   let newState;
@@ -105,6 +131,13 @@ const menuItemsReducer = (state = initialState, action) => {
         singleMenuItem: {},
       };
       delete newState.allMenuItems[action.menuItemId];
+      return newState;
+
+      case GET_ALL_MENU_ITEMS:
+      newState = { ...state, allRestaurantsMenuItems: {} };
+      action.menuItems.forEach((menuItem) => {
+        newState.allRestaurantsMenuItems[menuItem.id] = menuItem;
+      });
       return newState;
 
     default:
