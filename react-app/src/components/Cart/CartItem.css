@@ -37,9 +37,18 @@ margin-left: 10px;
     width: 100%;
 }
 
+.quantity-btn {
+    background-color: black;
+    color: white;
+    border-radius: 100%;
+    border: 1px solid black;
+    margin: 0px 4px;
+}
+
 .count-handler input{
-    width: 50px;
-    background-color: rgb(236, 233, 233);
+    width: 40px;
+    /* background-color: rgb(236, 233, 233); */
+    background-color: white;
     text-align: center;
 
 }
