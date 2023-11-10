@@ -18,19 +18,16 @@ export const Cart = () => {
 
   //! ///////////////////////////////////////////
 
-  if (totalAmount === 0 ) {
+//   if (totalAmount === 0 ) {
 
-            window.location.reload();
-        history.push(`/emptyCart`)
+//             window.location.reload();
+//         history.push(`/emptyCart`)
 
-    }
+//     }
 
 //! ///////////////////////////////////////////////////////////
 
 
-
-
-//! ////////////////////////////////////////////////////////
     const onClick = (e) => {
 
 
@@ -69,7 +66,13 @@ export const Cart = () => {
 
             ) : (
             <div id='empty-cart'>
-                <h3 > Your cart is Empty </h3>
+                <h3 > Your cart is Empty.. </h3>
+                {
+            <>
+              {window.location.reload()}
+              {history.push(`/emptyCart`)}
+            </>
+          }
 
             </div>)}
 
